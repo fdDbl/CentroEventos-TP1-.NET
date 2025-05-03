@@ -1,5 +1,5 @@
 namespace CentroEventos.Aplicacion;
-public enum TipoAsistencia
+public enum Asistencia
 {
     Pendiente,
     Asistio,

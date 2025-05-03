@@ -1,6 +1,6 @@
 namespace CentroEventos.Aplicacion;
 
-public enum TipoPermiso
+public enum Permiso
 {
     ActividadAlta,
     ActividadModificacion,
