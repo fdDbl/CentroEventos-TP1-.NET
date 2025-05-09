@@ -2,7 +2,6 @@ namespace CentroEventos.Aplicacion;
 public enum Asistencia
 {
     Pendiente,
-    Asistio,
+    Presente,
     Ausente,
-    Cancelada
 }
