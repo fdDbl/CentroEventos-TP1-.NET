@@ -1,6 +1,6 @@
 namespace CentroEventos.Aplicacion;
 public class ActividadValidador {
-    public bool ValidarActividad(EventoDeportivo actividad,IRepositorioPersona unRepoPer, out string msg) {
+    public bool ValidarActividad(EventoDeportivo actividad,IRepositorioPersona unRepo, out string msg) {
         msg = "";
         if(string.IsNullOrWhiteSpace(actividad.Nombre)) {
             msg = "El nombre no puede estar vacío.\n";
@@ -18,9 +18,9 @@ public class ActividadValidador {
             msg += "La actividad debe tener una duracion mayor a 0.\n";
         }
 
-        if (unRepoPer.obtenerPersona(actividad.ResponsableId) == null)
+        if (unRepo.obtenerPersona(actividad.ResponsableId) == null)
         {
-            msg += "Persona ingresada no encontrada.\n";
+            msg += "Responsable no existente.\n";
         }
         return msg == "";
     }
