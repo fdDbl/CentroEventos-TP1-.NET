@@ -1,5 +1,3 @@
-using System;
-
 namespace CentroEventos.Aplicacion;
 public class EventoDeportivo{
     
@@ -10,7 +8,7 @@ public class EventoDeportivo{
 
     
 
-public  ActividadDeportiva(int id, String? nombre, DateTime diasDisponibles, int cupoMaximo){
+public EventoDeportivo(int id, String? nombre, DateTime diasDisponibles, int cupoMaximo){
     Id=id;
     Nombre=nombre;
     DiasDisponibles= diasDisponibles;

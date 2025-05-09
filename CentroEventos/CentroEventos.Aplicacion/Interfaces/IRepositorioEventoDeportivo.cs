@@ -2,8 +2,8 @@
 
 public interface IRepositorioActividad
 {
-    void AltaActividad(ActividadDeportiva actividad);
+    void AltaActividad(EventoDeportivo actividad);
     void BajaActividad(int id);
-    void ModificarActividad(ActividadDeportiva actividad);
-    List<ActividadDeportiva> ListarActividades();
+    void ModificarActividad(EventoDeportivo actividad);
+    List<EventoDeportivo> ListarActividades();
 }

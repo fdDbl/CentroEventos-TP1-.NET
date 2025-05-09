@@ -1,12 +1,7 @@
 namespace CentroEventos.Aplicacion;
 // Persona: Id, número de carnet, nombre, apellido, dirección, facultad, teléfono, correo electrónico.
 public class Persona {
-    static int s_id = 0;
-    public static int Id {
-        get => s_id;
-        
-        set => s_id = value +1; // preguntar como debe ser gestionado por el repositorio
-        }
+    public int Id { get; set; }
     public string? Nombre {get;set;}
     public string? Apellido {get;set;}
     public int Telefono {get;set;}
