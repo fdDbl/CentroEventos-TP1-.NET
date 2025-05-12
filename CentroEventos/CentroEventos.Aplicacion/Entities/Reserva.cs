@@ -2,11 +2,11 @@ namespace  CentroEventos.Aplicacion;
 public class Reserva
 {
     static int s_id = 0;
-    public static int Id {
+    public int Id {
         get => s_id;
         
         set => s_id = value +1; // preguntar como debe ser gestionado por el repositorio
-        }
+    }
     public int PersonaId {get;set;}
     public int EventoDeportivoId {get;set;}
     public DateTime FechaAltaReserva{get;set;}
