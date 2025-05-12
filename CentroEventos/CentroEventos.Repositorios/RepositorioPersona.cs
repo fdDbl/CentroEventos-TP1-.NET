@@ -1,7 +1,6 @@
 using System;
-using System.Security.Cryptography;
 using CentroEventos.Aplicacion;
-
+    ///facu
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona:IRepositorioPersona
@@ -9,11 +8,18 @@ public class RepositorioPersona:IRepositorioPersona
     readonly string _nombreArch = "RepositoriosPersonas.txt";
     readonly string _nombreIdArch = "RepositoriosIdPersonas.txt";
 
-    public void AltaActividad (EventoDeportivo eventoDeportivo)
+    public void AltaActividad (Persona per )
     {
-        using StreamReader st = new StreamReader (_nombreArch);
-        using StreamWriter sw = new StreamWriter(_nombreArch);
+      if (!BuscarPersonaDni(per.Dni))
+      {
+
+      }
         
     }
     
+    private bool BuscarPersonaDni (String? dni)
+    {
+        using 
+    }
+
 }
