@@ -1,6 +1,7 @@
 namespace CentroEventos.Aplicacion;
 
-public class ReservaValidador
-{
+public class ReservaValidador{
+
+
     
 }
