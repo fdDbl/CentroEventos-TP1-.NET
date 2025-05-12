@@ -1,6 +1,14 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class AltaPersonaUseCase(IRepositorioPersona repo, PersonaValidador validador)
+public class AltaPersonaUseCase(IRepositorioPersona repo,IRepositorioActividad repositorioActividad, PersonaValidador validador) 
+ //agrege el repo actividad para verificar q no este en la actividad
 {
-    
+    public void Ejecutar(Persona persona){
+    {
+        if (!validador.ValidarPersona(persona,repo,out string msg)){
+            Console.WriteLine(new ArgumentException(msg));
+        }
+        repo.AltaPersona(persona);
+    }
+    }
 }

@@ -6,5 +6,6 @@ public class AltaActividadUseCase(IRepositorioActividad repoAct, IRepositorioPer
     {
         if(!validador.ValidarActividad(actividad,repoPer,out string msg))
             throw new Exception(msg);
+        repoAct.AltaActividad(actividad);
     }
 }

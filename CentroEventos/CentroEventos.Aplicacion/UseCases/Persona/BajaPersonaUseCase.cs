@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class BajaPersonaUseCase(IRepositorioPersona repo)
+public class BajaPersonaUseCase(IRepositorioPersona repositorioPersona)
 {
     
 }
