@@ -1,6 +1,6 @@
 using System;
+//Villca
 using CentroEventos.Aplicacion;
-    ///Villca
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
@@ -8,7 +8,7 @@ public class RepositorioPersona : IRepositorioPersona
     private readonly string _nombreArch = "RepositorioPersona.txt";
     public void AltaPersona(Persona persona){
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
-        using StreamWriter sw = new StreamWriter(_nombreArch);
+        using StreamWriter sw = new StreamWriter(_nombreArch,true);
         sw.WriteLine(id);
         sw.WriteLine(persona.Dni);
         sw.WriteLine(persona.Nombre);
@@ -18,14 +18,16 @@ public class RepositorioPersona : IRepositorioPersona
         //escribe en el archivo 
     }
     public void BajaPersona(int id){
-        using StreamReader st = new StreamReader (_nombreArch);
+        using StreamReader st = new StreamReader (_nombreArch,true);
 
     }
     public void ModificarPersona(Persona persona){
 
     }
-    public Persona obtenerPersona(int id){       
-        return null;  //COMPLETAR TODAVIA ASDASD
+    public Persona? obtenerPersona(int id){         //la persona puede no estar
+        List<Persona>lista = ListarPersonas();      //guardo la lista de personas
+        Persona? p = lista.Find(Persona => Persona.Id == id);       //busca en la lista la persona comparando por id  (puedo no estar) 
+         return p;          //retorna ya sea la persona o null
     }
     public List<Persona> ListarPersonas(){
 
@@ -48,18 +50,7 @@ public class RepositorioPersona : IRepositorioPersona
         
         return resultado;
     }
-    public void AltaActividad (Persona per )
-    {
-        if (!BuscarPersonaDni(per.Dni))
-        {
-            
-        }
-        
-    }   
-    private bool BuscarPersonaDni (String? dni)
-    {
-        return true ;//COMPLETAR
-    }
+
 
 }
 
