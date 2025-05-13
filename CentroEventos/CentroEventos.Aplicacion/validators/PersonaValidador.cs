@@ -13,9 +13,11 @@ public class PersonaValidador
         if (string.IsNullOrWhiteSpace(persona.Dni))
             msg += "El dni no debe estar vacio";
 
-        if (repo.ListarPersonas)
+        
+        
         //FALTA DNI NO PUEDE REPETIRSE ENTRE PERSONAS
         //FALTA EMAIL NO PUEDE REPETIRSE ENTRE PERSONAS
         return msg == "";
+    
     }
 }   

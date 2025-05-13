@@ -8,9 +8,11 @@ public class Persona {
     public int Telefono {get;set;}
     public string? Email {get;set;}
 
-    public Persona (int unId, String unNro, string? unNom, string? unAp,int unTel, string? unEm) 
+    public Persona (){}
+    
+    public Persona ( String unNro, string? unNom, string? unAp,int unTel, string? unEm) 
     {
-        Id = unId;
+        
         Dni = unNro;
         Nombre = unNom;
         Apellido = unAp;
