@@ -12,6 +12,7 @@ public class Reserva
     public DateTime FechaAltaReserva{get;set;}
     public Asistencia EstadoAsistencia {get;set;}
 
+    public Reserva () {}
 
     public Reserva (/*int id,*/ int idPersona,int idActDeportivo, DateTime fechaDeReserva, Asistencia estadoAsistencia )
     {
