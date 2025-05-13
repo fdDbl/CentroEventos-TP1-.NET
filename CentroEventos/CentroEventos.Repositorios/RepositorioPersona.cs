@@ -1,6 +1,6 @@
 using System;
 using CentroEventos.Aplicacion;
-
+    ///facu
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
@@ -8,6 +8,7 @@ public class RepositorioPersona : IRepositorioPersona
     private readonly string _nombreArch = "RepositorioPersona.txt";
     private readonly string _nombreArchID = "RepositorioIdPersona.txt";
 
+<<<<<<< HEAD
     public void AltaPersona(Persona persona){
         using StreamWriter sw = new StreamWriter(_nombreArch);
         sw.WriteLine(persona.Id);
@@ -33,3 +34,20 @@ public class RepositorioPersona : IRepositorioPersona
 
     }
 }
+=======
+    public void AltaActividad (Persona per )
+    {
+      if (!BuscarPersonaDni(per.Dni))
+      {
+
+      }
+        
+    }
+    
+    private bool BuscarPersonaDni (String? dni)
+    {
+        using 
+    }
+
+}
+>>>>>>> 1b43944d013e7be519a548d0490d6ef11ffd1c99

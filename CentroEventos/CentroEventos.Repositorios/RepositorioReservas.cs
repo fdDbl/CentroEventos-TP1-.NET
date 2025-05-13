@@ -20,14 +20,18 @@ public class RepositorioReservas : IRepositorioReserva
     }
     public void BajaReserva(int idBaja)
     {
-        using var sr = new StreamReader(_nombreArchID);
-        using var sw = new StreamWriter(_nombreArch, true);
-        sw.WriteLine(reserva.Id);
-        sw.WriteLine(reserva.PersonaId);
-        sw.WriteLine(reserva.FechaAltaReserva);
-        sw.WriteLine(reserva.EstadoAsistencia);
-        
-        using var swID = new StreamWriter(_nombreArchID,false);
-        swID.WriteLine(idAct+1);
+        Reserva rBaja = BuscarReservaPorID(idBaja);
+
+    }
+    private Reserva BuscarReservaPorID(int id)
+    {
+        foreach(Reserva r in ListarReservas())
+        {
+            if(r.Id == id)
+            {
+                return r;
+            }
+        }
+        throw new RepositorioException("El expediente buscado no existe.");
     }
 }

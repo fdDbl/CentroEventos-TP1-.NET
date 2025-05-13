@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public interface IRepositorioActividad
+public interface IRepositorioEventoDeportivo
 {
     void AltaActividad(EventoDeportivo actividad);
     void BajaActividad(int id);
