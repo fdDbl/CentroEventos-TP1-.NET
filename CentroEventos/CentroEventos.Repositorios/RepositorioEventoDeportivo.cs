@@ -66,23 +66,29 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         return listaEventos; //Devuelvo la lista
     }
 
-    public void ModificarActividad(EventoDeportivo actividad)
+    public void ModificarActividad(EventoDeportivo ActMod)
     {
-        Console.WriteLine("Ingrese hora de inicio para modificarla:");
-        actividad.FechaHoraInicio = DateTime.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese cupo maximo para modificarlo:");
-        actividad.CupoMaximo = int.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese duracion para modificarla:");
-        actividad.DuracionHoras = int.Parse(Console.ReadLine());
-        using StreamReader sr = new StreamReader (nomArch) ;
-        while (!sr.EndOfStream) {
-            if (actividad.Nombre == sr.ReadLine()) {
-                sr.Read();
-                //sr.WriteLine(actividad.FechaHoraInicio); // <-- xq no me lo toma ? tengo q sobre escribir (actualizar archivo con modificaciones)
-            }     
-                sr.Read();
-                }
+        using StreamWriter sw = new StreamWriter(nomArch,false); // abro el archivo y le paso false para sobreescribir
+        List <EventoDeportivo> listaAct = ListarActividades(); // creo una lista
+        foreach (EventoDeportivo act in listaAct) { // recorro lista y voy sobreescribiendo
+            if (act.Id == ActMod.Id) { // solo en el caso de que encuentre el q quiero modificar, lo modifico
+                sw.WriteLine(ActMod.Nombre);
+                sw.WriteLine(ActMod.Descripcion);
+                sw.WriteLine(ActMod.FechaHoraInicio);
+                sw.WriteLine(ActMod.DuracionHoras);
+                sw.WriteLine(ActMod.CupoMaximo);
+                sw.WriteLine(ActMod.ResponsableId);
+            }
+        sw.WriteLine(act.Id);
+        sw.WriteLine(act.Nombre);
+        sw.WriteLine(act.Descripcion);
+        sw.WriteLine(act.FechaHoraInicio);
+        sw.WriteLine(act.DuracionHoras);
+        sw.WriteLine(act.CupoMaximo);
+        sw.WriteLine(act.ResponsableId);
+        }
         }
     }
+
 
 
