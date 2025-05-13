@@ -34,4 +34,21 @@ public class RepositorioReservas : IRepositorioReserva
         }
         throw new RepositorioException("El expediente buscado no existe.");
     }
+
+    public void ModificarReserva(Reserva unaRes) {
+        using StreamWriter sw = new StreamWriter(_nombreArch,false);
+        List <Reserva> listaRes = new List<Reserva>();
+        foreach (Reserva r in listaRes) {
+            if (r.Id == unaRes.Id) {
+                sw.WriteLine(unaRes.PersonaId);
+                sw.WriteLine(unaRes.FechaAltaReserva);
+                sw.WriteLine(unaRes.EstadoAsistencia);
+            }
+            sw.WriteLine(r.Id);
+            sw.WriteLine(r.PersonaId);
+            sw.WriteLine(r.FechaAltaReserva);
+            sw.WriteLine(r.EstadoAsistencia);
+        }
+    }
+
 }
