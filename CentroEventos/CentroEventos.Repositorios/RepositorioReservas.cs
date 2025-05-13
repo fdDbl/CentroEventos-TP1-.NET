@@ -21,7 +21,7 @@ public class RepositorioReservas : IRepositorioReserva
     public void BajaReserva(int idBaja)
     {
         Reserva rBaja = BuscarReservaPorID(idBaja);
-
+    
     }
     private Reserva BuscarReservaPorID(int id)
     {

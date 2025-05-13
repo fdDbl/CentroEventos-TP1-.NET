@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class AltaActividadUseCase(IRepositorioActividad repoAct, IRepositorioPersona repoPer, ActividadValidador validador)
+public class AltaActividadUseCase(IRepositorioEventoDeportivo repoAct, IRepositorioPersona repoPer, ActividadValidador validador)
 {
     public void Ejecutar(EventoDeportivo actividad)
     {

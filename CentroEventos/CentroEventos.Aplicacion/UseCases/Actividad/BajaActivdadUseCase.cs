@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion.UseCases.Actividad;
 
-public class BajaActividadUseCase(IRepositorioActividad repo)
+public class BajaActividadUseCase(IRepositorioEventoDeportivo repo)
 {
     
 }
