@@ -1,7 +1,6 @@
 using System;
-using System.Runtime.CompilerServices;
 using CentroEventos.Aplicacion;
-    ///facu
+    ///Villca
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
@@ -29,9 +28,11 @@ public class RepositorioPersona : IRepositorioPersona
         return null;  //COMPLETAR TODAVIA ASDASD
     }
     public List<Persona> ListarPersonas(){
-        List<Persona>resultado = new List<Persona>();
-        using StreamReader sr = new StreamReader (_nombreArch);
-        while (!sr.EndOfStream)
+
+        List<Persona>resultado = new List<Persona>();  //creo la lista de personas
+
+        using StreamReader sr = new StreamReader (_nombreArch);  
+        while (!sr.EndOfStream)  //mientras no termine el archivo
         {
             var Persona = new Persona();
             Persona.Id=int.Parse(sr.ReadLine()?? "");
@@ -41,7 +42,10 @@ public class RepositorioPersona : IRepositorioPersona
             Persona.Telefono= int.Parse(sr.ReadLine()?? "");
             Persona.Email=sr.ReadLine() ?? "";
             resultado.Add(Persona);
+
+        //leo por linea y lo agrego a la lista.
         }
+        
         return resultado;
     }
     public void AltaActividad (Persona per )
