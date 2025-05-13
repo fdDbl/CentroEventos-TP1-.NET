@@ -20,8 +20,15 @@ public class RepositorioReservas : IRepositorioReserva
     }
     public void BajaReserva(int idBaja)
     {
-        Reserva rBaja = BuscarReservaPorID(idBaja);
-    
+        Reserva? rBaja = BuscarReservaPorID(idBaja);
+        List<Reserva> reservas = ListarReservas();
+        if (rBaja != null)
+        {
+            reservas.Remove(rBaja);
+            SobreEscribirReservas(reservas);
+        }
+        else
+            RepositorioException()
     }
     private Reserva BuscarReservaPorID(int id)
     {
