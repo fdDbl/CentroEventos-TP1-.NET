@@ -4,8 +4,8 @@ public class EventoAltaUseCase(IRepositorioEventoDeportivo repoAct, IRepositorio
 {
     public void Ejecutar(EventoDeportivo evento)
     {
-        if(!validador.ValidarEvento(evento,repoPer,out string msg))
+        if(!validador.ValidarEventoAlta(evento,repoPer,out string msg))
             throw new Exception(msg);
-        repoAct.AltaActividad(evento);
+        repoAct.EventoAlta(evento);
     }
 }
