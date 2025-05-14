@@ -7,8 +7,8 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     readonly string nomArch="EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
-        using StreamWriter sr= new StreamWriter (nomArch);
-        sr.WriteLine(actividad.Id);
+        using StreamWriter sr= new StreamWriter (nomArch,true);
+        sr.WriteLine (actividad.Id);
         sr.WriteLine(actividad.Nombre);
         sr.WriteLine(actividad.Descripcion);
         sr.WriteLine(actividad.FechaHoraInicio);
@@ -89,7 +89,41 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         sw.WriteLine(act.ResponsableId);
         }
     }
+
+    private bool CalcularCupos (EventoDeportivo e) {
+        var b = false;
+        List<EventoDeportivo> listaEventos= ListarEventos();
+        var cont = 0;
+        foreach (EventoDeportivo ev in listaEventos) {
+            if (ev.Id == e.Id) {
+                cont++;
+            }
+        }
+        if (cont < e.CupoMaximo) {
+            b = true;
+        }
+        return b;
     }
+
+    public List<EventoDeportivo> ListarEventosConCupoDisponible()
+    {
+        List<EventoDeportivo> listaEventos = ListarEventos();
+        List<EventoDeportivo> listaCupos = null; 
+        try {
+            if (listaEventos != null) {
+                foreach (EventoDeportivo e in listaEventos) {
+                    if (CalcularCupos(e)) { // si del evento q leo hay lugar entonces agrego
+                        listaCupos.Add(e);
+                    }
+                }
+            }  
+            return listaCupos;
+        }
+        catch {
+            throw new Exception("No hay eventos disponibles");
+        }
+    }
+}
 
 
 
