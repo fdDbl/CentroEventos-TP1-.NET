@@ -17,4 +17,5 @@ public class EventoDeportivo{
         CupoMaximo = cupoMaximo;
         ResponsableId = unUserID;
     }
+    public EventoDeportivo(){}
 }

@@ -1,9 +1,12 @@
-﻿namespace CentroEventos.Aplicacion;
+namespace CentroEventos.Aplicacion;
 
 public interface IRepositorioEventoDeportivo
 {
-    void AltaActividad(EventoDeportivo actividad);
-    void BajaActividad(int id);
-    void ModificarActividad(EventoDeportivo actMod);
-    List<EventoDeportivo> ListarActividades();
+    void EventoAlta(EventoDeportivo actividad);
+    void EventoBaja(int id);
+    void EventoModificacion(EventoDeportivo actividad);
+    EventoDeportivo? ObtenerEvento(int id); //Busca un evento por id
+    List<EventoDeportivo> ListarEventosConCupoDisponible();
+    List<EventoDeportivo> ListarEventos();
+
 }
