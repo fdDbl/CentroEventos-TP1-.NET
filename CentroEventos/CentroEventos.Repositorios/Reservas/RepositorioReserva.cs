@@ -46,7 +46,7 @@ public class RepositorioReserva : IRepositorioReserva
             if (r.Id == id)
                 return r;
 
-        throw new RepositorioException("El expediente buscado no existe.");
+        throw new RepositorioException("La reserva buscada no existe.");
     }
 
     private Reserva ObtenerReserva(int id, out int index)
@@ -63,7 +63,7 @@ public class RepositorioReserva : IRepositorioReserva
             }
         }
 
-        throw new RepositorioException("El expediente buscado no existe.");
+        throw new RepositorioException("La reserva buscada no existe.");
     }
 
     public List<Reserva> ListarReservas()

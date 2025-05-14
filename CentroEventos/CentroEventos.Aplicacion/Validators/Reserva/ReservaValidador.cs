@@ -19,8 +19,9 @@ public class ReservaValidador
         int cantReservasEvento = 0;
         foreach(Reserva r in lista)
             if (r.EventoDeportivoId == reserva.EventoDeportivoId) cantReservasEvento++;
-        if(cantReservasEvento > repoEvento.ObtenerEvento(reserva.EventoDeportivoId).CupoMaximo)
-            msg += "No hay cupo disponible para el evento que se desea reservar.\n";
+        if(repoEvento.ObtenerEvento(reserva.EventoDeportivoId) != null)
+            if(cantReservasEvento > repoEvento.ObtenerEvento(reserva.EventoDeportivoId).CupoMaximo)
+                msg += "No hay cupo disponible para el evento que se desea reservar.\n";
         
         return msg == "";
     }

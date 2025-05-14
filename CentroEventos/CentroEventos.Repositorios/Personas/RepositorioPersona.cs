@@ -50,7 +50,7 @@ public class RepositorioPersona : IRepositorioPersona
             p.Apellido = PersonaModificada.Apellido;
             p.Telefono = PersonaModificada.Telefono;
             p.Email = PersonaModificada.Email;
-            //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA 
+            //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
         else
