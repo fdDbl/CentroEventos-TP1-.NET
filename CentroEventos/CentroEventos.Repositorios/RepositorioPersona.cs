@@ -9,14 +9,9 @@ public class RepositorioPersona : IRepositorioPersona
     public void AltaPersona(Persona persona)
     {
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
+        persona.Id = id;
         using StreamWriter sw = new StreamWriter(_nombreArch,true);
-        sw.WriteLine(id);
-        sw.WriteLine(persona.Dni);
-        sw.WriteLine(persona.Nombre);
-        sw.WriteLine(persona.Apellido);
-        sw.WriteLine(persona.Telefono);
-        sw.WriteLine(persona.Email);
-        //escribe en el archivo 
+        sw.WriteLine($"{persona.Id} | {persona.Dni} | {persona.Nombre} | {persona.Apellido} | {persona.Telefono} | {persona.Email}");
     }
     public void BajaPersona(int id)
     {
@@ -28,7 +23,7 @@ public class RepositorioPersona : IRepositorioPersona
             SobreEscribirPersonas(personas);
         }
         else
-           throw new ArgumentException("La persona no esta en la lista");
+           throw new RepositorioException("La persona no esta en la lista");
     }
 
     private void SobreEscribirPersonas(List<Persona>lista)
@@ -36,13 +31,7 @@ public class RepositorioPersona : IRepositorioPersona
         using StreamWriter sw = new StreamWriter(_nombreArch,false);  //false para sobreescribir
         foreach (Persona p in lista)
         {
-            sw.WriteLine(p.Id);
-            sw.WriteLine(p.Dni);
-            sw.WriteLine(p.Nombre);
-            sw.WriteLine(p.Apellido);
-            sw.WriteLine(p.Telefono);
-            sw.WriteLine(p.Email);  
-            //sobreescribo el archivo
+            sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
     public void ModificarPersona(Persona persona){
@@ -64,13 +53,14 @@ public class RepositorioPersona : IRepositorioPersona
         sw.WriteLine(lista.Telefono);
         sw.WriteLine(lista.Email);  
         }
-
+        
+        // aprovechá el método obtenerPersona() boludito
 
     }
     public Persona? obtenerPersona(int id)
     {         //la persona puede no estar
-        List<Persona>lista = ListarPersonas();      //guardo la lista de personas
-        Persona? p = lista.Find(Persona => Persona.Id == id);       //busca en la lista la persona comparando por id  (puedo no estar) 
+        var lista = ListarPersonas();      //guardo la lista de personas
+        var p = lista.Find(persona => persona.Id == id);       //busca en la lista la persona comparando por id  (puedo no estar) 
         return p;          //retorna ya sea la persona o null
     }
     public List<Persona> ListarPersonas()
