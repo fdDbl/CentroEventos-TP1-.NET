@@ -1,12 +1,7 @@
 namespace  CentroEventos.Aplicacion;
 public class Reserva
 {
-    static int s_id = 0;
-    public int Id {
-        get => s_id;
-        
-        set => s_id = value +1; // preguntar como debe ser gestionado por el repositorio
-    }
+    public int Id { get; set; }
     public int PersonaId {get;set;}
     public int EventoDeportivoId {get;set;}
     public DateTime FechaAltaReserva{get;set;}
@@ -14,9 +9,8 @@ public class Reserva
 
     public Reserva () {}
 
-    public Reserva (/*int id,*/ int idPersona,int idActDeportivo, DateTime fechaDeReserva, Asistencia estadoAsistencia )
+    public Reserva (int idPersona,int idActDeportivo, DateTime fechaDeReserva, Asistencia estadoAsistencia )
     {
-      //  Id=id;
         PersonaId=idPersona;
         EventoDeportivoId=idActDeportivo;
         FechaAltaReserva=fechaDeReserva;
