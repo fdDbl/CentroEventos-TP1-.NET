@@ -6,6 +6,6 @@ public class EventoModificacionUseCase(EventoDeportivo unEvento,IRepositorioEven
         if (!validador.ValidarEvento(unEvento,repoEven,out string msg)) {
             throw new Exception(msg);
     }
-    repoEven.ModificarActividad(unEvento);
+    repoEven.EventoModificacion(unEvento);
 }
 }
