@@ -1,6 +1,6 @@
-﻿namespace CentroEventos.Repositorios;
+﻿using CentroEventos.Aplicacion;
 
-using Aplicacion;
+namespace CentroEventos.Repositorios;
 
 public class RepositorioReserva : IRepositorioReserva
 {
@@ -12,7 +12,8 @@ public class RepositorioReserva : IRepositorioReserva
         reserva.Id = idAct;
         using (var sw = new StreamWriter(_nombreArch, true))
         {
-            sw.WriteLine($"{reserva.Id} | {reserva.PersonaId} | {reserva.EventoDeportivoId} | {reserva.FechaAltaReserva:yyyy-MM-dd HH:mm:ss} | {reserva.EstadoAsistencia}");
+            sw.WriteLine(
+                $"{reserva.Id} | {reserva.PersonaId} | {reserva.EventoDeportivoId} | {reserva.FechaAltaReserva:yyyy-MM-dd HH:mm:ss} | {reserva.EstadoAsistencia}");
         }
     }
 
@@ -33,21 +34,35 @@ public class RepositorioReserva : IRepositorioReserva
 
     private void SobreEscribirReservas(List<Reserva> lista)
     {
-        using StreamWriter sw = new StreamWriter(_nombreArch, false); //false para sobreescribir
-        foreach (Reserva r in lista)
-        {
-            sw.WriteLine($"{r.Id} | {r.PersonaId} | {r.EventoDeportivoId} | {r.FechaAltaReserva:yyyy-MM-dd HH:mm:ss} | {r.EstadoAsistencia}");
-            //sobreescribo el archivo
-        }
+        using var sw = new StreamWriter(_nombreArch, false); //false para sobreescribir
+        foreach (var r in lista)
+            sw.WriteLine(
+                $"{r.Id} | {r.PersonaId} | {r.EventoDeportivoId} | {r.FechaAltaReserva:yyyy-MM-dd HH:mm:ss} | {r.EstadoAsistencia}");
     }
 
-    private Reserva BuscarReservaPorId(int id)
+    public Reserva ObtenerReserva(int id)
     {
-        foreach (Reserva r in ListarReservas())
-        {
+        foreach (var r in ListarReservas())
             if (r.Id == id)
                 return r;
+
+        throw new RepositorioException("El expediente buscado no existe.");
+    }
+
+    private Reserva ObtenerReserva(int id, out int index)
+    {
+        index = -1;
+        var iAct = index;
+        foreach (var r in ListarReservas())
+        {
+            iAct++;
+            if (r.Id == id)
+            {
+                index = iAct;
+                return r;
+            }
         }
+
         throw new RepositorioException("El expediente buscado no existe.");
     }
 
@@ -56,13 +71,13 @@ public class RepositorioReserva : IRepositorioReserva
         var listaR = new List<Reserva>();
         if (!File.Exists(_nombreArch))
             return listaR;
-        
-        using StreamReader sr = new StreamReader(_nombreArch);
+
+        using var sr = new StreamReader(_nombreArch);
         while (!sr.EndOfStream)
         {
-            Reserva reservaNew = new Reserva();
-            string st = sr.ReadLine() ?? "";
-            string[] lSplitted = st.Split(" | ");
+            var reservaNew = new Reserva();
+            var st = sr.ReadLine() ?? "";
+            var lSplitted = st.Split(" | ");
             reservaNew.Id = int.Parse(lSplitted[0]);
             reservaNew.PersonaId = int.Parse(lSplitted[1]);
             reservaNew.FechaAltaReserva = DateTime.Parse(lSplitted[2]);
@@ -77,15 +92,13 @@ public class RepositorioReserva : IRepositorioReserva
     {
         try
         {
-            var rMod = BuscarReservaPorId(unaRes.Id);
-            rMod.Id = unaRes.Id;
-            rMod.PersonaId = unaRes.PersonaId;
-            rMod.EventoDeportivoId = unaRes.EventoDeportivoId;
-            rMod.FechaAltaReserva = unaRes.FechaAltaReserva;
-            rMod.EstadoAsistencia = unaRes.EstadoAsistencia;
+            var rAct = BuscarReservaPorId(unaRes.Id, out var i);
+            if (i == -1)
+                throw new RepositorioException($"La reserva con ID {unaRes.Id} no existe.");
 
-            var reservas = ListarReservas();
-            SobreEscribirReservas(reservas);
+            var lista = ListarReservas();
+            lista[i] = unaRes;
+            SobreEscribirReservas(lista);
         }
         catch (RepositorioException e)
         {
