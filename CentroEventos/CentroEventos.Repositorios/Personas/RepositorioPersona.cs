@@ -34,33 +34,36 @@ public class RepositorioPersona : IRepositorioPersona
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
-    public void ModificarPersona(Persona persona){
-       List <Persona> listaPersona = ListarPersonas();
-        using var sw = new StreamWriter (_nombreArch,false);
-        foreach (Persona lista in listaPersona){
-            if (lista.Id == persona.Id)
-            {
-                lista.Dni = persona.Dni;
-                lista.Nombre=persona.Nombre;
-                lista.Apellido=persona.Apellido;
-                lista.Email=persona.Email;
-                lista.Telefono=persona.Telefono;
-            }
-        sw.WriteLine(lista.Id);
-        sw.WriteLine(lista.Dni);
-        sw.WriteLine(lista.Nombre);
-        sw.WriteLine(lista.Apellido);
-        sw.WriteLine(lista.Telefono);
-        sw.WriteLine(lista.Email);  
-        }
-        
-        // aprovechá el método obtenerPersona() boludito
+    public void ModificarPersona(Persona persona,Persona PersonaModificada){
 
+       List <Persona> listaPersona = ListarPersonas();
+
+        using var sw = new StreamWriter (_nombreArch,false);
+
+        Persona? p= ObtenerPersona (PersonaModificada.Id);    
+
+        if (p!=null)
+        {
+            p .Id = PersonaModificada.Id;
+            p.Dni = PersonaModificada.Dni;
+            p.Nombre = PersonaModificada.Nombre;
+            p.Apellido = PersonaModificada.Apellido;
+            p.Telefono = PersonaModificada.Telefono;
+            p.Email = PersonaModificada.Email;
+            //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA 
+            SobreEscribirPersonas(listaPersona);  //escribo en el texto
+        }
+        else
+            {
+                throw new RepositorioException ("La persona no esta en la lista");
+                //PREGUNTAR ESTO EL VIERNES 
+            }   
     }
     public Persona? ObtenerPersona(int id)
     {         //la persona puede no estar
         var lista = ListarPersonas();      //guardo la lista de personas
-        var p = lista.Find(persona => persona.Id == id);       //busca en la lista la persona comparando por id  (puedo no estar) 
+        var p = lista.Find(persona => id == persona.Id);       //busca en la lista la persona comparando por id  (puede no estar) 
+        //si se pone asi el parametro busca el elemento dentro la lista cuyo id coincide con idNueva
         return p;          //retorna ya sea la persona o null
     }
     public List<Persona> ListarPersonas()
@@ -69,7 +72,9 @@ public class RepositorioPersona : IRepositorioPersona
         List<Persona>resultado = new List<Persona>();  //creo la lista de personas
 
         using StreamReader sr = new StreamReader (_nombreArch);  
+
         while (!sr.EndOfStream)  //mientras no termine el archivo
+
         {
             var Persona = new Persona();
             Persona.Id=int.Parse(sr.ReadLine()?? "");
