@@ -21,7 +21,7 @@ public class RepositorioReserva : IRepositorioReserva
     {
         try
         {
-            var rBaja = BuscarReservaPorId(idBaja);
+            var rBaja = ObtenerReserva(idBaja);
             var reservas = ListarReservas();
             reservas.Remove(rBaja);
             SobreEscribirReservas(reservas);
@@ -92,7 +92,7 @@ public class RepositorioReserva : IRepositorioReserva
     {
         try
         {
-            var rAct = BuscarReservaPorId(unaRes.Id, out var i);
+            ObtenerReserva(unaRes.Id, out var i);
             if (i == -1)
                 throw new RepositorioException($"La reserva con ID {unaRes.Id} no existe.");
 

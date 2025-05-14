@@ -16,7 +16,7 @@ public class RepositorioPersona : IRepositorioPersona
     public void BajaPersona(int id)
     {
         List<Persona> personas = ListarPersonas();
-        Persona? p = obtenerPersona (id);
+        Persona? p = ObtenerPersona (id);
         if (p!=null)
         {
             personas.Remove(p);
@@ -57,7 +57,7 @@ public class RepositorioPersona : IRepositorioPersona
         // aprovechá el método obtenerPersona() boludito
 
     }
-    public Persona? obtenerPersona(int id)
+    public Persona? ObtenerPersona(int id)
     {         //la persona puede no estar
         var lista = ListarPersonas();      //guardo la lista de personas
         var p = lista.Find(persona => persona.Id == id);       //busca en la lista la persona comparando por id  (puedo no estar) 
