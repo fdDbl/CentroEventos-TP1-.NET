@@ -6,7 +6,7 @@ public class AltaPersonaUseCase(IRepositorioPersona repo,PersonaValidador valida
     public void Ejecutar(Persona persona)
     {
         if (!validador.ValidarPersona(persona,repo,out string msg)){
-            Console.WriteLine(new ArgumentException(msg));
+            throw new ValidacionException(msg);
         }
         repo.AltaPersona(persona);
     }
