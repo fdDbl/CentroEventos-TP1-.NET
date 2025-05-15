@@ -105,4 +105,26 @@ public class RepositorioReserva : IRepositorioReserva
             throw new RepositorioException($"Error al intentar modificar reserva: {e.Message}");
         }
     }
+
+    public int ContarReserva(int EventoId) {
+        var listaR = ListarReservas();
+        int cont= 0;
+        foreach (Reserva r in listaR) {
+            if (r.EventoDeportivoId == EventoId) {
+                cont++;
+            }
+        }
+        return cont;
+    }
+
+   /* public  ContarReserva(int EventoId) {
+        var listaR = ListarReservas();
+        int cont= 0;
+        foreach (Reserva r in listaR) {
+            if (r.EventoDeportivoId == EventoId) {
+                cont++;
+            }
+        }
+        return cont;
+    }*/
 }

@@ -90,7 +90,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         }
     }
 
-    private bool CalcularCupos (EventoDeportivo e) {
+    /*private bool CalcularCupos (EventoDeportivo e) {
         var b = false;
         List<EventoDeportivo> listaEventos= ListarEventos();
         var cont = 0;
@@ -104,20 +104,21 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         }
         return b;
     }
+    */
 
-    public List<EventoDeportivo> ListarEventosConCupoDisponible()
+    public List<EventoDeportivo> ListarEventosFuturos()
     {
         List<EventoDeportivo> listaEventos = ListarEventos();
-        List<EventoDeportivo> listaCupos = null; 
+        List<EventoDeportivo> listaEFuturos = null; 
         try {
             if (listaEventos != null) {
                 foreach (EventoDeportivo e in listaEventos) {
-                    if (CalcularCupos(e)) { // si del evento q leo hay lugar entonces agrego
-                        listaCupos.Add(e);
+                    if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
+                        listaEFuturos.Add(e);
                     }
                 }
             }  
-            return listaCupos;
+            return listaEFuturos;
         }
         catch {
             throw new Exception("No hay eventos disponibles");
