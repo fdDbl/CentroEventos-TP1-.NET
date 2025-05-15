@@ -4,7 +4,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 {
-    readonly string nomArch="EventosDeportivos.txt";
+    readonly string nomArch= @"../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
         using StreamWriter sr= new StreamWriter (nomArch,true);

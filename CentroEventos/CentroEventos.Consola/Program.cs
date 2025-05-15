@@ -1,3 +1,24 @@
-﻿Console.WriteLine("TP1-.NET\\CentroEventos\\CentroEventos.Consola\\Program.cs");
+﻿using CentroEventos.Aplicacion;
+using CentroEventos.Repositorios;
+
+ServicioAutorizacionProvisorio servicioAutorizacion = new ServicioAutorizacionProvisorio();
+
+IRepositorioPersona repositorioPersona = new RepositorioPersona();
+IRepositorioReserva repositorioReserva = new RepositorioReserva();
+IRepositorioEventoDeportivo repositorioEventoDeportivo = new RepositorioEventoDeportivo();
+
+var altaReserva = new ReservaAltaUseCase(servicioAutorizacion,repositorioReserva,repositorioEventoDeportivo,repositorioPersona,new ReservaAltaValidador());
+var bajaReserva = new ReservaBajaUseCase(servicioAutorizacion,repositorioReserva,new ReservaBajaValidador());
+var modificarReserva = new ReservaModificarUseCase(servicioAutorizacion,repositorioReserva,repositorioEventoDeportivo,repositorioPersona,new ReservaModificarValidador());
+var listarReservas = new ReservaListarUseCase(repositorioReserva);
+
+try
+{
+    altaReserva.Ejecutar(new Reserva(1,1,new DateTime(2025,5,15),Asistencia.Pendiente),1);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
 
 Console.ReadKey();

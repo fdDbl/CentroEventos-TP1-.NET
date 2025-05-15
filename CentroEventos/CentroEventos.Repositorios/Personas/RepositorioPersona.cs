@@ -5,7 +5,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
 {
-    private readonly string _nombreArch = "RepositorioPersona.txt";
+    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
     public void AltaPersona(Persona persona)
     {
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
@@ -23,7 +23,7 @@ public class RepositorioPersona : IRepositorioPersona
             SobreEscribirPersonas(personas);
         }
         else
-           throw new RepositorioException("La persona no esta en la lista");
+           throw new EntidadNotFoundException("La persona no esta en la lista");
     }
 
     private void SobreEscribirPersonas(List<Persona>lista)
@@ -55,7 +55,7 @@ public class RepositorioPersona : IRepositorioPersona
         }
         else
             {
-                throw new RepositorioException ("La persona no esta en la lista");
+                throw new EntidadNotFoundException ("La persona no esta en la lista");
                 //PREGUNTAR ESTO EL VIERNES 
             }   
     }

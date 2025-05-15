@@ -4,7 +4,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioReserva : IRepositorioReserva
 {
-    private readonly string _nombreArch = "Reservas.txt";
+    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Reservas/Reservas.txt";
 
     public void AltaReserva(Reserva reserva)
     {

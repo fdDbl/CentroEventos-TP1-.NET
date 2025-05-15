@@ -14,7 +14,7 @@ public class PersonaValidador
             msg += "El dni no debe estar vacio";
 
         
-        repo
+
         //FALTA DNI NO PUEDE REPETIRSE ENTRE PERSONAS
 
         //FALTA EMAIL NO PUEDE REPETIRSE ENTRE PERSONAS

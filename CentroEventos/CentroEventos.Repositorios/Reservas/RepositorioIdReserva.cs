@@ -4,7 +4,7 @@ public class RepositorioIdReserva
 {
     public static int NextIdActual()
     {
-        string _nombreArch = "IDActual_Reserva.txt";
+        string _nombreArch = @"../../../../CentroEventos.Repositorios/Reservas/RepositorioIdReserva.txt";
         if (!File.Exists(_nombreArch))
         {
             using var swId = new StreamWriter(_nombreArch);

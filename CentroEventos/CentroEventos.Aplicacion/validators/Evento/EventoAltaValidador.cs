@@ -18,10 +18,10 @@ public class EventoAltaValidador {
             msg += "La actividad debe tener una duracion mayor a 0.\n";
         }
 
-        if (unRepo.obtenerPersona(actividad.ResponsableId) == null) 
-        {
-            msg += "Responsable no existente.\n";
-        }
+        // if (unRepo.obtenerPersona(actividad.ResponsableId) == null) 
+        // {
+        //     msg += "Responsable no existente.\n";
+        // }
         return msg == "";
     }
 }

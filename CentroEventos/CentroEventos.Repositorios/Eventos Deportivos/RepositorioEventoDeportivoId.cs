@@ -3,7 +3,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioEventoDeportivoId {
     public static int CalcularId () {
-        string nomArch = "RepositorioEventoDeportivoId.txt";
+        string nomArch = @"../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivosId.txt";
         int id = 1;
         if (File.Exists(nomArch)) {
             using var sr = new StreamReader(nomArch);
