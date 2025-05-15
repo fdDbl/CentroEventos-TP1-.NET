@@ -2,7 +2,7 @@ namespace CentroEventos.Aplicacion;
 
 public class ReservaAltaValidador
 {
-    public bool ValidarReserva(Reserva reserva, IRepositorioReserva repoReserva, IRepositorioEventoDeportivo repoEvento, IRepositorioPersona repoPersona, out string msg)
+    public bool Validar(Reserva reserva, IRepositorioReserva repoReserva, IRepositorioEventoDeportivo repoEvento, IRepositorioPersona repoPersona, out string msg)
     {
         msg = "";
         

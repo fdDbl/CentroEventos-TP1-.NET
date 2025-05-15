@@ -1,6 +1,9 @@
 namespace CentroEventos.Aplicacion;
 
-public class ReservaListarUseCase
+public class ReservaListarUseCase(IRepositorioReserva repoR)
 {
-    
+    public void Ejecutar()
+    {
+        repoR.ListarReservas();
+    }
 }

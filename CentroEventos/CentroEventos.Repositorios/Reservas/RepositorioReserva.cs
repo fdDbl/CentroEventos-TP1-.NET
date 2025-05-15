@@ -26,9 +26,9 @@ public class RepositorioReserva : IRepositorioReserva
             reservas.Remove(rBaja);
             SobreEscribirReservas(reservas);
         }
-        catch (RepositorioException e)
+        catch (OperacionInvalidaException e)
         {
-            throw new RepositorioException($"Error al dar de baja la reserva: {e.Message}");
+            throw new OperacionInvalidaException($"Error al dar de baja la reserva: {e.Message}");
         }
     }
 
@@ -46,10 +46,10 @@ public class RepositorioReserva : IRepositorioReserva
             if (r.Id == id)
                 return r;
 
-        throw new RepositorioException("La reserva buscada no existe.");
+        throw new EntidadNotFoundException("La reserva buscada no existe.");
     }
 
-    private Reserva ObtenerReserva(int id, out int index)
+    public Reserva ObtenerReserva(int id, out int index)
     {
         index = -1;
         var iAct = index;
@@ -62,8 +62,7 @@ public class RepositorioReserva : IRepositorioReserva
                 return r;
             }
         }
-
-        throw new RepositorioException("La reserva buscada no existe.");
+        throw new EntidadNotFoundException("La reserva buscada no existe.");
     }
 
     public List<Reserva> ListarReservas()
@@ -93,16 +92,13 @@ public class RepositorioReserva : IRepositorioReserva
         try
         {
             ObtenerReserva(unaRes.Id, out var i);
-            if (i == -1)
-                throw new RepositorioException($"La reserva con ID {unaRes.Id} no existe.");
-
             var lista = ListarReservas();
             lista[i] = unaRes;
             SobreEscribirReservas(lista);
         }
-        catch (RepositorioException e)
+        catch (OperacionInvalidaException e)
         {
-            throw new RepositorioException($"Error al intentar modificar reserva: {e.Message}");
+            throw new OperacionInvalidaException($"Error al intentar modificar reserva: {e.Message}");
         }
     }
 
