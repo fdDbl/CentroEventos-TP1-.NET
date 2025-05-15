@@ -106,9 +106,7 @@ public class RepositorioReserva : IRepositorioReserva
         var listaR = ListarReservas();
         int cont= 0;
         foreach (Reserva r in listaR) {
-            if (r.EventoDeportivoId == EventoId) {
-                cont++;
-            }
+            if (r.EventoDeportivoId == EventoId) cont++;
         }
         return cont;
     }

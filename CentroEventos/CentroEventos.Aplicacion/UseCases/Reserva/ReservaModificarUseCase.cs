@@ -6,13 +6,9 @@ public class ReservaModificarUseCase(IServicioAutorizacion auth,IRepositorioRese
     {
         if (auth.PoseeElPermiso(idUser, Permiso.ReservaModificacion))
         {
-            if (!validador.Validar(reserva, repoR, repoE, repoP, out string msg))
-            {
-                throw new ValidacionException(msg);
-            }
+            if (!validador.Validar(reserva, repoR, repoE, repoP, out string msg)) throw new ValidacionException(msg);
+            repoR.ModificarReserva(reserva);
         }
         else throw new FalloAutorizacionException("No posee los permisos para modificar una reserva.");
-
-        repoR.ModificarReserva(reserva);
     }
 }

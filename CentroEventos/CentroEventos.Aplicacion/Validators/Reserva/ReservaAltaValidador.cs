@@ -7,7 +7,7 @@ public class ReservaAltaValidador
         msg = "";
         
         if(repoPersona.ObtenerPersona(reserva.PersonaId) == null || repoEvento.ObtenerEvento(reserva.EventoDeportivoId) == null)
-            msg += "Persona y/o Evento Deportivo no existentes.\n";
+            msg += "Persona y/o Evento Deportivo no existente(s).\n";
         
         var lista = repoReserva.ListarReservas();
         Reserva? rCheck;
@@ -16,11 +16,8 @@ public class ReservaAltaValidador
         rCheck = lista.Find(r => r.PersonaId == pId && r.EventoDeportivoId == eId);
         if(rCheck != null)
             msg += "La persona no puede reservar dos veces el mismo Evento Deportivo.\n";
-
-        int cantReservasEvento = 0;
-        foreach(Reserva r in lista)
-            if (r.EventoDeportivoId == reserva.EventoDeportivoId) cantReservasEvento++;
-        if (cantReservasEvento > repoEvento.ObtenerEvento(reserva.EventoDeportivoId)?.CupoMaximo)
+        
+        if (repoReserva.ContarReserva(reserva.EventoDeportivoId) == repoEvento.ObtenerEvento(reserva.EventoDeportivoId)?.CupoMaximo)
             msg += "No hay cupo disponible para el evento que se desea reservar.\n";
 
         return msg == "";

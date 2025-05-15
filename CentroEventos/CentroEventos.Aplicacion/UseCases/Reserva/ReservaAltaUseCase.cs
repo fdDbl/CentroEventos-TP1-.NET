@@ -6,13 +6,10 @@ public class ReservaAltaUseCase(IServicioAutorizacion auth, IRepositorioReserva 
     {
         if (auth.PoseeElPermiso(idUser, Permiso.ReservaAlta))
         {
-            if (!validador.Validar(reserva, repoR, repoE, repoP, out string msg))
-            {
-                throw new ValidacionException(msg);
-            }
+            if (!validador.Validar(reserva, repoR, repoE, repoP, out string msg)) throw new ValidacionException(msg);
+            repoR.AltaReserva(reserva);
         }
         else throw new FalloAutorizacionException("No posee los permisos para hacer alta de una reserva.");
 
-        repoR.AltaReserva(reserva);
     }
 }
