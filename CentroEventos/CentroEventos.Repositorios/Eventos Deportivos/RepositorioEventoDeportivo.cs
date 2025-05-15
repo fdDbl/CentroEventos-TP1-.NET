@@ -8,6 +8,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public void EventoAlta(EventoDeportivo actividad)
     {
         using StreamWriter sr= new StreamWriter (nomArch,true);
+        actividad.Id = RepositorioEventoDeportivoId.CalcularId();
         sr.WriteLine (actividad.Id);
         sr.WriteLine(actividad.Nombre);
         sr.WriteLine(actividad.Descripcion);
