@@ -110,7 +110,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public List<EventoDeportivo> ListarEventosFuturos()
     {
         List<EventoDeportivo> listaEventos = ListarEventos();
-        List<EventoDeportivo> listaEFuturos = null; 
+        List<EventoDeportivo> listaEFuturos = new List<EventoDeportivo>();
         try {
             if (listaEventos != null) {
                 foreach (EventoDeportivo e in listaEventos) {

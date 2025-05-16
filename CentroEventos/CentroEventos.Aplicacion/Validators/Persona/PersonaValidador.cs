@@ -1,7 +1,8 @@
 namespace CentroEventos.Aplicacion;
+
 public class PersonaValidador
 {
-    public bool ValidarPersona(Persona persona,IRepositorioPersona repo, out string msg)
+    public bool ValidarPersona(Persona persona, IRepositorioPersona repo, out string msg)
     {
         msg = "";
         if (string.IsNullOrWhiteSpace(persona.Nombre))
@@ -13,12 +14,14 @@ public class PersonaValidador
         if (string.IsNullOrWhiteSpace(persona.Dni))
             msg += "El dni no debe estar vacio";
 
-        
-
-        //FALTA DNI NO PUEDE REPETIRSE ENTRE PERSONAS
-
-        //FALTA EMAIL NO PUEDE REPETIRSE ENTRE PERSONAS
+        if (repo.BuscarPorEmail(persona.Email))
+            msg += "El email  no debe repetirse";
+        if (repo.BuscarPorDni(persona.Dni))
+            msg += "El dni no debe repetirse";
         return msg == "";
-    
+
     }
+
+
+
 }   

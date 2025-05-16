@@ -1,4 +1,6 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using System.Reflection.Metadata;
+
+namespace CentroEventos.Aplicacion;
 
 public interface IRepositorioPersona
 {
@@ -7,4 +9,9 @@ public interface IRepositorioPersona
     void ModificarPersona(Persona persona, Persona PersonaModificada);
     Persona? ObtenerPersona(int id);
     List<Persona> ListarPersonas();
+
+    bool BuscarPorDni(string? dni);
+
+    bool BuscarPorEmail(string? Email);
+    
 }

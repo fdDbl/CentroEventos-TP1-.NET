@@ -1,5 +1,5 @@
 using System;
-//Villca
+
 using CentroEventos.Aplicacion;
 namespace CentroEventos.Repositorios;
 
@@ -10,54 +10,55 @@ public class RepositorioPersona : IRepositorioPersona
     {
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
         persona.Id = id;
-        using StreamWriter sw = new StreamWriter(_nombreArch,true);
+        using StreamWriter sw = new StreamWriter(_nombreArch, true);
         sw.WriteLine($"{persona.Id} | {persona.Dni} | {persona.Nombre} | {persona.Apellido} | {persona.Telefono} | {persona.Email}");
     }
     public void BajaPersona(int id)
     {
         List<Persona> personas = ListarPersonas();
-        Persona? p = ObtenerPersona (id);
-        if (p!=null)
+        Persona? p = ObtenerPersona(id);
+        if (p != null)
         {
             personas.Remove(p);
             SobreEscribirPersonas(personas);
         }
         else
-           throw new EntidadNotFoundException("La persona no esta en la lista");
+            throw new EntidadNotFoundException("La persona no esta en la lista");
     }
 
-    private void SobreEscribirPersonas(List<Persona>lista)
+    private void SobreEscribirPersonas(List<Persona> lista)
     {
-        using StreamWriter sw = new StreamWriter(_nombreArch,false);  //false para sobreescribir
+        using StreamWriter sw = new StreamWriter(_nombreArch, false);  //false para sobreescribir
         foreach (Persona p in lista)
         {
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
-    public void ModificarPersona(Persona persona,Persona PersonaModificada){
+    public void ModificarPersona(Persona persona, Persona PersonaModificada)
+    {
 
-       List <Persona> listaPersona = ListarPersonas();
+        List<Persona> listaPersona = ListarPersonas();
 
-        using var sw = new StreamWriter (_nombreArch,false);
+        using var sw = new StreamWriter(_nombreArch, false);
 
-        Persona? p= ObtenerPersona (PersonaModificada.Id);    
+        Persona? personaBuscada = listaPersona.Find(p => p.Id == PersonaModificada.Id);
 
-        if (p!=null)
+        if (personaBuscada != null)
         {
-            p .Id = PersonaModificada.Id;
-            p.Dni = PersonaModificada.Dni;
-            p.Nombre = PersonaModificada.Nombre;
-            p.Apellido = PersonaModificada.Apellido;
-            p.Telefono = PersonaModificada.Telefono;
-            p.Email = PersonaModificada.Email;
+            personaBuscada.Id = PersonaModificada.Id;
+            personaBuscada.Dni = PersonaModificada.Dni;
+            personaBuscada.Nombre = PersonaModificada.Nombre;
+            personaBuscada.Apellido = PersonaModificada.Apellido;
+            personaBuscada.Telefono = PersonaModificada.Telefono;
+            personaBuscada.Email = PersonaModificada.Email;
             //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
         else
-            {
-                throw new EntidadNotFoundException ("La persona no esta en la lista");
-                //PREGUNTAR ESTO EL VIERNES 
-            }   
+        {
+            throw new EntidadNotFoundException("La persona no esta en la lista");
+
+        }
     }
     public Persona? ObtenerPersona(int id)
     {         //la persona puede no estar
@@ -66,31 +67,55 @@ public class RepositorioPersona : IRepositorioPersona
         //si se pone asi el parametro busca el elemento dentro la lista cuyo id coincide con idNueva
         return p;          //retorna ya sea la persona o null
     }
-    public List<Persona> ListarPersonas()
+    public  List<Persona> ListarPersonas()
     {
 
-        List<Persona>resultado = new List<Persona>();  //creo la lista de personas
+        List<Persona> resultado = new List<Persona>();  //creo la lista de personas
 
-        using StreamReader sr = new StreamReader (_nombreArch);  
+        using StreamReader sr = new StreamReader(_nombreArch);
 
         while (!sr.EndOfStream)  //mientras no termine el archivo
 
         {
             var Persona = new Persona();
-            Persona.Id=int.Parse(sr.ReadLine()?? "");
-            Persona.Dni=sr.ReadLine() ?? "";
-            Persona.Nombre=sr.ReadLine() ?? "";
-            Persona.Apellido=sr.ReadLine() ?? "";
-            Persona.Telefono= int.Parse(sr.ReadLine()?? "");
-            Persona.Email=sr.ReadLine() ?? "";
+            var st = sr.ReadLine() ?? "";
+            var split = st.Split();
+            Persona.Id = int.Parse(split[0]);
+            Persona.Dni = split[1];
+            Persona.Nombre = split[2];
+            Persona.Apellido = split[3];
+            Persona.Telefono = int.Parse(split[4]);
+            Persona.Email = split[5];
             resultado.Add(Persona);
-        //leo por linea y lo agrego a la lista.
-        }
-        
-        return resultado;
 
+        }
+        return resultado;
+    }
+    public  bool BuscarPorDni(string? dni)
+    {
+        List<Persona> l = ListarPersonas();
+
+        Persona? p = l.Find(persona => persona.Dni == dni);
+
+        if (p != null)
+        {
+            if (p.Dni == dni) return true;
+        }
+        return true;
     }
 
+    public  bool BuscarPorEmail(string? email)
+    {
+        List<Persona> l = ListarPersonas();
 
+        Persona? p = l.Find(persona => persona.Email == email);
+
+        if (p != null)
+        {
+            if (p.Email == email) return true;
+        }
+        return true;
+    }
 }
+
 
