@@ -1,5 +1,4 @@
-﻿using CentroEventos.Aplicacion.validators;
-namespace CentroEventos.Aplicacion;
+﻿namespace CentroEventos.Aplicacion;
 
 public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,IRepositorioReserva repoReservas, EventoBajaValidador validador)
 {
