@@ -8,5 +8,5 @@ public interface IRepositorioReserva
     Reserva ObtenerReserva(int id);
     Reserva ObtenerReserva(int id, out int i);
     List<Reserva> ListarReservas();
-    int ContarReserva(int EventoId);
+    int ContarReserva(int eventoId);
 }

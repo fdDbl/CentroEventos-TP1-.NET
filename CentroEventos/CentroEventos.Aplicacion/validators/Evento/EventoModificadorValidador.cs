@@ -1,5 +1,3 @@
-using Microsoft.VisualBasic;
-
 namespace CentroEventos.Aplicacion;
 public class EventoModificadorValidador {
     public bool ValidarEvento (EventoDeportivo unEvento, IRepositorioEventoDeportivo unRepo, out string msg) {

@@ -1,11 +1,14 @@
+<<<<<<< HEAD
 using System;
 
+=======
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
 using CentroEventos.Aplicacion;
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
 {
-    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
+    private readonly string _nombreArch = "../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
     public void AltaPersona(Persona persona)
     {
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
@@ -34,31 +37,56 @@ public class RepositorioPersona : IRepositorioPersona
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
+<<<<<<< HEAD
     public void ModificarPersona(Persona persona, Persona PersonaModificada)
     {
 
         List<Persona> listaPersona = ListarPersonas();
+=======
+    public void ModificarPersona(Persona personaModificada){
+
+        List <Persona> listaPersona = ListarPersonas();
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
 
         using var sw = new StreamWriter(_nombreArch, false);
 
+<<<<<<< HEAD
         Persona? personaBuscada = listaPersona.Find(p => p.Id == PersonaModificada.Id);
+=======
+        Persona? p= ObtenerPersona (personaModificada.Id);    
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
 
         if (personaBuscada != null)
         {
+<<<<<<< HEAD
             personaBuscada.Id = PersonaModificada.Id;
             personaBuscada.Dni = PersonaModificada.Dni;
             personaBuscada.Nombre = PersonaModificada.Nombre;
             personaBuscada.Apellido = PersonaModificada.Apellido;
             personaBuscada.Telefono = PersonaModificada.Telefono;
             personaBuscada.Email = PersonaModificada.Email;
+=======
+            p .Id = personaModificada.Id;
+            p.Dni = personaModificada.Dni;
+            p.Nombre = personaModificada.Nombre;
+            p.Apellido = personaModificada.Apellido;
+            p.Telefono = personaModificada.Telefono;
+            p.Email = personaModificada.Email;
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
             //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
         else
         {
+<<<<<<< HEAD
             throw new EntidadNotFoundException("La persona no esta en la lista");
 
         }
+=======
+            throw new EntidadNotFoundException ("La persona no esta en la lista");
+            //PREGUNTAR ESTO EL VIERNES 
+        }   
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
     }
     public Persona? ObtenerPersona(int id)
     {         //la persona puede no estar
@@ -70,13 +98,18 @@ public class RepositorioPersona : IRepositorioPersona
     public  List<Persona> ListarPersonas()
     {
 
+<<<<<<< HEAD
         List<Persona> resultado = new List<Persona>();  //creo la lista de personas
+=======
+        List<Persona>resultado = new();  //creo la lista de personas
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
 
         using StreamReader sr = new StreamReader(_nombreArch);
 
         while (!sr.EndOfStream)  //mientras no termine el archivo
 
         {
+<<<<<<< HEAD
             var Persona = new Persona();
             var st = sr.ReadLine() ?? "";
             var split = st.Split();
@@ -87,6 +120,20 @@ public class RepositorioPersona : IRepositorioPersona
             Persona.Telefono = int.Parse(split[4]);
             Persona.Email = split[5];
             resultado.Add(Persona);
+=======
+            var persona = new Persona();
+            persona.Id=int.Parse(sr.ReadLine()?? "");
+            persona.Dni=sr.ReadLine() ?? "";
+            persona.Nombre=sr.ReadLine() ?? "";
+            persona.Apellido=sr.ReadLine() ?? "";
+            persona.Telefono= int.Parse(sr.ReadLine()?? "");
+            persona.Email=sr.ReadLine() ?? "";
+            resultado.Add(persona);
+        //leo por linea y lo agrego a la lista.
+        }
+        
+        return resultado;
+>>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
 
         }
         return resultado;

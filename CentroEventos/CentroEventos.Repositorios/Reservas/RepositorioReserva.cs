@@ -4,7 +4,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioReserva : IRepositorioReserva
 {
-    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Reservas/Reservas.txt";
+    readonly string _nombreArch = "../../../../CentroEventos.Repositorios/Reservas/Reservas.txt";
 
     public void AltaReserva(Reserva reserva)
     {
@@ -64,7 +64,6 @@ public class RepositorioReserva : IRepositorioReserva
         }
         throw new EntidadNotFoundException("La reserva buscada no existe.");
     }
-
     public List<Reserva> ListarReservas()
     {
         var listaR = new List<Reserva>();
@@ -79,14 +78,13 @@ public class RepositorioReserva : IRepositorioReserva
             var lSplitted = st.Split(" | ");
             reservaNew.Id = int.Parse(lSplitted[0]);
             reservaNew.PersonaId = int.Parse(lSplitted[1]);
-            reservaNew.FechaAltaReserva = DateTime.Parse(lSplitted[2]);
-            reservaNew.EstadoAsistencia = (Asistencia)Enum.Parse(typeof(Asistencia), lSplitted[3]);
+            reservaNew.EventoDeportivoId = int.Parse(lSplitted[2]);
+            reservaNew.FechaAltaReserva = DateTime.Parse(lSplitted[3]);
+            reservaNew.EstadoAsistencia = (Asistencia) Enum.Parse(typeof(Asistencia), lSplitted[4]);
             listaR.Add(reservaNew);
         }
-
         return listaR;
     }
-
     public void ModificarReserva(Reserva unaRes)
     {
         try
@@ -101,24 +99,12 @@ public class RepositorioReserva : IRepositorioReserva
             throw new OperacionInvalidaException($"Error al intentar modificar reserva: {e.Message}");
         }
     }
-
-    public int ContarReserva(int EventoId) {
+    public int ContarReserva(int eventoId) {
         var listaR = ListarReservas();
         int cont= 0;
         foreach (Reserva r in listaR) {
-            if (r.EventoDeportivoId == EventoId) cont++;
+            if (r.EventoDeportivoId == eventoId) cont++;
         }
         return cont;
     }
-
-   /* public  ContarReserva(int EventoId) {
-        var listaR = ListarReservas();
-        int cont= 0;
-        foreach (Reserva r in listaR) {
-            if (r.EventoDeportivoId == EventoId) {
-                cont++;
-            }
-        }
-        return cont;
-    }*/
 }

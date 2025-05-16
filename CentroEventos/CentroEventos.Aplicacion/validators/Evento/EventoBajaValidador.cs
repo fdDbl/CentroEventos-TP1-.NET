@@ -1,20 +1,17 @@
-using System;
-
 namespace CentroEventos.Aplicacion.validators;
-
 public class EventoBajaValidador
 {
     public bool ValidarEventoBaja (EventoDeportivo actividad,IRepositorioEventoDeportivo repoEvento,IRepositorioReserva repoReserva, out string msg)
     {
         msg="";
-        if (repoReserva.ListarReservas()!=null) //Si la lista != null, quiere decir que tiene reservas asociadas
-        {
-            msg+= "No puede darse de baja el evento debido a que tiene reservas asociadas.\n";
-        }
-        if (repoEvento.ObtenerEvento(actividad.Id)==null) //Verifico si hay un evento con el id recibido como parámetro
-        {
-            msg+="No existe un evento con el id recibido.\n";
-        }
+        if (repoReserva.ContarReserva(actividad.Id)! > 0) //Si la cantidad de reservas asociadas al id es mayor a 0, quiere decir que tiene reservas asociadas
+            {
+            msg += "No puede darse de baja el evento debido a que tiene reservas asociadas.\n";
+            }
+        if (repoEvento.ObtenerEvento(actividad.Id) == null) //Verifico si hay un evento con el id recibido como parámetro
+            {
+                msg += "No existe un evento con el id recibido.\n";
+            }
         return msg=="";
     }
 }
