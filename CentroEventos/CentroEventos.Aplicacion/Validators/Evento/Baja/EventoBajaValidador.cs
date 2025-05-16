@@ -1,4 +1,4 @@
-namespace CentroEventos.Aplicacion.validators;
+namespace CentroEventos.Aplicacion;
 public class EventoBajaValidador
 {
     public bool ValidarEventoBaja (EventoDeportivo actividad,IRepositorioEventoDeportivo repoEvento,IRepositorioReserva repoReserva, out string msg)

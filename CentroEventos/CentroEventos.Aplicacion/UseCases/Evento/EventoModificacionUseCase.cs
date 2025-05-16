@@ -1,4 +1,4 @@
-﻿namespace CentroEventos.Aplicacion.UseCases.Actividad;
+﻿namespace CentroEventos.Aplicacion;
 
 public class EventoModificacionUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEven, EventoModificadorValidador validador) {
 
