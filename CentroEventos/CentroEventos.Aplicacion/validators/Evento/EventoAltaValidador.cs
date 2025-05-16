@@ -18,7 +18,7 @@ public class EventoAltaValidador {
             msg += "La actividad debe tener una duracion mayor a 0.\n";
         }
 
-        if (unRepo.ObtenerPersona(actividad.ResponsableId) == null)
+        if (unRepo.ObtenerPersona(actividad.ResponsableId) == null) //busca la persona por id
         {
             msg += "Responsable no existente.\n";
         }

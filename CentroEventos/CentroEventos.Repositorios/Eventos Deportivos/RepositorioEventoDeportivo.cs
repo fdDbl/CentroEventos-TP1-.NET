@@ -8,7 +8,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     {
         using StreamWriter sr= new StreamWriter (_nomArch,true);
         actividad.Id = RepositorioEventoDeportivoId.CalcularId();
-        sr.WriteLine (actividad.Id);
+        sr.WriteLine(actividad.Id);
         sr.WriteLine(actividad.Nombre);
         sr.WriteLine(actividad.Descripcion);
         sr.WriteLine(actividad.FechaHoraInicio);
@@ -22,7 +22,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         List<EventoDeportivo> listaEventos= ListarEventos(); //me guardo la lista de eventos
         EventoDeportivo evento = ObtenerEvento(id); //llamo al método que busca el evento por id
         listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
-        SobreEscribirArchivo(listaEventos); //sobreescribo el archivo
+        SobreEscribirEventos(listaEventos); //sobreescribo el archivo
     }
 
     public EventoDeportivo ObtenerEvento(int id) //Busco el evento por Id
@@ -33,7 +33,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         return evento ?? throw new EntidadNotFoundException("Evento deportivo no existente."); //lo devuelvo
     }
 
-    private void SobreEscribirArchivo(List<EventoDeportivo> listaEventos)
+    private void SobreEscribirEventos(List<EventoDeportivo> listaEventos)
     {
         using StreamWriter sw= new StreamWriter(_nomArch,false); //false para sobreescribir el archivo
         foreach (EventoDeportivo e in listaEventos)

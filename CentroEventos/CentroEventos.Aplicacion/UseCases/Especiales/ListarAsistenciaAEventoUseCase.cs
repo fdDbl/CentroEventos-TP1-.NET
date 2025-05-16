@@ -10,19 +10,19 @@ public class ListarAsistenciaAEventoUseCase (EventoDeportivo unEvento, IReposito
             foreach (Reserva r in unRepoR.ListarReservas())
             {
                 if ((r.EventoDeportivoId == unEvento.Id) && (r.EstadoAsistencia == Asistencia.Presente)) // filtro si la reserva se corresponde con el evento
-                {           // creo una lista solo con las reservas que asistieron
+                {           // creo una lista solo con las reservas que asistieron al evento determinado
                     listaPresentes.Add(r);
                 }
             }
-              foreach (Reserva r in listaPresentes)
+              foreach (Reserva r in listaPresentes) // una vez con mi lista de presentes
                 {
-                    Persona? p = per.ObtenerPersona(r.PersonaId);
+                    Persona? p = per.ObtenerPersona(r.PersonaId); // busco las personas en el repo
                     if (p != null)
                     {
-                        listaP.Add(p);
+                        listaP.Add(p); // agrego
                     }
                 }
             }
-        return listaP;
+        return listaP; // devuelvo lista
     }
 }

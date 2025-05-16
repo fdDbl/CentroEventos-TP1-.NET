@@ -1,11 +1,16 @@
 ﻿namespace CentroEventos.Aplicacion.UseCases.Actividad;
 
-public class EventoModificacionUseCase(EventoDeportivo unEvento,IRepositorioEventoDeportivo repoEven, EventoModificadorValidador validador) {
+public class EventoModificacionUseCase(IServicioAutorizacion auth,EventoDeportivo unEvento,IRepositorioEventoDeportivo repoEven, EventoModificadorValidador validador) {
 
-    public void Ejecutar () {
-        if (!validador.ValidarEvento(unEvento,repoEven,out string msg)) {
-            throw new Exception(msg);
+    public void Ejecutar(int userId)
+    {
+        if (auth.PoseeElPermiso(userId, Permiso.EventoModificacion))
+        {
+            if (!validador.ValidarEvento(unEvento, repoEven, out string msg))
+            {
+                throw new Exception(msg);
+            }
+            repoEven.EventoModificacion(unEvento);
+        }
     }
-    repoEven.EventoModificacion(unEvento);
-}
 }
