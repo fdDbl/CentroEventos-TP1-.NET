@@ -3,10 +3,10 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 {
-    readonly string nomArch= "../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
+    readonly string _nomArch= "../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
-        using StreamWriter sr= new StreamWriter (nomArch,true);
+        using StreamWriter sr= new StreamWriter (_nomArch,true);
         actividad.Id = RepositorioEventoDeportivoId.CalcularId();
         sr.WriteLine (actividad.Id);
         sr.WriteLine(actividad.Nombre);
@@ -20,9 +20,8 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public void EventoBaja(int id)
     {
         List<EventoDeportivo> listaEventos= ListarEventos(); //me guardo la lista de eventos
-        EventoDeportivo? evento = ObtenerEvento(id); //llamo al método que busca el evento por id
-        if (evento != null)
-            listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
+        EventoDeportivo evento = ObtenerEvento(id); //llamo al método que busca el evento por id
+        listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
         SobreEscribirArchivo(listaEventos); //sobreescribo el archivo
     }
 
@@ -36,7 +35,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 
     private void SobreEscribirArchivo(List<EventoDeportivo> listaEventos)
     {
-        using StreamWriter sw= new StreamWriter(nomArch,false); //false para sobreescribir el archivo
+        using StreamWriter sw= new StreamWriter(_nomArch,false); //false para sobreescribir el archivo
         foreach (EventoDeportivo e in listaEventos)
         {
             sw.WriteLine(e.Id);
@@ -51,7 +50,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 
     public List<EventoDeportivo> ListarEventos()
     {
-        using StreamReader sr= new StreamReader(nomArch);
+        using StreamReader sr= new StreamReader(_nomArch);
         List<EventoDeportivo> listaEventos= new List<EventoDeportivo>(); //creo la lista
         while (!sr.EndOfStream) //mientras no sea fin de archivo
         {
@@ -70,7 +69,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 
     public void EventoModificacion(EventoDeportivo ActMod)
     {
-        using StreamWriter sw = new StreamWriter(nomArch,false); // abro el archivo y le paso false para sobreescribir
+        using StreamWriter sw = new StreamWriter(_nomArch,false); // abro el archivo y le paso false para sobreescribir
         List <EventoDeportivo> listaAct = ListarEventos(); // creo una lista
         foreach (EventoDeportivo act in listaAct) { // recorro lista y voy sobreescribiendo
             if (act.Id == ActMod.Id) { // solo en el caso de que encuentre el q quiero modificar, lo modifico
