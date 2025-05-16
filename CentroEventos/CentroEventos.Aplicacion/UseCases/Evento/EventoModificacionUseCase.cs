@@ -1,8 +1,8 @@
 ﻿namespace CentroEventos.Aplicacion.UseCases.Actividad;
 
-public class EventoModificacionUseCase(IServicioAutorizacion auth,EventoDeportivo unEvento,IRepositorioEventoDeportivo repoEven, EventoModificadorValidador validador) {
+public class EventoModificacionUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEven, EventoModificadorValidador validador) {
 
-    public void Ejecutar(int userId)
+    public void Ejecutar(EventoDeportivo unEvento,int userId)
     {
         if (auth.PoseeElPermiso(userId, Permiso.EventoModificacion))
         {

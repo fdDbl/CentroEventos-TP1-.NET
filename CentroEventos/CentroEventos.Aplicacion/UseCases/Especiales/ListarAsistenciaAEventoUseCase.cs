@@ -14,15 +14,15 @@ public class ListarAsistenciaAEventoUseCase (EventoDeportivo unEvento, IReposito
                     listaPresentes.Add(r);
                 }
             }
-              foreach (Reserva r in listaPresentes) // una vez con mi lista de presentes
+            foreach (Reserva r in listaPresentes) // una vez con mi lista de presentes
+            {
+                Persona? p = per.ObtenerPersona(r.PersonaId); // busco las personas en el repo
+                if (p != null)
                 {
-                    Persona? p = per.ObtenerPersona(r.PersonaId); // busco las personas en el repo
-                    if (p != null)
-                    {
-                        listaP.Add(p); // agrego
-                    }
+                    listaP.Add(p); // agrego
                 }
             }
+        }
         return listaP; // devuelvo lista
     }
 }

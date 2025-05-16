@@ -1,7 +1,7 @@
 ﻿using CentroEventos.Aplicacion.validators;
 namespace CentroEventos.Aplicacion;
 
-public class BajaActividadUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,IRepositorioReserva repoReservas, EventoBajaValidador validador)
+public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,IRepositorioReserva repoReservas, EventoBajaValidador validador)
 {
     public void Ejecutar(EventoDeportivo evento, int userId)
     {
