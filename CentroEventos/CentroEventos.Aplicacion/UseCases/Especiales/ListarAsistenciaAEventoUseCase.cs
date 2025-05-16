@@ -5,6 +5,6 @@ public class ListarAsistenciaAEventoUseCase (EventoDeportivo unEvento, IReposito
     public List<Persona> Ejecutar() {
         var listaP = new List<Persona>();
 
-        return null;
+        return listaP;
     }
 }

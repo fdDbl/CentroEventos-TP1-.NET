@@ -1,4 +1,3 @@
-using System;
 namespace CentroEventos.Aplicacion;
 
 public class ValidacionException : Exception{

@@ -1,11 +1,9 @@
-using System;
-//Villca
 using CentroEventos.Aplicacion;
 namespace CentroEventos.Repositorios;
 
 public class RepositorioPersona : IRepositorioPersona
 {
-    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
+    private readonly string _nombreArch = "../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
     public void AltaPersona(Persona persona)
     {
         int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
@@ -34,30 +32,30 @@ public class RepositorioPersona : IRepositorioPersona
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
-    public void ModificarPersona(Persona persona,Persona PersonaModificada){
+    public void ModificarPersona(Persona personaModificada){
 
-       List <Persona> listaPersona = ListarPersonas();
+        List <Persona> listaPersona = ListarPersonas();
 
         using var sw = new StreamWriter (_nombreArch,false);
 
-        Persona? p= ObtenerPersona (PersonaModificada.Id);    
+        Persona? p= ObtenerPersona (personaModificada.Id);    
 
         if (p!=null)
         {
-            p .Id = PersonaModificada.Id;
-            p.Dni = PersonaModificada.Dni;
-            p.Nombre = PersonaModificada.Nombre;
-            p.Apellido = PersonaModificada.Apellido;
-            p.Telefono = PersonaModificada.Telefono;
-            p.Email = PersonaModificada.Email;
+            p .Id = personaModificada.Id;
+            p.Dni = personaModificada.Dni;
+            p.Nombre = personaModificada.Nombre;
+            p.Apellido = personaModificada.Apellido;
+            p.Telefono = personaModificada.Telefono;
+            p.Email = personaModificada.Email;
             //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
         else
-            {
-                throw new EntidadNotFoundException ("La persona no esta en la lista");
-                //PREGUNTAR ESTO EL VIERNES 
-            }   
+        {
+            throw new EntidadNotFoundException ("La persona no esta en la lista");
+            //PREGUNTAR ESTO EL VIERNES 
+        }   
     }
     public Persona? ObtenerPersona(int id)
     {         //la persona puede no estar
@@ -69,21 +67,21 @@ public class RepositorioPersona : IRepositorioPersona
     public List<Persona> ListarPersonas()
     {
 
-        List<Persona>resultado = new List<Persona>();  //creo la lista de personas
+        List<Persona>resultado = new();  //creo la lista de personas
 
         using StreamReader sr = new StreamReader (_nombreArch);  
 
         while (!sr.EndOfStream)  //mientras no termine el archivo
 
         {
-            var Persona = new Persona();
-            Persona.Id=int.Parse(sr.ReadLine()?? "");
-            Persona.Dni=sr.ReadLine() ?? "";
-            Persona.Nombre=sr.ReadLine() ?? "";
-            Persona.Apellido=sr.ReadLine() ?? "";
-            Persona.Telefono= int.Parse(sr.ReadLine()?? "");
-            Persona.Email=sr.ReadLine() ?? "";
-            resultado.Add(Persona);
+            var persona = new Persona();
+            persona.Id=int.Parse(sr.ReadLine()?? "");
+            persona.Dni=sr.ReadLine() ?? "";
+            persona.Nombre=sr.ReadLine() ?? "";
+            persona.Apellido=sr.ReadLine() ?? "";
+            persona.Telefono= int.Parse(sr.ReadLine()?? "");
+            persona.Email=sr.ReadLine() ?? "";
+            resultado.Add(persona);
         //leo por linea y lo agrego a la lista.
         }
         

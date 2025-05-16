@@ -1,10 +1,9 @@
-using System;
 using CentroEventos.Aplicacion;
 namespace CentroEventos.Repositorios;
 
 public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 {
-    readonly string nomArch= @"../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
+    readonly string nomArch= "../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
         using StreamWriter sr= new StreamWriter (nomArch,true);
@@ -21,32 +20,33 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public void EventoBaja(int id)
     {
         List<EventoDeportivo> listaEventos= ListarEventos(); //me guardo la lista de eventos
-        var evento=ObtenerEvento(id); //llamo al método que busca el evento por id
-        listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
+        EventoDeportivo? evento = ObtenerEvento(id); //llamo al método que busca el evento por id
+        if (evento != null)
+            listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
         SobreEscribirArchivo(listaEventos); //sobreescribo el archivo
     }
 
-    public EventoDeportivo? ObtenerEvento(int id) //Busco el evento por Id
+    public EventoDeportivo ObtenerEvento(int id) //Busco el evento por Id
     {
         var listaEventos=ListarEventos(); //me guardo la lista de los eventos
-        var evento =listaEventos.Find(EventoDeportivo=>EventoDeportivo.Id==id); //Me guardo en la variable 'evento' null si 
+        var evento =listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); //Me guardo en la variable 'evento' null si 
                                                                                 //el evento no existe o el mismo evento si existe
-        return evento; //lo devuelvo
+        return evento ?? throw new EntidadNotFoundException("Evento deportivo no existente."); //lo devuelvo
     }
 
     private void SobreEscribirArchivo(List<EventoDeportivo> listaEventos)
     {
         using StreamWriter sw= new StreamWriter(nomArch,false); //false para sobreescribir el archivo
-            foreach (EventoDeportivo e in listaEventos)
-            {
-                sw.WriteLine(e.Id);
-                sw.WriteLine(e.Nombre);
-                sw.WriteLine(e.Descripcion);
-                sw.WriteLine(e.FechaHoraInicio);
-                sw.WriteLine(e.DuracionHoras);
-                sw.WriteLine(e.CupoMaximo);
-                sw.WriteLine(e.ResponsableId);
-            }
+        foreach (EventoDeportivo e in listaEventos)
+        {
+            sw.WriteLine(e.Id);
+            sw.WriteLine(e.Nombre);
+            sw.WriteLine(e.Descripcion);
+            sw.WriteLine(e.FechaHoraInicio);
+            sw.WriteLine(e.DuracionHoras);
+            sw.WriteLine(e.CupoMaximo);
+            sw.WriteLine(e.ResponsableId);
+        }
     }
 
     public List<EventoDeportivo> ListarEventos()
@@ -110,20 +110,13 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public List<EventoDeportivo> ListarEventosFuturos()
     {
         List<EventoDeportivo> listaEventos = ListarEventos();
-        List<EventoDeportivo> listaEFuturos = null; 
-        try {
-            if (listaEventos != null) {
-                foreach (EventoDeportivo e in listaEventos) {
-                    if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
-                        listaEFuturos.Add(e);
-                    }
-                }
-            }  
-            return listaEFuturos;
+        List<EventoDeportivo> listaEFuturos = new();
+        foreach (EventoDeportivo e in listaEventos) {
+            if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
+                listaEFuturos.Add(e);
+            }
         }
-        catch {
-            throw new Exception("No hay eventos disponibles");
-        }
+        return listaEFuturos;
     }
 }
 

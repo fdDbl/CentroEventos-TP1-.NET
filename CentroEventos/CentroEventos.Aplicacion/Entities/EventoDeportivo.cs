@@ -8,14 +8,13 @@ public class EventoDeportivo{
     public int CupoMaximo {get;set;}
     public int ResponsableId { get; set; }
 
-    public EventoDeportivo(int id, String? nombre,string? unaDesc ,DateTime unaFecha,double unaDuracion ,int cupoMaximo, int unUserID){
-        Id=id;
+    public EventoDeportivo(String? nombre,string? unaDesc ,DateTime unaFecha,double unaDuracion ,int cupoMaximo, int unUserId){
         Nombre=nombre;
         Descripcion = unaDesc;
         FechaHoraInicio = unaFecha;
         DuracionHoras = unaDuracion;
         CupoMaximo = cupoMaximo;
-        ResponsableId = unUserID;
+        ResponsableId = unUserId;
     }
     public EventoDeportivo(){}
 }

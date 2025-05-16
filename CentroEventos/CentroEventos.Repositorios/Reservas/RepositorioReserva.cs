@@ -4,7 +4,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioReserva : IRepositorioReserva
 {
-    private readonly string _nombreArch = @"../../../../CentroEventos.Repositorios/Reservas/Reservas.txt";
+    readonly string _nombreArch = "../../../../CentroEventos.Repositorios/Reservas/Reservas.txt";
 
     public void AltaReserva(Reserva reserva)
     {
@@ -102,11 +102,11 @@ public class RepositorioReserva : IRepositorioReserva
         }
     }
 
-    public int ContarReserva(int EventoId) {
+    public int ContarReserva(int eventoId) {
         var listaR = ListarReservas();
         int cont= 0;
         foreach (Reserva r in listaR) {
-            if (r.EventoDeportivoId == EventoId) cont++;
+            if (r.EventoDeportivoId == eventoId) cont++;
         }
         return cont;
     }
