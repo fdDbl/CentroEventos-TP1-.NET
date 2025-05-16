@@ -21,8 +21,6 @@ public class RepositorioPersona : IRepositorioPersona
             personas.Remove(p);
             SobreEscribirPersonas(personas);
         }
-        else
-            throw new EntidadNotFoundException("La persona no esta en la lista");
     }
 
     private void SobreEscribirPersonas(List<Persona> lista)
@@ -116,5 +114,17 @@ public class RepositorioPersona : IRepositorioPersona
         return true;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
