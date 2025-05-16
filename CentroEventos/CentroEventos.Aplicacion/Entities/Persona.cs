@@ -12,7 +12,6 @@ public class Persona {
     
     public Persona ( String unNro, string? unNom, string? unAp,int unTel, string? unEm) 
     {
-        
         Dni = unNro;
         Nombre = unNom;
         Apellido = unAp;
