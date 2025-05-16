@@ -4,11 +4,11 @@ using CentroEventos.Repositorios;
 
 var servicioAutorizacion = new ServicioAutorizacionProvisorio();
 
-var validadorReservaAlta1 = new ReservaAltaExistencias();
-var validadorReservaAlta2 = new ReservaAltaDuplicado();
-var validadorReservaAlta3 = new ReservaAltaCupoDisponible();
-var validadorReservaBaja = new ReservaBajaExistencia();
-var validadorReservaMod = new ReservaModificarValidador_Existentes();
+var validadorReservaAlta1 = new ReservaValidador_AltaExistencias();
+var validadorReservaAlta2 = new ReservaValidador_AltaDuplicado();
+var validadorReservaAlta3 = new ReservaAlta_CupoDisponible();
+var validadorReservaBaja = new ReservaValidador_BajaExistencia();
+var validadorReservaMod = new ReservaValidador_ModificarExistentes();
 
 IRepositorioPersona repositorioPersona = new RepositorioPersona();
 IRepositorioReserva repositorioReserva = new RepositorioReserva();
@@ -26,8 +26,6 @@ var listarReservas = new ReservaListarUseCase(repositorioReserva);
 
 try
 {
-    altaEventoDeportivo.Ejecutar(new EventoDeportivo("Voley","Para mayores de 13 años.", new DateTime(2025,05,17),5,12),1);
-    
     var listaReservas = listarReservas.Ejecutar();
     foreach (Reserva r in listaReservas)
     {
@@ -39,4 +37,4 @@ catch (Exception e)
     Console.WriteLine($"{e.GetType()}: {e.Message}");
 }
 
-//Console.ReadKey();
+Console.ReadKey();

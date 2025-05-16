@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class ReservaAltaCupoDisponible
+public class ReservaAlta_CupoDisponible
 {
     public bool Validar(Reserva reserva, IRepositorioReserva repoReserva, IRepositorioEventoDeportivo repoEvento, out string msg)
     {
