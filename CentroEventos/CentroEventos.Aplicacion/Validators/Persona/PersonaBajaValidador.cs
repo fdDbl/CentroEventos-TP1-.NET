@@ -6,6 +6,13 @@ public class PersonaBajaValidador
 {
     public bool validar(int id, IRepositorioEventoDeportivo repo)
     {
-        return false; //NO ESTA TERMINADO
+        foreach (EventoDeportivo e in repo.ListarEventos())
+        {
+            if (e.ResponsableId == id)
+            {
+                return false;
+            }
+        }
+        return true; 
     }
 }
