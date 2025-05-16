@@ -18,7 +18,7 @@ public class Reserva
     }
 
     public override string ToString()
-    => $"ID de reserva {Id}, ID de la persona responsable {PersonaId}, ID de actividad deportiva {EventoDeportivoId}, fecha de reserva: {FechaAltaReserva}, estado de la asistencia: {EstadoAsistencia}";
+    => $"ID de reserva: {Id} | ID de la persona responsable: {PersonaId} | ID de evento deportivo: {EventoDeportivoId} | Fecha de reserva: {FechaAltaReserva} | Estado de la asistencia: {EstadoAsistencia}";
 
     
     

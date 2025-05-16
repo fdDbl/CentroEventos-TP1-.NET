@@ -64,7 +64,6 @@ public class RepositorioReserva : IRepositorioReserva
         }
         throw new EntidadNotFoundException("La reserva buscada no existe.");
     }
-
     public List<Reserva> ListarReservas()
     {
         var listaR = new List<Reserva>();
@@ -79,14 +78,13 @@ public class RepositorioReserva : IRepositorioReserva
             var lSplitted = st.Split(" | ");
             reservaNew.Id = int.Parse(lSplitted[0]);
             reservaNew.PersonaId = int.Parse(lSplitted[1]);
-            reservaNew.FechaAltaReserva = DateTime.Parse(lSplitted[2]);
-            reservaNew.EstadoAsistencia = (Asistencia)Enum.Parse(typeof(Asistencia), lSplitted[3]);
+            reservaNew.EventoDeportivoId = int.Parse(lSplitted[2]);
+            reservaNew.FechaAltaReserva = DateTime.Parse(lSplitted[3]);
+            reservaNew.EstadoAsistencia = (Asistencia) Enum.Parse(typeof(Asistencia), lSplitted[4]);
             listaR.Add(reservaNew);
         }
-
         return listaR;
     }
-
     public void ModificarReserva(Reserva unaRes)
     {
         try

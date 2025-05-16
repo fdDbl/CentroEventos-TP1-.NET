@@ -14,7 +14,7 @@ var listarReservas = new ReservaListarUseCase(repositorioReserva);
 
 try
 {
-    altaReserva.Ejecutar(new Reserva(1,1,new DateTime(2025,5,15),Asistencia.Pendiente),1);
+    listarReservas.Ejecutar();
 }
 catch (Exception e)
 {
