@@ -90,46 +90,15 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         }
     }
 
-    /*private bool CalcularCupos (EventoDeportivo e) {
-        var b = false;
-        List<EventoDeportivo> listaEventos= ListarEventos();
-        var cont = 0;
-        foreach (EventoDeportivo ev in listaEventos) {
-            if (ev.Id == e.Id) {
-                cont++;
-            }
-        }
-        if (cont < e.CupoMaximo) {
-            b = true;
-        }
-        return b;
-    }
-    */
 
     public List<EventoDeportivo> ListarEventosFuturos()
     {
         List<EventoDeportivo> listaEventos = ListarEventos();
-<<<<<<< HEAD
-        List<EventoDeportivo> listaEFuturos = new List<EventoDeportivo>();
-        try {
-            if (listaEventos != null) {
-                foreach (EventoDeportivo e in listaEventos) {
-                    if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
-                        listaEFuturos.Add(e);
-                    }
-                }
-            }  
-            return listaEFuturos;
-        }
-        catch {
-            throw new Exception("No hay eventos disponibles");
-=======
         List<EventoDeportivo> listaEFuturos = new();
         foreach (EventoDeportivo e in listaEventos) {
             if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
                 listaEFuturos.Add(e);
             }
->>>>>>> 2156dfe85613d3cde0d93cd178677a7109285f84
         }
         return listaEFuturos;
     }
