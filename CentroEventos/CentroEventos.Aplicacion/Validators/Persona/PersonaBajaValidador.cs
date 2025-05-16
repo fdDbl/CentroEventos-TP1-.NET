@@ -4,13 +4,14 @@ namespace CentroEventos.Aplicacion.Validators.Persona;
 
 public class PersonaBajaValidador
 {
-    public bool validar(int id, IRepositorioEventoDeportivo repo)
+    public bool validar(int id, IRepositorioEventoDeportivo repo, out string msg)
     {
+        msg = "";
         foreach (EventoDeportivo e in repo.ListarEventos())
         {
             if (e.ResponsableId == id)
             {
-                return false;
+                msg += "La persona es responsable de un evento";
             }
         }
         return true; 
