@@ -20,6 +20,7 @@ public class RepositorioPersona : IRepositorioPersona
             personas.Remove(p);
             SobreEscribirPersonas(personas);
         }
+        else throw new EntidadNotFoundException("Persona no existente");
     }
 
     private void SobreEscribirPersonas(List<Persona> lista)
@@ -57,7 +58,7 @@ public class RepositorioPersona : IRepositorioPersona
         }
     }
     public Persona? ObtenerPersona(int id)
-    {         //la persona puede no estar
+    {   //la persona puede no estar
         var lista = ListarPersonas();      //guardo la lista de personas
         var p = lista.Find(persona => id == persona.Id);       //busca en la lista la persona comparando por id  (puede no estar) 
         //si se pone asi el parametro busca el elemento dentro la lista cuyo id coincide con idNueva

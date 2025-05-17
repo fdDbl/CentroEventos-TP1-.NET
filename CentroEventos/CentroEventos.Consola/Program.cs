@@ -53,11 +53,11 @@ try
 {
     Persona per = new Persona("45297418", "FACUNDO", "Villca", 221, "facuVillca@hotmail.com");
     altaPersona.Ejecutar(per,1);
-    // var listaPersonas = listarPersonas.Ejecutar();
-    // foreach (Persona p in listaPersonas)
-    // {
-    //    Console.WriteLine(p.ToString());
-    // }
+    var listaPersonas = listarPersonas.Ejecutar();
+    foreach (Persona p in listaPersonas)
+    {
+       Console.WriteLine(p.ToString());
+    }
 }
 catch (Exception e)
 {
@@ -76,11 +76,11 @@ try
     
     EventoDeportivo ev = new EventoDeportivo("Voley", "Deporte para mayores de 13 años.", new DateTime(2025,5,16), 3, 12,unRespo);
     altaEventoDeportivo.Ejecutar(ev,1);
-    // var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
-    // foreach (EventoDeportivo e in listaEventosDeportivos)
-    // {
-    //     Console.WriteLine(e);
-    // }
+    var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
+    foreach (EventoDeportivo e in listaEventosDeportivos)
+    {
+        Console.WriteLine(e);
+    }
 }
 catch (Exception e)
 {
@@ -119,5 +119,8 @@ catch (Exception e)
 {
     Console.WriteLine(e);
 }
+
+try { bajaPersona.Ejecutar(1,1); }
+catch (Exception e) { Console.WriteLine(e); }
 
 Console.ReadKey();
