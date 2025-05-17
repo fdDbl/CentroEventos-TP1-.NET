@@ -6,21 +6,21 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     readonly string _nomArch= "../../../../CentroEventos.Repositorios/EventosDeportivos/EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
-        using StreamWriter sr= new StreamWriter (_nomArch,true);
+        using StreamWriter sw= new StreamWriter (_nomArch,true);
         actividad.Id = RepositorioEventoDeportivoId.CalcularId();
-        sr.WriteLine(actividad.Id);
-        sr.WriteLine(actividad.Nombre);
-        sr.WriteLine(actividad.Descripcion);
-        sr.WriteLine(actividad.FechaHoraInicio);
-        sr.WriteLine(actividad.DuracionHoras);
-        sr.WriteLine(actividad.CupoMaximo);
-        sr.WriteLine(actividad.ResponsableId);
+        sw.WriteLine(actividad.Id);
+        sw.WriteLine(actividad.Nombre);
+        sw.WriteLine(actividad.Descripcion);
+        sw.WriteLine(actividad.FechaHoraInicio);
+        sw.WriteLine(actividad.DuracionHoras);
+        sw.WriteLine(actividad.CupoMaximo);
+        sw.WriteLine(actividad.ResponsableId);
     }
 
     public void EventoBaja(int id)
     {
         var listaEventos= ListarEventos(); //me guardo la lista de eventos
-        var evento = listaEventos.Find(EventoDeportivo=>EventoDeportivo.Id==id); //Busco en la lista el id que recibí como parámetro
+        var evento = listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); //Busco en la lista el id que recibí como parámetro
         if (evento!=null)
         {
             listaEventos.Remove(evento); //lo saco de la lista
@@ -51,7 +51,6 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         using StreamWriter sw= new StreamWriter(_nomArch,false); //false para sobreescribir el archivo
         foreach (EventoDeportivo e in listaEventos)
         {
-            sw.WriteLine(); // salto de linea
             sw.WriteLine(e.Id);
             sw.WriteLine(e.Nombre);
             sw.WriteLine(e.Descripcion);

@@ -66,17 +66,17 @@ catch (Exception e)
 
 try
 {
-    Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
-    var lista = listarPersonas.Ejecutar();
-    for(int i = 1; i <= lista.Count; i++) {
-        Console.WriteLine($"{i}) {lista[i-1]}");
-    }
-    int index = int.Parse(Console.ReadLine() ?? "-1") - 1;
-    int unRespo = repositorioPersona.ObtenerIdPorIndice(index);
-    
-    EventoDeportivo ev = new EventoDeportivo("Voley", "Deporte para mayores de 13 años.", new DateTime(2025,5,16), 3, 12,unRespo);
-    altaEventoDeportivo.Ejecutar(ev,1);
-    var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
+     Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
+     var lista = listarPersonas.Ejecutar();
+     for(int i = 1; i <= lista.Count; i++) {
+         Console.WriteLine($"{i}) {lista[i-1]}");
+     }
+     int index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+     int unRespo = repositorioPersona.ObtenerIdPorIndice(index);
+     
+     EventoDeportivo ev = new EventoDeportivo("Voley", "Deporte para mayores de 13 años.", new DateTime(2025,5,16), 3, 12,unRespo);
+     altaEventoDeportivo.Ejecutar(ev,1);
+     var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
     foreach (EventoDeportivo e in listaEventosDeportivos)
     {
         Console.WriteLine(e);
@@ -120,7 +120,12 @@ catch (Exception e)
     Console.WriteLine(e);
 }
 
-try { bajaPersona.Ejecutar(1,1); }
-catch (Exception e) { Console.WriteLine(e); }
+// HACER EN FORMA DE SELECTOR COMO ARRIBA:
+
+// try { bajaPersona.Ejecutar(1,1); }
+// catch (Exception e) { Console.WriteLine(e); }
+
+// try { bajaEventoDeportivo.Ejecutar(3,1); }
+// catch (Exception e) { Console.WriteLine(e); }
 
 Console.ReadKey();
