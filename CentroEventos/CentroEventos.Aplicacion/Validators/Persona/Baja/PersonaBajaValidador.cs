@@ -15,10 +15,6 @@ public class PersonaBajaValidador
                 break;
             }
         }
-<<<<<<< HEAD
         return msg ==""; 
-=======
-        return msg == "";
->>>>>>> 1ae640718a6e2dd2f8b1c937d878eb6aee4aadeb
     }
 }
