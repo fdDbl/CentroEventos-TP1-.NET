@@ -14,6 +14,6 @@ public class EventoAltaValidadorCupoMaximo
             aux = false;
         }
 
-        return false;
+        return aux;
     }
 }
