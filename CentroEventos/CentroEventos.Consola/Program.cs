@@ -63,4 +63,19 @@ catch (Exception e)
 {
     Console.WriteLine($"{e.GetType()} : {e.Message}");
 }
-Console.ReadKey();
+
+try
+{
+    var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
+    foreach (EventoDeportivo e in listaEventosDeportivos)
+    {
+        Console.WriteLine(e.ToString());
+    }
+}
+catch (Exception e)
+{
+    Console.WriteLine($"{e.GetType()} : {e.Message}");
+}
+
+
+//Console.ReadKey();
