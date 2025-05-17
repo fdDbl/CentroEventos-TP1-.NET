@@ -6,7 +6,7 @@ public class EventoAltaUseCase(IServicioAutorizacion auth,IRepositorioEventoDepo
     {
         if (!auth.PoseeElPermiso(userId, Permiso.EventoAlta))
         {
-            throw new Exception("No posee los permisos para realizar operacion");
+            throw new FalloAutorizacionException("No posee los permisos para realizar operacion");
         }
 
         if (!vNom.ValidarEventoAltaNombre(evento, repoPer, out string msg1))

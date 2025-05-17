@@ -1,5 +1,4 @@
 namespace CentroEventos.Aplicacion;
-// Persona: Id, dni, nombre, apellido, teléfono, correo electrónico.
 public class Persona {
     public int Id { get; set; }
     public string? Dni {get;set;}
@@ -10,9 +9,9 @@ public class Persona {
 
     public Persona (){}
     
-    public Persona ( String unNro, string? unNom, string? unAp,int unTel, string? unEm) 
+    public Persona (string unDni, string? unNom, string? unAp,int unTel, string? unEm) 
     {
-        Dni = unNro;
+        Dni = unDni;
         Nombre = unNom;
         Apellido = unAp;
         Telefono = unTel;
@@ -21,6 +20,6 @@ public class Persona {
 
     public override string ToString()
     {
-        return $"ID: {Id},dni: {Dni}, nombre: {Nombre}, apellido: {Apellido}, telefono: {Telefono}, correo electronico: {Email} ";
+        return $"DNI: {Dni} | Nombre: {Nombre}| Apellido: {Apellido} | Telefono: {Telefono} | Correo electrónico: {Email}";
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion;
 using CentroEventos.Aplicacion.Validators.Persona;
 using CentroEventos.Repositorios;
 
@@ -32,10 +31,11 @@ var modificarReserva = new ReservaModificarUseCase(servicioAutorizacion,reposito
 var listarReservas = new ReservaListarUseCase(repositorioReserva);
 
 //Casos de uso Persona
-var altaPersona = new AltaPersonaUseCase(repositorioPersona, new PersonaValidador(), new EmailValidador(),new DniValidador());
-var bajaPersona = new BajaPersonaUseCase(repositorioPersona, repositorioEventoDeportivo, new PersonaBajaValidador());
-var modificarPersona = new ModificarPersonaUseCase(repositorioPersona, new PersonaModificacionValidador());
-var ListarPersonas = new ListarPersonasUseCase(repositorioPersona);
+var altaPersona = new AltaPersonaUseCase(servicioAutorizacion, repositorioPersona, new PersonaValidador(), new EmailValidador(),new DniValidador());
+var bajaPersona = new BajaPersonaUseCase(servicioAutorizacion, repositorioPersona, repositorioEventoDeportivo, new PersonaBajaValidador());
+var modificarPersona = new ModificarPersonaUseCase(servicioAutorizacion, repositorioPersona, new PersonaModificacionValidador());
+var listarPersonas = new ListarPersonasUseCase(repositorioPersona);
+
 // Programa principal
 try
 {
@@ -48,21 +48,22 @@ try
 }
 catch (Exception e)
 {
-    Console.WriteLine($"{e.GetType()}: {e.Message}");
+    Console.WriteLine(e);
 }
+
 try
 {
     Persona per = new Persona("45297418", "FACUNDO", "Villca", 221, "facuVillca@hotmail.com");
-    altaPersona.Ejecutar(per);
-
+    altaPersona.Ejecutar(per,1);
 }
 catch (Exception e)
 {
-    Console.WriteLine($"{e.GetType()}: {e.Message}");
+    Console.WriteLine(e);
 }
+
 try
 {
-    var listaPersonas = ListarPersonas.Ejecutar();
+    var listaPersonas = listarPersonas.Ejecutar();
     foreach (Persona p in listaPersonas)
     {
         Console.WriteLine(p.ToString());
@@ -70,24 +71,30 @@ try
 }
 catch (Exception e)
 {
-    Console.WriteLine($"{e.GetType()} : {e.Message}");
+    Console.WriteLine(e);
 }
-<<<<<<< HEAD
-=======
+
+try
+{
+    EventoDeportivo ev = new EventoDeportivo("Voley", "Deporte para mayores de 13 años.", new DateTime(2025,5,16), 3, 12);
+    altaEventoDeportivo.Ejecutar(ev,1);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+}
 
 try
 {
     var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
     foreach (EventoDeportivo e in listaEventosDeportivos)
     {
-        Console.WriteLine(e.ToString());
+        Console.WriteLine(e);
     }
 }
 catch (Exception e)
 {
-    Console.WriteLine($"{e.GetType()} : {e.Message}");
+    Console.WriteLine(e);
 }
 
-
-//Console.ReadKey();
->>>>>>> 98b9faae64aabe3d1f46ebf341438a8673b4cc26
+Console.ReadKey();

@@ -1,11 +1,9 @@
-using System.Collections;
-
 namespace CentroEventos.Repositorios;
-public class RepositorioIdPersona
-{
-    public static int ObtenerId ()
+
+public class RepositorioEventoDeportivoId {
+    public static int CalcularId ()
     {
-        string nombreArch = "../../../../CentroEventos.Repositorios/Personas/RepositorioIdPersona.txt";
+        string nombreArch = "../../../../CentroEventos.Repositorios/EventosDeportivos/EventosDeportivosId.txt";
         using StreamReader sr = new StreamReader(nombreArch);
         int id = int.Parse(sr.ReadLine() ?? "0");
         sr.Close();      
@@ -15,4 +13,3 @@ public class RepositorioIdPersona
         return id;
     }
 }
-

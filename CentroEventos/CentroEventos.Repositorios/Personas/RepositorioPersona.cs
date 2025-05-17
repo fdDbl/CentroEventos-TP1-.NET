@@ -1,4 +1,3 @@
-
 using CentroEventos.Aplicacion;
 namespace CentroEventos.Repositorios;
 
@@ -31,23 +30,23 @@ public class RepositorioPersona : IRepositorioPersona
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
         }
     }
-    public void ModificarPersona(Persona persona, Persona PersonaModificada)
+    public void ModificarPersona(Persona persona, Persona personaModificada)
     {
 
         List<Persona> listaPersona = ListarPersonas();
 
         using var sw = new StreamWriter(_nombreArch, false);
 
-        Persona? personaBuscada = listaPersona.Find(p => p.Id == PersonaModificada.Id);
+        Persona? personaBuscada = listaPersona.Find(p => p.Id == personaModificada.Id);
 
         if (personaBuscada != null)
         {
-            personaBuscada.Id = PersonaModificada.Id;
-            personaBuscada.Dni = PersonaModificada.Dni;
-            personaBuscada.Nombre = PersonaModificada.Nombre;
-            personaBuscada.Apellido = PersonaModificada.Apellido;
-            personaBuscada.Telefono = PersonaModificada.Telefono;
-            personaBuscada.Email = PersonaModificada.Email;
+            personaBuscada.Id = personaModificada.Id;
+            personaBuscada.Dni = personaModificada.Dni;
+            personaBuscada.Nombre = personaModificada.Nombre;
+            personaBuscada.Apellido = personaModificada.Apellido;
+            personaBuscada.Telefono = personaModificada.Telefono;
+            personaBuscada.Email = personaModificada.Email;
             //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
@@ -72,19 +71,17 @@ public class RepositorioPersona : IRepositorioPersona
         using StreamReader sr = new StreamReader(_nombreArch);
 
         while (!sr.EndOfStream)  //mientras no termine el archivo
-
         {
-            var Persona = new Persona();
+            var persona = new Persona();
             var st = sr.ReadLine() ?? "";
             var split = st.Split(" | ");
-            Persona.Id = int.Parse(split[0]);
-            Persona.Dni = split[1];
-            Persona.Nombre = split[2];
-            Persona.Apellido = split[3];
-            Persona.Telefono = int.Parse(split[4]);
-            Persona.Email = split[5];
-            resultado.Add(Persona);
-
+            persona.Id = int.Parse(split[0]);
+            persona.Dni = split[1];
+            persona.Nombre = split[2];
+            persona.Apellido = split[3];
+            persona.Telefono = int.Parse(split[4]);
+            persona.Email = split[5];
+            resultado.Add(persona);
         }
         return resultado;
     }

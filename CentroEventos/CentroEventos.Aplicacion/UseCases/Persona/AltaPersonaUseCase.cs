@@ -2,11 +2,12 @@
 
 namespace CentroEventos.Aplicacion;
 
-public class AltaPersonaUseCase(IRepositorioPersona repo,PersonaValidador validadorPersona,EmailValidador validarEmail,DniValidador validarDni ) 
+public class AltaPersonaUseCase(IServicioAutorizacion auth, IRepositorioPersona repo,PersonaValidador validadorPersona,EmailValidador validarEmail,DniValidador validarDni ) 
  //agrege el repo actividad para verificar q no este en la actividad
 {  
-    public void Ejecutar(Persona persona)
+    public void Ejecutar(Persona persona, int unId)
     {
+        if (!auth.PoseeElPermiso(unId, Permiso.UsuarioAlta)) throw new FalloAutorizacionException("No posee el permiso para hacer alta de Persona.");
         string msg;
         if (!validadorPersona.ValidarPersona(persona, repo, out  msg))
             throw new ValidacionException(msg);

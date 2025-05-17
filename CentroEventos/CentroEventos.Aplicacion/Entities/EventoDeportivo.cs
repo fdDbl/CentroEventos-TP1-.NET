@@ -18,11 +18,11 @@ public class EventoDeportivo
         DuracionHoras = unaDuracion;
         CupoMaximo = cupoMaximo;
     }
-    public EventoDeportivo() { }
+    public EventoDeportivo() {}
 
     public override string ToString()
     {
-        return "-----------------\n" + $"Evento ID: {Id}, nombre del evento: {Nombre}, descripcion de evento: {Descripcion}" + "\n" +$"Fecha de inicio de actividad: {FechaHoraInicio}, duracion del evento: {DuracionHoras}, cupo maximo: {CupoMaximo}, ID responsable del evento {ResponsableId} ";
+        return $"Nombre del evento: {Nombre} | Descripcion de evento: {Descripcion} | Fecha de inicio de actividad: {FechaHoraInicio} | Duracion del evento: {DuracionHoras} | Cupo maximo: {CupoMaximo}";
 
     }
 }

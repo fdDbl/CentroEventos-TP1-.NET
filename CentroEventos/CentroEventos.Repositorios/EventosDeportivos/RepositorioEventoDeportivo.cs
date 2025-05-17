@@ -3,7 +3,7 @@ namespace CentroEventos.Repositorios;
 
 public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 {
-    readonly string _nomArch= "../../../../CentroEventos.Repositorios/Eventos Deportivos/EventosDeportivos.txt";
+    readonly string _nomArch= "../../../../CentroEventos.Repositorios/EventosDeportivos/EventosDeportivos.txt";
     public void EventoAlta(EventoDeportivo actividad)
     {
         using StreamWriter sr= new StreamWriter (_nomArch,true);
@@ -38,6 +38,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         using StreamWriter sw= new StreamWriter(_nomArch,false); //false para sobreescribir el archivo
         foreach (EventoDeportivo e in listaEventos)
         {
+            sw.WriteLine(); // salto de linea
             sw.WriteLine(e.Id);
             sw.WriteLine(e.Nombre);
             sw.WriteLine(e.Descripcion);
@@ -54,15 +55,15 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         List<EventoDeportivo> listaEventos= new List<EventoDeportivo>(); //creo la lista
         while (!sr.EndOfStream) //mientras no sea fin de archivo
         {
-            var Evento=new EventoDeportivo(); //Asigno cada campo correspondiente
-            Evento.Id=int.Parse(sr.ReadLine()?? "");
-            Evento.Nombre=sr.ReadLine()?? "";
-            Evento.Descripcion=sr.ReadLine() ?? "";
-            Evento.FechaHoraInicio=DateTime.Parse(sr.ReadLine()?? "");
-            Evento.DuracionHoras=double.Parse(sr.ReadLine()?? "");
-            Evento.CupoMaximo=int.Parse(sr.ReadLine()?? "");
-            Evento.ResponsableId=int.Parse(sr.ReadLine()?? "");
-            listaEventos.Add(Evento); //Agrego el evento a la lista
+            var evento = new EventoDeportivo(); //Asigno cada campo correspondiente
+            evento.Id=int.Parse(sr.ReadLine()?? "");
+            evento.Nombre=sr.ReadLine()?? "";
+            evento.Descripcion=sr.ReadLine() ?? "";
+            evento.FechaHoraInicio=DateTime.Parse(sr.ReadLine()?? "");
+            evento.DuracionHoras=double.Parse(sr.ReadLine()?? "");
+            evento.CupoMaximo=int.Parse(sr.ReadLine()?? "");
+            evento.ResponsableId=int.Parse(sr.ReadLine()?? "");
+            listaEventos.Add(evento); //Agrego el evento a la lista
         }
         return listaEventos; //Devuelvo la lista
     }
