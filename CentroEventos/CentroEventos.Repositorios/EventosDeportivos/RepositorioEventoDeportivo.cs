@@ -19,10 +19,16 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 
     public void EventoBaja(int id)
     {
-        List<EventoDeportivo> listaEventos= ListarEventos(); //me guardo la lista de eventos
-        EventoDeportivo evento = ObtenerEvento(id); //llamo al método que busca el evento por id
-        listaEventos.Remove(evento); //lo saco de la lista (en el validador me aseguro que no sea null)
-        SobreEscribirEventos(listaEventos); //sobreescribo el archivo
+        var listaEventos= ListarEventos(); //me guardo la lista de eventos
+        var evento = listaEventos.Find(EventoDeportivo=>EventoDeportivo.Id==id); //Busco en la lista el id que recibí como parámetro
+        if (evento!=null)
+        {
+            listaEventos.Remove(evento); //lo saco de la lista
+            SobreEscribirEventos(listaEventos); //sobreescribo el archivo
+        }
+        else
+            throw new EntidadNotFoundException("Evento deportivo no existente.");
+      
     }
 
     public EventoDeportivo ObtenerEvento(int id) //Busco el evento por Id

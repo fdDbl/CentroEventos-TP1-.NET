@@ -1,14 +1,14 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,IRepositorioReserva repoReservas, EventoBajaValidador validador)
+public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,
+                                IRepositorioReserva repoReservas, EventoBaja_ValidadorReservasAsociadas validadorReservasAsociadas)
 {
     public void Ejecutar(EventoDeportivo evento, int userId)
     {
-        if (auth.PoseeElPermiso(userId, Permiso.EventoBaja))
-        {
-            if (!validador.ValidarEventoBaja(evento, repoEventos, repoReservas, out string msg))
-                throw new Exception(msg);
-            repoEventos.EventoBaja(evento.Id); //La baja se hace por Id del evento, asi que le mando por parámetro el id 
-        }
+        string msg;
+        if (!auth.PoseeElPermiso(userId, Permiso.EventoBaja)) 
+            throw new FalloAutorizacionException("No posee los permisos para dar de baja un evento.");
+        if (!validadorReservasAsociadas.Validar(evento,repoReservas,out msg)) throw new OperacionInvalidaException(msg);
+        repoEventos.EventoBaja(evento.Id); //En el repo evalúo si existe el Id y si no, lanzo una EntidadNotFoundException
     }
 }
