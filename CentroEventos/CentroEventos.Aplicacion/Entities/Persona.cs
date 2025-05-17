@@ -21,6 +21,6 @@ public class Persona {
 
     public override string ToString()
     {
-        return $"ID: {Id},dni: {Dni}, nombre: {Nombre}, apellido: {Apellido}, {Environment.NewLine} telefono: {Telefono}, correo electronico: {Email} ";
+        return $"ID: {Id},dni: {Dni}, nombre: {Nombre}, apellido: {Apellido}, telefono: {Telefono}, correo electronico: {Email} ";
     }
 }

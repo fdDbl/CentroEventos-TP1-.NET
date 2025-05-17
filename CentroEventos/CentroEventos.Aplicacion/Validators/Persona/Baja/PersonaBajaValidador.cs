@@ -12,6 +12,7 @@ public class PersonaBajaValidador
             if (e.ResponsableId == id)
             {
                 msg += "La persona es responsable de un evento";
+                break;
             }
         }
         return true; 

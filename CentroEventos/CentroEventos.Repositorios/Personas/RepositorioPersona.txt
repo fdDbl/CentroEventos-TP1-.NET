@@ -1,6 +1,2 @@
-1
-47
-Federico
-Dobal
-221
-dobalfede.unlp@gmail.com
+1|47|Federico|Dobal|221|dobalfede.unlp@gmail.com
+3|4|Facundo|Villca|0221|facuvilk@hotmail.com

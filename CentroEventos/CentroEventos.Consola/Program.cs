@@ -1,4 +1,5 @@
 ﻿using CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Validators.Persona;
 using CentroEventos.Repositorios;
 
 // Servicio de autorización
@@ -10,6 +11,8 @@ var validadorReservaAlta2 = new ReservaValidador_AltaDuplicado();
 var validadorReservaAlta3 = new ReservaAlta_CupoDisponible();
 var validadorReservaBaja = new ReservaValidador_BajaExistencia();
 var validadorReservaMod = new ReservaValidador_ModificarExistentes();
+
+
 
 // Repositorios para inyectar
 IRepositorioPersona repositorioPersona = new RepositorioPersona();
@@ -28,13 +31,18 @@ var bajaReserva = new ReservaBajaUseCase(servicioAutorizacion,repositorioReserva
 var modificarReserva = new ReservaModificarUseCase(servicioAutorizacion,repositorioReserva,repositorioEventoDeportivo,repositorioPersona,validadorReservaMod);
 var listarReservas = new ReservaListarUseCase(repositorioReserva);
 
+//Casos de uso Persona
+var altaPersona = new AltaPersonaUseCase(repositorioPersona, new PersonaValidador());
+var bajaPersona = new BajaPersonaUseCase(repositorioPersona, repositorioEventoDeportivo, new PersonaBajaValidador());
+var modificarPersona = new ModificarPersonaUseCase(repositorioPersona, new PersonaModificacionValidador());
+var ListarPersonas = new ListarPersonasUseCase(repositorioPersona);
 // Programa principal
 try
 {
     var listaReservas = listarReservas.Ejecutar();
     foreach (Reserva r in listaReservas)
     {
-     
+
         Console.WriteLine(r.ToString());
     }
 }
@@ -43,4 +51,16 @@ catch (Exception e)
     Console.WriteLine($"{e.GetType()}: {e.Message}");
 }
 
+try
+{
+    var listaPersonas = ListarPersonas.Ejecutar();
+    foreach (Persona p in listaPersonas)
+    {
+        Console.WriteLine(p.ToString());
+    }
+}
+catch (Exception e)
+{
+    Console.WriteLine($"{e.GetType()} : {e.Message}");
+}
 Console.ReadKey();
