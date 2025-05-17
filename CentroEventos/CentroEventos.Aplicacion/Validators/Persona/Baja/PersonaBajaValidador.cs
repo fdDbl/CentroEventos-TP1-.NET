@@ -4,7 +4,7 @@ namespace CentroEventos.Aplicacion.Validators.Persona;
 
 public class PersonaBajaValidador
 {
-    public bool validar(int id, IRepositorioEventoDeportivo repo, out string msg)
+    public bool Validar(int id, IRepositorioEventoDeportivo repo, out string msg)
     {
         msg = "";
         foreach (EventoDeportivo e in repo.ListarEventos())
@@ -15,6 +15,6 @@ public class PersonaBajaValidador
                 break;
             }
         }
-        return true; 
+        return msg == "";
     }
 }
