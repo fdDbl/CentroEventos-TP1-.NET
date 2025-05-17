@@ -34,6 +34,7 @@ try
     var listaReservas = listarReservas.Ejecutar();
     foreach (Reserva r in listaReservas)
     {
+     
         Console.WriteLine(r.ToString());
     }
 }

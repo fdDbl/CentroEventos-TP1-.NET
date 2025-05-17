@@ -5,7 +5,7 @@ public class ModificarPersonaUseCase(IRepositorioPersona repo, PersonaModificaci
     public void Ejecutar(Persona persona, Persona personaModificada) {
         if (!validador.validar(persona, repo, out string msg))
             throw new ValidacionException(msg);
-        repo.ModificarPersona(persona, personaModificada); 
+            repo.ModificarPersona(persona, personaModificada); 
         
     }
 }
