@@ -1,4 +1,5 @@
-﻿using CentroEventos.Aplicacion;
+﻿using System.Linq.Expressions;
+using CentroEventos.Aplicacion;
 using CentroEventos.Aplicacion.Validators.Persona;
 using CentroEventos.Repositorios;
 
@@ -32,7 +33,7 @@ var modificarReserva = new ReservaModificarUseCase(servicioAutorizacion,reposito
 var listarReservas = new ReservaListarUseCase(repositorioReserva);
 
 //Casos de uso Persona
-var altaPersona = new AltaPersonaUseCase(repositorioPersona, new PersonaValidador());
+var altaPersona = new AltaPersonaUseCase(repositorioPersona, new PersonaValidador(), new EmailValidador(),new DniValidador());
 var bajaPersona = new BajaPersonaUseCase(repositorioPersona, repositorioEventoDeportivo, new PersonaBajaValidador());
 var modificarPersona = new ModificarPersonaUseCase(repositorioPersona, new PersonaModificacionValidador());
 var ListarPersonas = new ListarPersonasUseCase(repositorioPersona);
@@ -50,7 +51,16 @@ catch (Exception e)
 {
     Console.WriteLine($"{e.GetType()}: {e.Message}");
 }
+try
+{
+    Persona per = new Persona("45297418", "FACUNDO", "Villca", 221, "facuVillca@hotmail.com");
+    altaPersona.Ejecutar(per);
 
+}
+catch (Exception e)
+{
+    Console.WriteLine($"{e.GetType()}: {e.Message}");
+}
 try
 {
     var listaPersonas = ListarPersonas.Ejecutar();
@@ -63,4 +73,3 @@ catch (Exception e)
 {
     Console.WriteLine($"{e.GetType()} : {e.Message}");
 }
-Console.ReadKey();

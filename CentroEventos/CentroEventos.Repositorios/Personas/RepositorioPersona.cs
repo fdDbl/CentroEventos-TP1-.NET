@@ -76,7 +76,7 @@ public class RepositorioPersona : IRepositorioPersona
         {
             var Persona = new Persona();
             var st = sr.ReadLine() ?? "";
-            var split = st.Split("|");
+            var split = st.Split(" | ");
             Persona.Id = int.Parse(split[0]);
             Persona.Dni = split[1];
             Persona.Nombre = split[2];
@@ -98,7 +98,7 @@ public class RepositorioPersona : IRepositorioPersona
         {
             if (p.Dni == dni) return true;
         }
-        return true;
+        return false;
     }
 
     public  bool BuscarPorEmail(string? email)
@@ -111,7 +111,7 @@ public class RepositorioPersona : IRepositorioPersona
         {
             if (p.Email == email) return true;
         }
-        return true;
+        return false;
     }
 }
 
