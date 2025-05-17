@@ -15,6 +15,6 @@ public class PersonaBajaValidador
                 break;
             }
         }
-        return true; 
+        return msg ==""; 
     }
 }
