@@ -10,13 +10,14 @@ public class EventoDeportivo
     public int CupoMaximo { get; set; }
     public int ResponsableId { get; set; }
 
-    public EventoDeportivo(String? nombre, string? unaDesc, DateTime unaFecha, double unaDuracion, int cupoMaximo)
+    public EventoDeportivo(String? nombre, string? unaDesc, DateTime unaFecha, double unaDuracion, int cupoMaximo, int respoId)
     {
         Nombre = nombre;
         Descripcion = unaDesc;
         FechaHoraInicio = unaFecha;
         DuracionHoras = unaDuracion;
         CupoMaximo = cupoMaximo;
+        ResponsableId = respoId;
     }
     public EventoDeportivo() {}
 

@@ -9,11 +9,14 @@ public class Reserva
 
     public Reserva () {}
 
-    public Reserva (DateTime fechaDeReserva, Asistencia estadoAsistencia )
+    public Reserva(int personaId, int eventoDeportivoId, DateTime fechaAltaReserva, Asistencia estadoAsistencia)
     {
-        FechaAltaReserva=fechaDeReserva;
-        EstadoAsistencia=estadoAsistencia;
+        PersonaId = personaId;
+        EventoDeportivoId = eventoDeportivoId;
+        FechaAltaReserva = fechaAltaReserva;
+        EstadoAsistencia = estadoAsistencia;
     }
+
     public override string ToString()
-    => $"ID de reserva: {Id} | ID de la persona responsable: {PersonaId} | ID de evento deportivo: {EventoDeportivoId} | Fecha de reserva: {FechaAltaReserva} | Estado de la asistencia: {EstadoAsistencia}";
+    => $"Fecha de reserva: {FechaAltaReserva} | Estado de la asistencia: {EstadoAsistencia}";
 }

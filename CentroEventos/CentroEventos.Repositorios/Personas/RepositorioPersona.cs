@@ -63,6 +63,13 @@ public class RepositorioPersona : IRepositorioPersona
         //si se pone asi el parametro busca el elemento dentro la lista cuyo id coincide con idNueva
         return p;          //retorna ya sea la persona o null
     }
+
+    public int ObtenerIdPorIndice(int index)
+    {
+        Persona p = ListarPersonas()[index];
+        if (p == null) throw new EntidadNotFoundException("Selección de persona inválida.");
+        return p.Id;
+    }
     public  List<Persona> ListarPersonas()
     {
 

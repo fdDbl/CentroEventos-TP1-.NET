@@ -31,6 +31,13 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
       
     }
 
+    public int ObtenerIdPorIndice(int index)
+    {
+        EventoDeportivo e = ListarEventos()[index];
+        if (e == null) throw new EntidadNotFoundException("Selección de evento deportivo inválido.");
+        return e.Id;
+    }
+
     public EventoDeportivo ObtenerEvento(int id) //Busco el evento por Id
     {
         var listaEventos=ListarEventos(); //me guardo la lista de los eventos
