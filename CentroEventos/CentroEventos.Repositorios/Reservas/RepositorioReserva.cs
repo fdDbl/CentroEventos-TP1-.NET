@@ -94,9 +94,9 @@ public class RepositorioReserva : IRepositorioReserva
             lista[i] = unaRes;
             SobreEscribirReservas(lista);
         }
-        catch (OperacionInvalidaException e)
+        catch (EntidadNotFoundException e)
         {
-            throw new OperacionInvalidaException($"Error al intentar modificar reserva: {e.Message}");
+            throw new EntidadNotFoundException($"Error al intentar modificar reserva: {e.Message}");
         }
     }
     public int ContarReserva(int eventoId) {
