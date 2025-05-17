@@ -1,6 +1,6 @@
 namespace CentroEventos.Aplicacion;
 
-public class ReservaModificarUseCase(IServicioAutorizacion auth,IRepositorioReserva repoR, IRepositorioEventoDeportivo repoE, IRepositorioPersona repoP, ReservaValidador_ModificarExistentes existentes)
+public class ReservaModificarUseCase(IServicioAutorizacion auth,IRepositorioReserva repoR, IRepositorioEventoDeportivo repoE, IRepositorioPersona repoP, ReservaValidadorModificarExistentes existentes)
 {
     public void Ejecutar(Reserva reserva, int idUser)
     {

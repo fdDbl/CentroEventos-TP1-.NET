@@ -1,7 +1,4 @@
-using System;
-
 namespace CentroEventos.Aplicacion;
-
 public class EmailValidador
 {
     public bool ValidarEmail(string? st, IRepositorioPersona repo, out string msg)

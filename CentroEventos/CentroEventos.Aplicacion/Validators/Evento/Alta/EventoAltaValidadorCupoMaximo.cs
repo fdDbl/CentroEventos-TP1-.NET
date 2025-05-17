@@ -1,7 +1,4 @@
-using System.Runtime.InteropServices;
-
 namespace CentroEventos.Aplicacion;
-
 public class EventoAltaValidadorCupoMaximo
 {
     public bool ValidarEventoAltaCupoMaximo(EventoDeportivo actividad, IRepositorioPersona unRepo, out string msg)
@@ -13,7 +10,6 @@ public class EventoAltaValidadorCupoMaximo
             msg += "El Cupo maximo debe que ser mayor que 0.\n";
             aux = false;
         }
-
         return aux;
     }
 }

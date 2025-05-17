@@ -1,6 +1,6 @@
 namespace CentroEventos.Aplicacion;
 
-public class ReservaBajaUseCase(IServicioAutorizacion auth, IRepositorioReserva repoR, ReservaValidador_BajaExistencia validador)
+public class ReservaBajaUseCase(IServicioAutorizacion auth, IRepositorioReserva repoR, ReservaValidadorBajaExistencia validador)
 {
     public void Ejecutar(int idReserva, int idUser)
     {

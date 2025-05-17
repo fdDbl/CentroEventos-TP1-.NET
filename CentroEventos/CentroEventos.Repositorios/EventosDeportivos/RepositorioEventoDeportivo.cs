@@ -80,26 +80,26 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         return listaEventos; //Devuelvo la lista
     }
 
-    public void EventoModificacion(EventoDeportivo ActMod)
+    public void EventoModificacion(EventoDeportivo actMod)
     {
         using StreamWriter sw = new StreamWriter(_nomArch,false); // abro el archivo y le paso false para sobreescribir
         List <EventoDeportivo> listaAct = ListarEventos(); // creo una lista
         foreach (EventoDeportivo act in listaAct) { // recorro lista y voy sobreescribiendo
-            if (act.Id == ActMod.Id) { // solo en el caso de que encuentre el q quiero modificar, lo modifico
-                sw.WriteLine(ActMod.Nombre);
-                sw.WriteLine(ActMod.Descripcion);
-                sw.WriteLine(ActMod.FechaHoraInicio);
-                sw.WriteLine(ActMod.DuracionHoras);
-                sw.WriteLine(ActMod.CupoMaximo);
-                sw.WriteLine(ActMod.ResponsableId);
+            if (act.Id == actMod.Id) { // solo en el caso de que encuentre el q quiero modificar, lo modifico
+                sw.WriteLine(actMod.Nombre);
+                sw.WriteLine(actMod.Descripcion);
+                sw.WriteLine(actMod.FechaHoraInicio);
+                sw.WriteLine(actMod.DuracionHoras);
+                sw.WriteLine(actMod.CupoMaximo);
+                sw.WriteLine(actMod.ResponsableId);
             }
-        sw.WriteLine(act.Id);
-        sw.WriteLine(act.Nombre);
-        sw.WriteLine(act.Descripcion);
-        sw.WriteLine(act.FechaHoraInicio);
-        sw.WriteLine(act.DuracionHoras);
-        sw.WriteLine(act.CupoMaximo);
-        sw.WriteLine(act.ResponsableId);
+            sw.WriteLine(act.Id);
+            sw.WriteLine(act.Nombre);
+            sw.WriteLine(act.Descripcion);
+            sw.WriteLine(act.FechaHoraInicio);
+            sw.WriteLine(act.DuracionHoras);
+            sw.WriteLine(act.CupoMaximo);
+            sw.WriteLine(act.ResponsableId);
         }
     }
 

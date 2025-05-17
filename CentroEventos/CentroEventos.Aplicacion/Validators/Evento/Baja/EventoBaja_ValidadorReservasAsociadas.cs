@@ -1,5 +1,5 @@
 namespace CentroEventos.Aplicacion;
-public class EventoBaja_ValidadorReservasAsociadas
+public class EventoBajaValidadorReservasAsociadas
 {
     public bool Validar(int eventoId, IRepositorioReserva repoReservas, out string msg) //
     {

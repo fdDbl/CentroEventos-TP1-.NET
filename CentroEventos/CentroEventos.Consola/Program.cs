@@ -6,16 +6,16 @@ using CentroEventos.Repositorios;
 var servicioAutorizacion = new ServicioAutorizacionProvisorio();
 
 // Validadores de Reserva
-var validadorReservaAlta1 = new ReservaValidador_AltaExistencias();
-var validadorReservaAlta2 = new ReservaValidador_AltaDuplicado();
-var validadorReservaAlta3 = new ReservaAlta_CupoDisponible();
-var validadorReservaBaja = new ReservaValidador_BajaExistencia();
-var validadorReservaMod = new ReservaValidador_ModificarExistentes();
+var validadorReservaAlta1 = new ReservaValidadorAltaExistencias();
+var validadorReservaAlta2 = new ReservaValidadorAltaDuplicado();
+var validadorReservaAlta3 = new ReservaAltaCupoDisponible();
+var validadorReservaBaja = new ReservaValidadorBajaExistencia();
+var validadorReservaMod = new ReservaValidadorModificarExistentes();
 
 // Validadores de EventoDeportivo
 var validadorEventoAlta1 = new EventoAltaValidadorNombre();
 var validadorEventoAlta2 = new EventoAltaValidadorCupoMaximo();
-var validadorEventoBaja = new EventoBaja_ValidadorReservasAsociadas();
+var validadorEventoBaja = new EventoBajaValidadorReservasAsociadas();
 var validadorEventoMod = new EventoModificadorValidador();
 
 // Validadores de Persona

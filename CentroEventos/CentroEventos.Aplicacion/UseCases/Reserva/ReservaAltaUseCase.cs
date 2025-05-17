@@ -1,8 +1,8 @@
 ﻿namespace CentroEventos.Aplicacion;
 public class ReservaAltaUseCase(IServicioAutorizacion auth, 
     IRepositorioReserva repoR, IRepositorioEventoDeportivo repoE, 
-    IRepositorioPersona repoP, ReservaValidador_AltaExistencias vExistencias, 
-    ReservaValidador_AltaDuplicado vDuplicados, ReservaAlta_CupoDisponible vCupo)
+    IRepositorioPersona repoP, ReservaValidadorAltaExistencias vExistencias, 
+    ReservaValidadorAltaDuplicado vDuplicados, ReservaAltaCupoDisponible vCupo)
 {
     public void Ejecutar(Reserva reserva, int idUser)
     {

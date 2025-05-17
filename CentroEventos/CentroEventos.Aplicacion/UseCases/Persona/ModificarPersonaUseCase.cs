@@ -6,7 +6,7 @@ public class ModificarPersonaUseCase(IServicioAutorizacion auth, IRepositorioPer
     {
         if (!auth.PoseeElPermiso(unId, Permiso.UsuarioModificacion))
             throw new FalloAutorizacionException("No posee el permiso para modificar una Persona");
-        if (!validador.validar(persona, repo, out string msg))
+        if (!validador.Validar(persona, repo, out string msg))
             throw new ValidacionException(msg);
         repo.ModificarPersona(persona, personaModificada); 
         

@@ -1,7 +1,7 @@
 ﻿namespace CentroEventos.Aplicacion;
 
 public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,
-                                IRepositorioReserva repoReservas, EventoBaja_ValidadorReservasAsociadas validadorReservasAsociadas)
+                                IRepositorioReserva repoReservas, EventoBajaValidadorReservasAsociadas validadorReservasAsociadas)
 {
     public void Ejecutar(int eventoId, int userId) //
     {

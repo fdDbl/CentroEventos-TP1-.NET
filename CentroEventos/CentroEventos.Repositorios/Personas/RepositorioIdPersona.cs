@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace CentroEventos.Repositorios;
 public class RepositorioIdPersona
 {

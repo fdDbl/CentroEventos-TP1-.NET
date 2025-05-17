@@ -1,6 +1,6 @@
 ﻿namespace CentroEventos.Aplicacion;
 
-public class ReservaValidador_AltaExistencias
+public class ReservaValidadorAltaExistencias
 {
     public bool Validar(Reserva reserva, IRepositorioPersona repoPersona, IRepositorioEventoDeportivo repoEvento, out string msg)
     {

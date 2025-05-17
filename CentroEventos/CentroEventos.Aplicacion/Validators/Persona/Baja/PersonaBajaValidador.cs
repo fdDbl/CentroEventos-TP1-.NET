@@ -1,7 +1,4 @@
-
-
 namespace CentroEventos.Aplicacion.Validators.Persona;
-
 public class PersonaBajaValidador
 {
     public bool Validar(int id, IRepositorioEventoDeportivo repo, out string msg)
