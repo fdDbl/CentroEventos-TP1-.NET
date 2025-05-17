@@ -13,14 +13,13 @@ var validadorReservaBaja = new ReservaValidador_BajaExistencia();
 var validadorReservaMod = new ReservaValidador_ModificarExistentes();
 
 
-
 // Repositorios para inyectar
 IRepositorioPersona repositorioPersona = new RepositorioPersona();
 IRepositorioReserva repositorioReserva = new RepositorioReserva();
 IRepositorioEventoDeportivo repositorioEventoDeportivo = new RepositorioEventoDeportivo();
 
 // Casos de uso de EventoDeportivo
-var altaEventoDeportivo = new EventoAltaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioPersona,new EventoAltaValidador());
+var altaEventoDeportivo = new EventoAltaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioPersona,new EventoAltaValidadorNombre(), new EventoAltaValidadorCupoMaximo());
 var bajaEventoDeportivo = new EventoBajaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioReserva,new EventoBajaValidador());
 var modificarEventoDeportivo = new EventoModificacionUseCase(servicioAutorizacion,repositorioEventoDeportivo,new EventoModificadorValidador());
 var listarEventosDeportivos = new EventoListarUseCase(repositorioEventoDeportivo);
