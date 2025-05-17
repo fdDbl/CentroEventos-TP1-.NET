@@ -1,16 +1,15 @@
 namespace CentroEventos.Aplicacion;
-public class EventoAltaValidador {
-    public bool ValidarEventoAlta(EventoDeportivo actividad,IRepositorioPersona unRepo, out string msg) {
+public class EventoAltaValidadorNombre {
+    public bool ValidarEventoAltaNombre(EventoDeportivo actividad,IRepositorioPersona unRepo, out string msg) {
         msg = "";
-        if(string.IsNullOrWhiteSpace(actividad.Nombre)) {
+        bool aux = true;
+        if (string.IsNullOrWhiteSpace(actividad.Nombre))
+        {
             msg = "El nombre no puede estar vacío.\n";
+            aux = false;
         }
         
-        if(actividad.CupoMaximo <= 0) {
-            msg += "El Cupo maximo debe que ser mayor que 0.\n";
-        }
-
-        if (actividad.FechaHoraInicio < DateTime.Now) {
+      /*  if (actividad.FechaHoraInicio < DateTime.Now) {
             msg += "La fecha ingresada debe ser igual o posterior a la fecha .\n";
         }
 
@@ -21,7 +20,7 @@ public class EventoAltaValidador {
         if (unRepo.ObtenerPersona(actividad.ResponsableId) == null) //busca la persona por id
         {
             msg += "Responsable no existente.\n";
-        }
-        return msg == "";
+        }*/ // lo comento para luego pasarlo a validadores independientes
+        return aux;
     }
 }
