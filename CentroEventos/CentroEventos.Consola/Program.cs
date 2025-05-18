@@ -1,5 +1,6 @@
 ﻿using CentroEventos.Aplicacion;
 using CentroEventos.Aplicacion.Validators.Persona;
+using CentroEventos.Consola;
 using CentroEventos.Repositorios;
 
 // Servicio de autorización
@@ -49,83 +50,85 @@ var modificarPersona = new ModificarPersonaUseCase(servicioAutorizacion, reposit
 var listarPersonas = new ListarPersonasUseCase(repositorioPersona);
 
 // Programa principal
-try
-{
-    Persona per = new Persona("45297418", "FACUNDO", "Villca", 221, "facuVillca@hotmail.com");
-    altaPersona.Ejecutar(per,1);
-    var listaPersonas = listarPersonas.Ejecutar();
-    foreach (Persona p in listaPersonas)
-    {
-       Console.WriteLine(p.ToString());
-    }
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-}
+var selector = new Selector();
 
 try
 {
-     Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
-     var lista = listarPersonas.Ejecutar();
-     for(int i = 1; i <= lista.Count; i++) {
-         Console.WriteLine($"{i}) {lista[i-1]}");
-     }
-     int index = int.Parse(Console.ReadLine() ?? "-1") - 1;
-     int unRespo = repositorioPersona.ObtenerIdPorIndice(index);
-     
-     EventoDeportivo ev = new EventoDeportivo("Voley", "Deporte para mayores de 13 años.", new DateTime(2025,5,16), 3, 12,unRespo);
-     altaEventoDeportivo.Ejecutar(ev,1);
-     var listaEventosDeportivos = listarEventosDeportivos.Ejecutar();
-    foreach (EventoDeportivo e in listaEventosDeportivos)
+    // Alta de persona
+    Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
+    altaPersona.Ejecutar(persona, 1);
+
+    // Listar personas
+    var listaPersonas = listarPersonas.Ejecutar();
+
+    foreach (Persona p in listaPersonas)
+    {
+        Console.WriteLine(p);
+    }
+    
+    // Alta de evento deportivo
+    Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
+    selector.Personas(listarPersonas, out int indiceResponsable);
+    int idResponsable = repositorioPersona.ObtenerIdPorIndice(indiceResponsable);
+
+    EventoDeportivo evento = new EventoDeportivo(
+        "Voley",
+        "Deporte para mayores de 13 años.",
+        new DateTime(2025, 5, 16),
+        3,
+        12,
+        idResponsable
+    );
+
+    altaEventoDeportivo.Ejecutar(evento, 1);
+
+    // Listar eventos deportivos
+    var listaEventos = listarEventosDeportivos.Ejecutar();
+
+    foreach (EventoDeportivo e in listaEventos)
     {
         Console.WriteLine(e);
     }
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-}
 
-try
-{
-    int index;
-    
+    // Alta de reserva
     Console.WriteLine("Seleccione la persona a cargo de la reserva:");
-    var listaP = listarPersonas.Ejecutar();
-    for(int i = 1; i <= listaP.Count; i++) {
-        Console.WriteLine($"{i}) {listaP[i-1]}");
-    }
-    index = int.Parse(Console.ReadLine() ?? "-1") - 1;
-    int pId = repositorioPersona.ObtenerIdPorIndice(index);
+    selector.Personas(listarPersonas, out int indicePersonaReserva);
+    int idPersonaReserva = repositorioPersona.ObtenerIdPorIndice(indicePersonaReserva);
     
     Console.WriteLine("Seleccione el evento deportivo a reservar:");
-    var listaE = listarEventosDeportivos.Ejecutar();
-    for(int i = 1; i <= listaE.Count; i++) {
-        Console.WriteLine($"{i}) {listaE[i-1]}");
-    }
-    index = int.Parse(Console.ReadLine() ?? "-1") - 1;
-    int eId = repositorioEventoDeportivo.ObtenerIdPorIndice(index);
+    selector.EventosDeportivos(listarEventosDeportivos, out int indiceEventoReserva);
+    int idEventoReserva = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEventoReserva);
 
-    Reserva reserva = new Reserva(pId,eId,DateTime.Now,Asistencia.Pendiente);
-    altaReserva.Ejecutar(reserva,1);
-    var lista = listarReservas.Ejecutar();
-    foreach (Reserva r in lista)
+    Reserva reserva = new Reserva(
+        idPersonaReserva,
+        idEventoReserva,
+        DateTime.Now,
+        Asistencia.Pendiente
+    );
+
+    altaReserva.Ejecutar(reserva, 1);
+
+    // Listar reservas
+    var listaReservas = listarReservas.Ejecutar();
+
+    foreach (Reserva r in listaReservas)
     {
-        Console.Write(r.ToString());
+        Console.WriteLine(r);
     }
+
+    // Modificación de reserva
+    Console.WriteLine("Seleccione la reserva a modificar:");
+    selector.Reservas(listarReservas, out int indiceReserva);
+    int idReserva = repositorioReserva.ObtenerIdPorIndice(indiceReserva);
+
+    Reserva reservaModificada = repositorioReserva.ObtenerReserva(idReserva);
+    reservaModificada.EstadoAsistencia = Asistencia.Ausente;
+
+    modificarReserva.Ejecutar(reservaModificada, 1);
 }
 catch (Exception e)
 {
     Console.WriteLine(e);
 }
-
-// HACER EN FORMA DE SELECTOR COMO ARRIBA:
-
-// try { bajaPersona.Ejecutar(1,1); }
-// catch (Exception e) { Console.WriteLine(e); }
-
-// try { bajaEventoDeportivo.Ejecutar(3,1); }
-// catch (Exception e) { Console.WriteLine(e); }
 
 Console.ReadKey();

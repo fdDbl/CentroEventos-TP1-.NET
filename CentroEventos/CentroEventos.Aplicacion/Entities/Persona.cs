@@ -20,6 +20,6 @@ public class Persona {
 
     public override string ToString()
     {
-        return $"DNI: {Dni} | Nombre: {Nombre}| Apellido: {Apellido} | Telefono: {Telefono} | Correo electrónico: {Email}";
+        return $"DNI: {Dni} | Nombre: {Nombre} | Apellido: {Apellido} | Telefono: {Telefono} | Correo electrónico: {Email}";
     }
 }

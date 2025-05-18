@@ -7,6 +7,7 @@ public interface IRepositorioReserva
     void ModificarReserva(Reserva reserva);
     Reserva ObtenerReserva(int id);
     Reserva ObtenerReserva(int id, out int i);
+    int ObtenerIdPorIndice(int index);
     List<Reserva> ListarReservas();
     int ContarReserva(int eventoId);
 }

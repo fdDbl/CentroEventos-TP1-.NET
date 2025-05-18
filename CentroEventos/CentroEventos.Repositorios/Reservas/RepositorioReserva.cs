@@ -64,6 +64,12 @@ public class RepositorioReserva : IRepositorioReserva
         }
         throw new EntidadNotFoundException("La reserva buscada no existe.");
     }
+    public int ObtenerIdPorIndice(int index)
+    {
+        Reserva r = ListarReservas()[index];
+        if (r == null) throw new EntidadNotFoundException("Selección de reserva inválida.");
+        return r.Id;
+    }
     public List<Reserva> ListarReservas()
     {
         var listaR = new List<Reserva>();

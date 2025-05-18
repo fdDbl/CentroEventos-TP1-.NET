@@ -24,6 +24,5 @@ public class EventoDeportivo
     public override string ToString()
     {
         return $"Nombre del evento: {Nombre} | Descripcion de evento: {Descripcion} | Fecha de inicio de actividad: {FechaHoraInicio} | Duracion del evento: {DuracionHoras} | Cupo maximo: {CupoMaximo}";
-
     }
 }
