@@ -59,6 +59,9 @@ var listarPersonas = new ListarPersonasUseCase(repositorioPersona);
 try
 {
     var selector = new Selector();
+    int op;
+    
+    Selector.OpcionesMain(out op);
     
     // Alta de persona
     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
