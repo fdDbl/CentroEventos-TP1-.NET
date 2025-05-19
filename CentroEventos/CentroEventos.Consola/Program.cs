@@ -25,7 +25,6 @@ var validadorEventoMod1 = new EventoModificadorValidadorFecha();
 var validadorEventoMod2 = new EventoModificadorValidadorCupo();
 var validadorEventoMod3 = new EventoModificadorValidadorIdResponsable();
 
-
 // Validadores de Persona
 var validadorPersonaAlta1 = new PersonaValidador();
 var validadorPersonaAlta2 = new EmailValidador();
@@ -57,17 +56,16 @@ var modificarPersona = new ModificarPersonaUseCase(servicioAutorizacion, reposit
 var listarPersonas = new ListarPersonasUseCase(repositorioPersona);
 
 // Programa principal
-var selector = new Selector();
-
 try
 {
+    var selector = new Selector();
+    
     // Alta de persona
     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
     altaPersona.Ejecutar(persona, 1);
 
-    // Listar personas*/
+    // Listar personas
     var listaPersonas = listarPersonas.Ejecutar();
-
     foreach (Persona p in listaPersonas)
     {
         Console.WriteLine(p);
@@ -110,9 +108,7 @@ try
         Console.WriteLine(eventoModificado.FechaHoraInicio);
         modificarEventoDeportivo.Ejecutar(eventoModificado, 1);
     }
-
     
-
     // Alta de reserva
     Console.WriteLine("Seleccione la persona a cargo de la reserva:");
     selector.Personas(listarPersonas, out int indicePersonaReserva);
