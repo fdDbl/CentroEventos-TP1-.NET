@@ -5,7 +5,7 @@ public class EventoAltaUseCase(IServicioAutorizacion auth,
  IRepositorioEventoDeportivo repoAct, IRepositorioPersona repoPer,
  EventoAltaValidadorNombre vNom, EventoAltaValidadorCupoMaximo vCupo,
  EventoAltaValidadorFecha vFec, EventoAltaValidadorResponsable vRes, 
- EventoAltaValidadorDesc vDesc)
+ EventoAltaValidadorDesc vDesc, EventoAltaValidadorDuracion vDur)
 {
     public void Ejecutar(EventoDeportivo evento, int userId) //
     {
@@ -34,6 +34,10 @@ public class EventoAltaUseCase(IServicioAutorizacion auth,
             if (!vRes.ValidarEventoAltaResponsable(evento, repoPer, out string msg4)) //
             {
                 throw new ValidacionException(msg4);
+            }
+            if (!vDur.ValidarEventoAltaDuracion(evento, out string msg1)) //
+            { //valido
+                throw new ValidacionException(msg1);
             }
             repoAct.EventoAlta(evento); // si es valido doy de alta el evento
         }

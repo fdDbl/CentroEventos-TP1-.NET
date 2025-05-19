@@ -16,8 +16,15 @@ var validadorReservaMod = new ReservaValidadorModificarExistentes();
 // Validadores de EventoDeportivo
 var validadorEventoAlta1 = new EventoAltaValidadorNombre();
 var validadorEventoAlta2 = new EventoAltaValidadorCupoMaximo();
+var validadorEventoAlta3 = new EventoAltaValidadorDesc();
+var validadorEventoAlta4 = new EventoAltaValidadorDuracion();
+var validadorEventoAlta5 = new EventoAltaValidadorFecha();
+var validadorEventoAlta6 = new EventoAltaValidadorResponsable();
 var validadorEventoBaja = new EventoBajaValidadorReservasAsociadas();
-var validadorEventoMod = new EventoModificadorValidador();
+var validadorEventoMod1 = new EventoModificadorValidadorFecha();
+var validadorEventoMod2 = new EventoModificadorValidadorCupo();
+var validadorEventoMod3 = new EventoModificadorValidadorIdResponsable();
+
 
 // Validadores de Persona
 var validadorPersonaAlta1 = new PersonaValidador();
@@ -32,9 +39,9 @@ IRepositorioReserva repositorioReserva = new RepositorioReserva();
 IRepositorioEventoDeportivo repositorioEventoDeportivo = new RepositorioEventoDeportivo();
 
 // Casos de uso de EventoDeportivo
-var altaEventoDeportivo = new EventoAltaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioPersona,validadorEventoAlta1,validadorEventoAlta2);
+var altaEventoDeportivo = new EventoAltaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioPersona,validadorEventoAlta1,validadorEventoAlta2,validadorEventoAlta5,validadorEventoAlta6,validadorEventoAlta3,validadorEventoAlta4);
 var bajaEventoDeportivo = new EventoBajaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioReserva,validadorEventoBaja);
-var modificarEventoDeportivo = new EventoModificacionUseCase(servicioAutorizacion,repositorioEventoDeportivo,validadorEventoMod);
+var modificarEventoDeportivo = new EventoModificacionUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioReserva,repositorioPersona,validadorEventoMod1,validadorEventoMod2,validadorEventoMod3);
 var listarEventosDeportivos = new EventoListarUseCase(repositorioEventoDeportivo);
 
 // Casos de uso de Reserva
@@ -58,14 +65,14 @@ try
     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
     altaPersona.Ejecutar(persona, 1);
 
-    // Listar personas
+    // Listar personas*/
     var listaPersonas = listarPersonas.Ejecutar();
 
     foreach (Persona p in listaPersonas)
     {
         Console.WriteLine(p);
     }
-    
+
     // Alta de evento deportivo
     Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
     selector.Personas(listarPersonas, out int indiceResponsable);
@@ -74,7 +81,7 @@ try
     EventoDeportivo evento = new EventoDeportivo(
         "Voley",
         "Deporte para mayores de 13 años.",
-        new DateTime(2025, 5, 16),
+        new DateTime(2025, 5, 25),
         3,
         12,
         idResponsable
@@ -82,7 +89,7 @@ try
 
     altaEventoDeportivo.Ejecutar(evento, 1);
 
-    // Listar eventos deportivos
+    //Listar eventos deportivos
     var listaEventos = listarEventosDeportivos.Ejecutar();
 
     foreach (EventoDeportivo e in listaEventos)
@@ -90,11 +97,27 @@ try
         Console.WriteLine(e);
     }
 
+    //Modificación de evento
+    Console.WriteLine("Seleccione el evento a modificar");
+    selector.EventosDeportivos(listarEventosDeportivos, out int indiceEventoDeportivo);
+    int idEventoDeportivo = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEventoDeportivo);
+
+    EventoDeportivo? eventoModificado = repositorioEventoDeportivo.ObtenerEvento(idEventoDeportivo);
+    if (eventoModificado != null)
+    {
+        eventoModificado.Nombre = "Fútbol";
+        eventoModificado.FechaHoraInicio = new DateTime (2025, 5, 30);
+        Console.WriteLine(eventoModificado.FechaHoraInicio);
+        modificarEventoDeportivo.Ejecutar(eventoModificado, 1);
+    }
+
+    
+
     // Alta de reserva
     Console.WriteLine("Seleccione la persona a cargo de la reserva:");
     selector.Personas(listarPersonas, out int indicePersonaReserva);
     int idPersonaReserva = repositorioPersona.ObtenerIdPorIndice(indicePersonaReserva);
-    
+
     Console.WriteLine("Seleccione el evento deportivo a reservar:");
     selector.EventosDeportivos(listarEventosDeportivos, out int indiceEventoReserva);
     int idEventoReserva = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEventoReserva);
