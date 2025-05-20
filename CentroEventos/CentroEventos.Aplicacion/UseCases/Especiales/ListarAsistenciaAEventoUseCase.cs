@@ -1,8 +1,8 @@
 namespace CentroEventos.Aplicacion;
 
-public class ListarAsistenciaAEventoUseCase (EventoDeportivo unEvento, IRepositorioReserva unRepoR, IRepositorioPersona per) {
+public class ListarAsistenciaAEventoUseCase (IRepositorioReserva unRepoR, IRepositorioPersona per) {
 
-    public List<Persona> Ejecutar() {
+    public List<Persona> Ejecutar(EventoDeportivo unEvento) {
         var listaP = new List<Persona>();
         if (unEvento.FechaHoraInicio < DateTime.Now) // evaluo si el evento es pasado
         {

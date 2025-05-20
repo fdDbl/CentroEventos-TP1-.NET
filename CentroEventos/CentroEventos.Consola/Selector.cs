@@ -3,6 +3,12 @@ using CentroEventos.Aplicacion;
 namespace CentroEventos.Consola;
 public static class Selector
 {
+    public static void Generico(out int op, params string[] opciones)
+    {
+        for (int i = 0; i < opciones.Length; i++)
+            Console.WriteLine($"{i+1}) {opciones[i]}");
+        op = int.Parse(Console.ReadLine() ?? "-1");
+    }
     public static void OpcionesMain(out int op)
     {
         Console.WriteLine("----- MENÚ PRINCIPAL -----");

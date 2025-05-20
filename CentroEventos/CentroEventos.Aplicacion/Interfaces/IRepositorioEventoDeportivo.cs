@@ -9,5 +9,5 @@ public interface IRepositorioEventoDeportivo
     EventoDeportivo? ObtenerEvento(int id); //Busca un evento por id
     List<EventoDeportivo> ListarEventosFuturos();
     List<EventoDeportivo> ListarEventos();
-
+    
 }

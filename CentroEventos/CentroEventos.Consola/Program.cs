@@ -42,6 +42,8 @@ var altaEventoDeportivo = new EventoAltaUseCase(servicioAutorizacion,repositorio
 var bajaEventoDeportivo = new EventoBajaUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioReserva,validadorEventoBaja);
 var modificarEventoDeportivo = new EventoModificacionUseCase(servicioAutorizacion,repositorioEventoDeportivo,repositorioReserva,repositorioPersona,validadorEventoMod1,validadorEventoMod2,validadorEventoMod3);
 var listarEventosDeportivos = new EventoListarUseCase(repositorioEventoDeportivo);
+var listarEventosCupoDisponible = new ListarEventosConCupoDisponibleUseCase(repositorioEventoDeportivo, repositorioReserva);
+var listarAsistenciaEventos = new ListarAsistenciaAEventoUseCase(repositorioReserva, repositorioPersona);
 
 // Casos de uso de Reserva
 var altaReserva = new ReservaAltaUseCase(servicioAutorizacion,repositorioReserva,repositorioEventoDeportivo,repositorioPersona,validadorReservaAlta1,validadorReservaAlta2,validadorReservaAlta3);
@@ -149,9 +151,34 @@ try
                 break;
             case (2, 4):
                 // Listar eventos deportivos
-                var listaEventos = listarEventosDeportivos.Ejecutar();
-                foreach (var e in listaEventos)
-                    Console.WriteLine(e);
+                Selector.Generico(out int opListarE, 
+                    "Listar todo",
+                    "Listar eventos con cupo disponible",
+                    "Listar personas que asistieron a determinado evento");
+                switch (opListarE)
+                {
+                    case 1:
+                        var listaEventos = listarEventosDeportivos.Ejecutar();
+                        foreach (var e in listaEventos)
+                            Console.WriteLine(e);
+                        break;
+                    case 2:
+                        var listaEventosCupos = listarEventosCupoDisponible.Ejecutar();
+                        foreach (var e in listaEventosCupos)
+                            Console.WriteLine(e);
+                        break;
+                    case 3:
+                        Console.WriteLine("Seleccione un evento:");
+                        Selector.EventosDeportivos(listarEventosDeportivos,out var index);
+                        idEventoDeportivo = repositorioEventoDeportivo.ObtenerIdPorIndice(index);
+                        var eventoLista = repositorioEventoDeportivo.ObtenerEvento(idEventoDeportivo);
+                        if (eventoLista != null)
+                        {
+                            foreach(Persona p in listarAsistenciaEventos.Ejecutar(eventoLista))
+                                Console.WriteLine(p);
+                        }
+                        break;
+                }
                 break;
             case (3, 1):
                 // Alta de reserva
