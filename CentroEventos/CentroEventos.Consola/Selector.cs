@@ -40,7 +40,7 @@ public static class Selector
 
     public static void OpcionesEntidad(int opMain, out int opEnt)
     {
-        var entidad = opMain switch { 1 => "Persona", 2 => "Evento Deportivo", 3 => "Reserva", _ => "" };
+        var entidad = opMain switch { 1 => "PERSONA", 2 => "EVENTO DEPORTIVO", 3 => "RESERVA", _ => "" };
 
         Console.WriteLine($"----- MENÚ DE {entidad} -----");
         Console.WriteLine("Seleccione qué hacer:");
