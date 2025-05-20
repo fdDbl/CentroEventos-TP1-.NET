@@ -1,4 +1,4 @@
-﻿using CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion;
 using CentroEventos.Aplicacion.Validators.Persona;
 using CentroEventos.Consola;
 using CentroEventos.Repositorios;
@@ -58,20 +58,13 @@ var listarPersonas = new ListarPersonasUseCase(repositorioPersona);
 // Programa principal
 try
 {
-<<<<<<< HEAD
-    //Alta de persona
-     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
-     altaPersona.Ejecutar(persona, 1);
-=======
     var selector = new Selector();
     int op;
     
     Selector.OpcionesMain(out op);
-    
-    // Alta de persona
+    //Alta de persona
     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
-    altaPersona.Ejecutar(persona, 1);
->>>>>>> f310f4bd0b6274c1a5c3dc9ec7aee90a49d2d0d7
+     altaPersona.Ejecutar(persona, 1);
 
     // Listar personas
     var listaPersonas = listarPersonas.Ejecutar();
@@ -79,19 +72,16 @@ try
     {
         Console.WriteLine(p);
     }
-<<<<<<< HEAD
     Console.WriteLine("Seleccion una persona a modificar");
     selector.Personas(listarPersonas, out int indicePersona); //listar las personas y recibir un indice
     int idPersona = repositorioPersona.ObtenerIdPorIndice(indicePersona);
     Persona? personaModificada = repositorioPersona.ObtenerPersona(idPersona);
     if (personaModificada != null)
     {
-        personaModificada.Apellido = "Bie";
+        personaModificada.Apellido = "global";
         modificarPersona.Ejecutar(personaModificada, 1);
     }
     
-=======
->>>>>>> f310f4bd0b6274c1a5c3dc9ec7aee90a49d2d0d7
 
     // Alta de evento deportivo
         Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
