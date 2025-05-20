@@ -25,7 +25,7 @@ public class RepositorioReserva : IRepositorioReserva
         {
             reservas.Remove(rBaja);
             SobreEscribirReservas(reservas);
-        } else throw new OperacionInvalidaException("Reserva inexistente.");
+        } else throw new EntidadNotFoundException("Reserva inexistente.");
     }
 
     private void SobreEscribirReservas(List<Reserva> lista)
