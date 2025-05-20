@@ -1,7 +1,7 @@
 namespace CentroEventos.Aplicacion;
 public class EventoAltaValidadorCupoMaximo
 {
-    public bool ValidarEventoAltaCupoMaximo(EventoDeportivo actividad, IRepositorioPersona unRepo, out string msg)
+    public bool ValidarEventoAltaCupoMaximo(EventoDeportivo actividad, out string msg)
     {
         msg = ""; // anotando a ver si me pushea bien
         bool aux = true;

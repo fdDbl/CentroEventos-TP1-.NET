@@ -1,11 +1,11 @@
 namespace CentroEventos.Aplicacion;
-public class EventoAltaValidadorNombre {
-    public bool ValidarEventoAltaNombre(EventoDeportivo actividad, out string msg) {
+public class EventoAltaValidadorDesc {
+    public bool ValidarEventoAltaDesc(EventoDeportivo actividad, out string msg) {
         msg = "";
         bool aux = true;
         if (string.IsNullOrWhiteSpace(actividad.Nombre))
         {
-            msg = "El nombre no puede estar vacío.\n";
+            msg = "La descripcion no puede estar vacía.\n";
             aux = false;
         }
         return aux;
