@@ -4,12 +4,12 @@ public class Persona {
     public string? Dni {get;set;}
     public string? Nombre {get;set;}
     public string? Apellido {get;set;}
-    public int Telefono {get;set;}
+    public long Telefono {get;set;}
     public string? Email {get;set;}
 
     public Persona (){}
     
-    public Persona (string unDni, string? unNom, string? unAp,int unTel, string? unEm) 
+    public Persona (string unDni, string? unNom, string? unAp,long unTel, string? unEm) 
     {
         Dni = unDni;
         Nombre = unNom;

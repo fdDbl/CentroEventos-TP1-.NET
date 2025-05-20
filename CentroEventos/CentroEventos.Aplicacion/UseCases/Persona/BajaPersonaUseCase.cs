@@ -2,15 +2,15 @@
 
 namespace CentroEventos.Aplicacion;
 
-public class BajaPersonaUseCase(IServicioAutorizacion auth, IRepositorioPersona repo,IRepositorioEventoDeportivo repoEventoDeportivo,PersonaBajaValidador validador)
+public class BajaPersonaUseCase(IServicioAutorizacion auth, IRepositorioPersona repo,IRepositorioEventoDeportivo repoEventoDeportivo,IRepositorioReserva repoReserva,PersonaBajaValidador validador)
 {
-    public void Ejecutar(int eventoid, int unId)
+    public void Ejecutar(int personaId, int unId)
     {
         if (!auth.PoseeElPermiso(unId, Permiso.UsuarioBaja))
             throw new FalloAutorizacionException("No posee el permiso para dar de baja una Persona");
         // falta chequear que la persona exista. Lo valida un validador, no el repo
-        if (!validador.Validar(eventoid,repoEventoDeportivo,out string msg))
+        if (!validador.Validar(personaId,repoEventoDeportivo,repoReserva,out string msg))
             throw new ValidacionException(msg);
-        repo.BajaPersona(eventoid);
+        repo.BajaPersona(personaId);
     }
 }   

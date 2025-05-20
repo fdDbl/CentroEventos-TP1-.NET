@@ -1,13 +1,13 @@
 using CentroEventos.Aplicacion;
 
 namespace CentroEventos.Consola;
-public class Selector
+public static class Selector
 {
     public static void OpcionesMain(out int op)
     {
         Console.WriteLine("----- MENÚ PRINCIPAL -----");
-        Console.WriteLine("Seleccione con cuál entidad trabajar (1-3):");
-        Console.WriteLine("1) Personas\n2) Eventos deportivos\n3)Reservas");
+        Console.WriteLine("Seleccione con cuál entidad trabajar (1-3) o salir del programa (-1):");
+        Console.WriteLine("1) Personas\n2) Eventos deportivos\n3) Reservas\n-1) SALIR ");
         op = int.Parse(Console.ReadLine() ?? "-1");
         do {
             switch (op)
@@ -21,22 +21,28 @@ public class Selector
                 case 3:
                     Console.WriteLine("- GESTIÓN DE RESERVAS -");
                     break;
+                case -1: Console.WriteLine("SALIENDO DEL MENÚ...");
+                    Thread.Sleep(2000);
+                    break;
                 default: 
                     Console.WriteLine("Opción incorrecta.");
+                    op = int.Parse(Console.ReadLine() ?? "-1");
                     break;
             }
-        } while (op < 1 && op > 4);
+        } while (op < 1 && op > 3);
     }
 
-    public static void OpcionesEntidad(string entidad, out int op)
+    public static void OpcionesEntidad(int opMain, out int opEnt)
     {
+        var entidad = opMain switch { 1 => "Persona", 2 => "Evento Deportivo", 3 => "Reserva", _ => "" };
+
         Console.WriteLine($"----- MENÚ DE {entidad} -----");
         Console.WriteLine("Seleccione qué hacer:");
         Console.WriteLine("1) Alta\n2) Baja\n3) Modificar\n4) Listar");
-        op = int.Parse(Console.ReadLine() ?? "-1");
+        opEnt = int.Parse(Console.ReadLine() ?? "-1");
         do
         {
-            switch (op)
+            switch (opEnt)
             {
                 case 1:
                     Console.WriteLine($"- ALTA DE {entidad} -");
@@ -52,30 +58,34 @@ public class Selector
                     break;
                 default:
                     Console.WriteLine("Opción incorrecta.");
+                    opEnt = int.Parse(Console.ReadLine() ?? "-1");
                     break;
             }
-        } while (op < 1 && op > 4);
+        } while (opEnt < 1 && opEnt > 4);
     }
-    public void Personas(ListarPersonasUseCase listarPersonas, out int index)
+    public static void Personas(ListarPersonasUseCase listarPersonas, out int index)
     {
         var lista = listarPersonas.Ejecutar();
-        for(int i = 1; i <= lista.Count; i++) {
+        if (lista.Count == 0) throw new Exception("No existen personas en el sistema.");
+        for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
         index = int.Parse(Console.ReadLine() ?? "-1") - 1;
     }
-    public void Reservas(ReservaListarUseCase listarReservas, out int index)
+    public static void Reservas(ReservaListarUseCase listarReservas, out int index)
     {
         var lista = listarReservas.Ejecutar();
-        for(int i = 1; i <= lista.Count; i++) {
+        if (lista.Count == 0) throw new Exception("No existen reservas en el sistema.");
+        for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
         index = int.Parse(Console.ReadLine() ?? "-1") - 1;
     }
-    public void EventosDeportivos(EventoListarUseCase listarEventos, out int index)
+    public static void EventosDeportivos(EventoListarUseCase listarEventos, out int index)
     {
         var lista = listarEventos.Ejecutar();
-        for(int i = 1; i <= lista.Count; i++) {
+        if (lista.Count == 0) throw new Exception("No existen eventos deportivos en el sistema.");
+        for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
         index = int.Parse(Console.ReadLine() ?? "-1") - 1;

@@ -88,21 +88,16 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         { // recorro lista y voy sobreescribiendo
             if (act.Id == actMod.Id)
             { // solo en el caso de que encuentre el q quiero modificar, lo modifico
-                sw.WriteLine(actMod.Nombre);
-                sw.WriteLine(actMod.Descripcion);
-                sw.WriteLine(actMod.FechaHoraInicio);
-                sw.WriteLine(actMod.DuracionHoras);
-                sw.WriteLine(actMod.CupoMaximo);
-                sw.WriteLine(actMod.ResponsableId);
+                act.Nombre = actMod.Nombre;
+                act.Descripcion = actMod.Descripcion;
+                act.FechaHoraInicio = actMod.FechaHoraInicio;
+                act.DuracionHoras = actMod.DuracionHoras;
+                act.CupoMaximo = actMod.CupoMaximo;
+                act.ResponsableId = actMod.ResponsableId;
+                break;
             }
-            sw.WriteLine(act.Id);
-            sw.WriteLine(act.Nombre);
-            sw.WriteLine(act.Descripcion);
-            sw.WriteLine(act.FechaHoraInicio);
-            sw.WriteLine(act.DuracionHoras);
-            sw.WriteLine(act.CupoMaximo);
-            sw.WriteLine(act.ResponsableId);
         }
+        SobreEscribirEventos(listaAct);
     }
 
 

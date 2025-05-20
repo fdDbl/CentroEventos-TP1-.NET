@@ -19,17 +19,13 @@ public class RepositorioReserva : IRepositorioReserva
 
     public void BajaReserva(int idBaja)
     {
-        try
+        var reservas = ListarReservas();
+        var rBaja = reservas.Find(reserva => reserva.Id == idBaja);
+        if (rBaja != null)
         {
-            var rBaja = ObtenerReserva(idBaja);
-            var reservas = ListarReservas();
             reservas.Remove(rBaja);
             SobreEscribirReservas(reservas);
-        }
-        catch (OperacionInvalidaException e)
-        {
-            throw new OperacionInvalidaException($"Error al dar de baja la reserva: {e.Message}");
-        }
+        } else throw new OperacionInvalidaException("Reserva inexistente.");
     }
 
     private void SobreEscribirReservas(List<Reserva> lista)

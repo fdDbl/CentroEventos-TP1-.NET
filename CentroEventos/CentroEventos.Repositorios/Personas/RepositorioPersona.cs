@@ -14,7 +14,7 @@ public class RepositorioPersona : IRepositorioPersona
     public void BajaPersona(int id)
     {
         List<Persona> personas = ListarPersonas();
-        Persona? p = ObtenerPersona(id);
+        Persona? p = personas.Find(persona => persona.Id == id);
         if (p != null)
         {
             personas.Remove(p);
@@ -55,13 +55,12 @@ public class RepositorioPersona : IRepositorioPersona
         }
     }
     public Persona? ObtenerPersona(int id)
-    {   //la persona puede no estar
-        var lista = ListarPersonas();      //guardo la lista de personas
-        var p = lista.Find(persona => id == persona.Id);       //busca en la lista la persona comparando por id  (puede no estar) 
-        //si se pone asi el parametro busca el elemento dentro la lista cuyo id coincide con idNueva
-        return p;          //retorna ya sea la persona o null
+    {   // la persona puede no estar
+        // devuelve COPIA
+        var lista = ListarPersonas();
+        var p = lista.Find(persona => id == persona.Id);
+        return p;
     }
-
     public int ObtenerIdPorIndice(int index)
     {
         Persona p = ListarPersonas()[index];
@@ -84,7 +83,7 @@ public class RepositorioPersona : IRepositorioPersona
             persona.Dni = split[1];
             persona.Nombre = split[2];
             persona.Apellido = split[3];
-            persona.Telefono = int.Parse(split[4]);
+            persona.Telefono = long.Parse(split[4]);
             persona.Email = split[5];
             resultado.Add(persona);
         }

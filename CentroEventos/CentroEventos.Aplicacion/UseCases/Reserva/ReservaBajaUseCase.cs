@@ -7,6 +7,6 @@ public class ReservaBajaUseCase(IServicioAutorizacion auth, IRepositorioReserva 
         if (!auth.PoseeElPermiso(idUser, Permiso.ReservaBaja)) throw new FalloAutorizacionException("No posee los permisos para hacer baja de una reserva.");
         if (!validador.Validar(idReserva, repoR, out string msg)) throw new EntidadNotFoundException(msg);
         
-        repoR.BajaReserva(idUser);
+        repoR.BajaReserva(idReserva);
     }
 }
