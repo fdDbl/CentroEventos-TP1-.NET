@@ -4,7 +4,7 @@ public interface IRepositorioPersona
 {
     void AltaPersona(Persona persona);
     void BajaPersona(int id);
-    void ModificarPersona(Persona p,Persona personaModificada);
+    void ModificarPersona(Persona p);
     int ObtenerIdPorIndice(int index);
     Persona? ObtenerPersona(int id);
     List<Persona> ListarPersonas();

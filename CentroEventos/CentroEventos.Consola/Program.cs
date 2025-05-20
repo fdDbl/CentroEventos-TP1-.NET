@@ -54,9 +54,9 @@ var selector = new Selector();
 
 try
 {
-    // Alta de persona
-    Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
-    altaPersona.Ejecutar(persona, 1);
+    //Alta de persona
+     Persona persona = new Persona("45297418", "Facundo", "Villca", 221, "facuVillca@hotmail.com");
+     altaPersona.Ejecutar(persona, 1);
 
     // Listar personas
     var listaPersonas = listarPersonas.Ejecutar();
@@ -65,9 +65,19 @@ try
     {
         Console.WriteLine(p);
     }
+    Console.WriteLine("Seleccion una persona a modificar");
+    selector.Personas(listarPersonas, out int indicePersona); //listar las personas y recibir un indice
+    int idPersona = repositorioPersona.ObtenerIdPorIndice(indicePersona);
+    Persona? personaModificada = repositorioPersona.ObtenerPersona(idPersona);
+    if (personaModificada != null)
+    {
+        personaModificada.Apellido = "Bie";
+        modificarPersona.Ejecutar(personaModificada, 1);
+    }
     
+
     // Alta de evento deportivo
-    Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
+        Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
     selector.Personas(listarPersonas, out int indiceResponsable);
     int idResponsable = repositorioPersona.ObtenerIdPorIndice(indiceResponsable);
 
@@ -94,7 +104,7 @@ try
     Console.WriteLine("Seleccione la persona a cargo de la reserva:");
     selector.Personas(listarPersonas, out int indicePersonaReserva);
     int idPersonaReserva = repositorioPersona.ObtenerIdPorIndice(indicePersonaReserva);
-    
+
     Console.WriteLine("Seleccione el evento deportivo a reservar:");
     selector.EventosDeportivos(listarEventosDeportivos, out int indiceEventoReserva);
     int idEventoReserva = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEventoReserva);
@@ -125,10 +135,10 @@ try
     reservaModificada.EstadoAsistencia = Asistencia.Ausente;
 
     modificarReserva.Ejecutar(reservaModificada, 1);
+    
+    
 }
 catch (Exception e)
 {
     Console.WriteLine(e);
 }
-
-Console.ReadKey();
