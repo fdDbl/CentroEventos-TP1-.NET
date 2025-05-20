@@ -69,31 +69,34 @@ public static class Selector
             }
         } while (opEnt < 1 && opEnt > 4);
     }
-    public static void Personas(ListarPersonasUseCase listarPersonas, out int index)
+    public static void Personas(IRepositorioPersona repositorioPersona, ListarPersonasUseCase listarPersonas, out int id)
     {
         var lista = listarPersonas.Ejecutar();
         if (lista.Count == 0) throw new Exception("No existen personas en el sistema.");
         for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
-        index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        var index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        id = repositorioPersona.ObtenerIdPorIndice(index);
     }
-    public static void Reservas(ReservaListarUseCase listarReservas, out int index)
+    public static void Reservas(IRepositorioReserva repositorioReserva, ReservaListarUseCase listarReservas, out int id)
     {
         var lista = listarReservas.Ejecutar();
         if (lista.Count == 0) throw new Exception("No existen reservas en el sistema.");
         for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
-        index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        var index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        id = repositorioReserva.ObtenerIdPorIndice(index);
     }
-    public static void EventosDeportivos(EventoListarUseCase listarEventos, out int index)
+    public static void EventosDeportivos(IRepositorioEventoDeportivo repositorioEventoDeportivo, EventoListarUseCase listarEventos, out int id)
     {
         var lista = listarEventos.Ejecutar();
         if (lista.Count == 0) throw new Exception("No existen eventos deportivos en el sistema.");
         for(var i = 1; i <= lista.Count; i++) {
             Console.WriteLine($"{i}) {lista[i-1]}");
         }
-        index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        var index = int.Parse(Console.ReadLine() ?? "-1") - 1;
+        id = repositorioEventoDeportivo.ObtenerIdPorIndice(index);
     }
 }

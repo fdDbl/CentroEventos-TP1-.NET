@@ -83,7 +83,6 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public void EventoModificacion(EventoDeportivo actMod)
     {
         List <EventoDeportivo> listaAct = ListarEventos(); // creo una lista
-        using StreamWriter sw = new StreamWriter(_nomArch,false); // abro el archivo y le paso false para sobreescribir
         foreach (EventoDeportivo act in listaAct)
         { // recorro lista y voy sobreescribiendo
             if (act.Id == actMod.Id)

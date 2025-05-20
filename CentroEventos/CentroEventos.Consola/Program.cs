@@ -80,8 +80,7 @@ try
             case (1, 2):
                 // Baja de persona
                 Console.WriteLine("Seleccione una persona a eliminar");
-                Selector.Personas(listarPersonas, out var indicePersona);
-                var idPersona = repositorioPersona.ObtenerIdPorIndice(indicePersona);
+                Selector.Personas(repositorioPersona, listarPersonas, out var idPersona);
                 var personaBaja = repositorioPersona.ObtenerPersona(idPersona);
                 if (personaBaja != null)
                     bajaPersona.Ejecutar(personaBaja.Id, 1);
@@ -89,8 +88,7 @@ try
             case (1, 3):
                 // Modificación de persona
                 Console.WriteLine("Seleccione una persona a modificar");
-                Selector.Personas(listarPersonas, out indicePersona);
-                idPersona = repositorioPersona.ObtenerIdPorIndice(indicePersona);
+                Selector.Personas(repositorioPersona, listarPersonas, out idPersona);
                 var personaModificada = repositorioPersona.ObtenerPersona(idPersona);
                 if (personaModificada != null)
                 {
@@ -111,8 +109,7 @@ try
             case (2, 1):
                 // Alta de evento deportivo
                 Console.WriteLine("Seleccione la persona responsable del nuevo evento deportivo:");
-                Selector.Personas(listarPersonas, out var indiceResponsable);
-                var idResponsable = repositorioPersona.ObtenerIdPorIndice(indiceResponsable);
+                Selector.Personas(repositorioPersona, listarPersonas, out var idResponsable);
                 Console.WriteLine("Ingrese datos del nuevo evento deportivo:");
                 Console.Write("Nombre: "); nom = Console.ReadLine() ?? "";
                 Console.Write("Descripción: "); string desc = Console.ReadLine() ?? "";
@@ -125,8 +122,7 @@ try
             case (2, 2):
                 // Baja de evento deportivo
                 Console.WriteLine("Seleccione un evento deportivo a eliminar");
-                Selector.EventosDeportivos(listarEventosDeportivos, out var indiceEvento);
-                var idEvento = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEvento);
+                Selector.EventosDeportivos(repositorioEventoDeportivo, listarEventosDeportivos, out var idEvento);
                 var eventoBaja = repositorioEventoDeportivo.ObtenerEvento(idEvento);
                 if (eventoBaja != null)
                     bajaEventoDeportivo.Ejecutar(eventoBaja.Id, 1);
@@ -134,8 +130,7 @@ try
             case (2, 3):
                 // Modificación de evento deportivo
                 Console.WriteLine("Seleccione el evento a modificar:");
-                Selector.EventosDeportivos(listarEventosDeportivos, out indiceEvento);
-                var idEventoDeportivo = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEvento);
+                Selector.EventosDeportivos(repositorioEventoDeportivo, listarEventosDeportivos, out var idEventoDeportivo);
                 var eventoModificado = repositorioEventoDeportivo.ObtenerEvento(idEventoDeportivo);
                 if (eventoModificado != null)
                 {
@@ -169,8 +164,7 @@ try
                         break;
                     case 3:
                         Console.WriteLine("Seleccione un evento:");
-                        Selector.EventosDeportivos(listarEventosDeportivos,out var index);
-                        idEventoDeportivo = repositorioEventoDeportivo.ObtenerIdPorIndice(index);
+                        Selector.EventosDeportivos(repositorioEventoDeportivo, listarEventosDeportivos, out idEventoDeportivo);
                         var eventoLista = repositorioEventoDeportivo.ObtenerEvento(idEventoDeportivo);
                         if (eventoLista != null)
                         {
@@ -183,26 +177,22 @@ try
             case (3, 1):
                 // Alta de reserva
                 Console.WriteLine("Seleccione la persona a cargo de la reserva:");
-                Selector.Personas(listarPersonas, out indicePersona);
-                var idPersonaReserva = repositorioPersona.ObtenerIdPorIndice(indicePersona);
+                Selector.Personas(repositorioPersona, listarPersonas, out var idPersonaReserva);
                 Console.WriteLine("Seleccione el evento deportivo a reservar:");
-                Selector.EventosDeportivos(listarEventosDeportivos, out indiceEvento);
-                var idEventoReserva = repositorioEventoDeportivo.ObtenerIdPorIndice(indiceEvento);
+                Selector.EventosDeportivos(repositorioEventoDeportivo, listarEventosDeportivos, out var idEventoReserva);
                 var reserva = new Reserva(idPersonaReserva, idEventoReserva, DateTime.Now, Asistencia.Pendiente);
                 altaReserva.Ejecutar(reserva, 1);
                 break;
             case (3, 2):
                 // Baja de reserva
                 Console.WriteLine("Seleccione una reserva a eliminar:");
-                Selector.Reservas(listarReservas, out var indiceReserva);
-                var idReserva = repositorioReserva.ObtenerIdPorIndice(indiceReserva);
+                Selector.Reservas(repositorioReserva,listarReservas, out var idReserva);
                 bajaReserva.Ejecutar(idReserva, 1);
                 break;
             case (3, 3):
                 // Modificación de reserva
                 Console.WriteLine("Seleccione la reserva a modificar:");
-                Selector.Reservas(listarReservas, out indiceReserva);
-                idReserva = repositorioReserva.ObtenerIdPorIndice(indiceReserva);
+                Selector.Reservas(repositorioReserva, listarReservas, out idReserva);
                 var reservaModificada = repositorioReserva.ObtenerReserva(idReserva);
                 Console.WriteLine("Ingrese nuevos datos:");
                 Console.WriteLine($"Asistencia (1-3) (actual: '{reservaModificada.EstadoAsistencia}'): ");
