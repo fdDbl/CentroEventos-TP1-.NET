@@ -45,7 +45,7 @@ public class RepositorioPersona : IRepositorioPersona
             personaBuscada.Apellido = persona.Apellido;
             personaBuscada.Telefono = persona.Telefono;
             personaBuscada.Email = persona.Email;
-            //HAGO ESTO PORQUE P OBTIENE UNA REFERENCIA AL ELEMENTO DE LA LISTA
+            
             SobreEscribirPersonas(listaPersona);  //escribo en el texto
         }
         else
