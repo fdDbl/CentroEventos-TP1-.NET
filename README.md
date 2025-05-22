@@ -1,10 +1,10 @@
 # Seminario .NET - Proyecto Centro de Eventos Deportivos (Primera Entrega)
 
 ## Integrantes
-* Bie Leandro
-* Castañeda Isabella
-* Dobal Federico
-* Villca Facundo
+* Bie, Leandro
+* Castañeda, Isabella
+* Dobal, Federico
+* Villca, Facundo
 
 ## Descripción General del Proyecto
 Este proyecto representa un sistema para un Centro de Eventos Deportivos. Su funcionalidad principal es administrar eventos deportivos y relacionarlos con personas y reservas, utilizando casos de uso habituales. Toda la información generada se persiste en repositorios de archivos de texto.
@@ -48,7 +48,7 @@ Esta primera entrega fue una experiencia enriquecedora en el desarrollo de softw
 ## Instrucciones para Correr el Programa
 
 ### Prerrequisitos
-* Tener instalado el SDK de .NET (la versión utilizada en el proyecto, aunque no especificada, se recomienda usar una versión reciente compatible).
+* Tener instalado el SDK de .NET 8.0.
 
 ### Pasos para Ejecutar
 1.  **Clonar el repositorio**:
