@@ -62,7 +62,7 @@ Esta primera entrega fue una experiencia enriquecedora en el desarrollo de softw
 3.  **Navegar al proyecto de Consola**:
     Se asume que el proyecto ejecutable se encuentra en `CentroEventos.Consola`.
     ```bash
-    cd CentroEventos.Consola
+    cd CentroEventos\CentroEventos.Consola
     ```
     (Si la estructura del proyecto es diferente, navega al directorio que contiene el archivo `.csproj` del proyecto de consola).
 
