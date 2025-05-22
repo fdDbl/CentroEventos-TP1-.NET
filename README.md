@@ -53,7 +53,7 @@ Esta primera entrega fue una experiencia enriquecedora en el desarrollo de softw
 ### Pasos para Ejecutar
 1.  **Clonar el repositorio**:
     ```bash
-    git clone (https://github.com/fdDbl/CentroEventos-TP1-.NET.git)
+    git clone https://github.com/fdDbl/CentroEventos-TP1-.NET.git
     ```
 2.  **Navegar al directorio del proyecto**:
     ```bash
