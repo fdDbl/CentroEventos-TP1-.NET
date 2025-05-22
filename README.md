@@ -25,8 +25,6 @@ La estructura se compone de:
 * **CentroEventos.Consola**: Es la interfaz de usuario de la solución. Conoce las referencias de Repositorios y Aplicación.
 * **CentroEventos.Repositorios**: Implementa los métodos para el acceso a datos y controla los archivos de texto. Conoce las referencias de Aplicación.
 
-Un diagrama de dependencias de la solución completa se encuentra en el archivo `Diagrama de dependencias - .NET primera entrega.svg`.
-
 ### Componentes de `CentroEventos.Aplicacion`
 * **Entities**: `EventoDeportivo`, `Persona`, `Reserva`.
 * **Enums**: `Asistencia` (Pendiente, Presente, Ausente) y `Permiso` (para operaciones de Evento, Reserva y Usuario).
@@ -43,9 +41,6 @@ Un diagrama de dependencias de la solución completa se encuentra en el archivo 
 ### Componentes de `CentroEventos.Repositorios`
 * Implementan las interfaces de repositorio y gestionan los archivos de texto para las entidades.
 * Se encargan de asignar y auto-incrementar los IDs de las entidades, almacenándolos en un archivo de texto separado y gestionándolos internamente.
-
-## Proceso de Trabajo
-El desarrollo fue realizado en equipo. Inicialmente se intentó usar Live Server para trabajo simultáneo, pero se optó por dividir responsabilidades por entidades y gestionar el proyecto con GitHub, lo cual resultó más efectivo. Esta división optimizó el ritmo de trabajo, manteniendo una comprensión general del código y facilitando la integración.
 
 ## Conclusión
 Esta primera entrega fue una experiencia enriquecedora en el desarrollo de software con .NET y C#. Se afrontaron desafíos colaborativamente, tanto en dinámicas grupales como en aspectos técnicos (gestión de IDs, arquitectura limpia). El proyecto respeta el principio de inversión de dependencia y el concepto de arquitectura cebolla.
@@ -75,4 +70,3 @@ Esta primera entrega fue una experiencia enriquecedora en el desarrollo de softw
     ```bash
     dotnet run
     ```
-    Esto compilará y ejecutará la aplicación de consola. Siga las instrucciones presentadas en la consola para interactuar con el sistema.
