@@ -1,7 +1,7 @@
 namespace CentroEventos.Aplicacion;
 public class EventoBajaValidadorReservasAsociadas
 {
-    public bool Validar(int eventoId, IRepositorioReserva repoReservas, out string msg) //
+    public bool Validar(int eventoId, IRepositorioReserva repoReservas, out string msg) 
     {
         msg="";
         if (repoReservas.ContarReserva(eventoId)>0)

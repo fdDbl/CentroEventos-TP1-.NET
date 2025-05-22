@@ -19,12 +19,12 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
 
     public void EventoBaja(int id)
     {
-        var listaEventos= ListarEventos(); //me guardo la lista de eventos
-        var evento = listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); //Busco en la lista el id que recibí como parámetro
+        var listaEventos= ListarEventos();
+        var evento = listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); 
         if (evento!=null)
         {
-            listaEventos.Remove(evento); //lo saco de la lista
-            SobreEscribirEventos(listaEventos); //sobreescribo el archivo
+            listaEventos.Remove(evento);
+            SobreEscribirEventos(listaEventos);
         }
         else
             throw new EntidadNotFoundException("Evento deportivo no existente.");
@@ -38,17 +38,17 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         return e.Id;
     }
 
-    public EventoDeportivo ObtenerEvento(int id) //Busco el evento por Id
+    public EventoDeportivo ObtenerEvento(int id) 
     {
-        var listaEventos=ListarEventos(); //me guardo la lista de los eventos
-        var evento =listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); //Me guardo en la variable 'evento' null si 
-                                                                                //el evento no existe o el mismo evento si existe
-        return evento ?? throw new EntidadNotFoundException("Evento deportivo no existente."); //lo devuelvo
+        var listaEventos=ListarEventos(); 
+        var evento =listaEventos.Find(eventoDeportivo=>eventoDeportivo.Id==id); 
+                                                                                
+        return evento ?? throw new EntidadNotFoundException("Evento deportivo no existente."); 
     }
 
     private void SobreEscribirEventos(List<EventoDeportivo> listaEventos)
     {
-        using StreamWriter sw= new StreamWriter(_nomArch,false); //false para sobreescribir el archivo
+        using StreamWriter sw= new StreamWriter(_nomArch,false); 
         foreach (EventoDeportivo e in listaEventos)
         {
             sw.WriteLine(e.Id);
@@ -64,10 +64,10 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
     public List<EventoDeportivo> ListarEventos()
     {
         using StreamReader sr= new StreamReader(_nomArch);
-        List<EventoDeportivo> listaEventos= new List<EventoDeportivo>(); //creo la lista
-        while (!sr.EndOfStream) //mientras no sea fin de archivo
+        List<EventoDeportivo> listaEventos= new List<EventoDeportivo>(); 
+        while (!sr.EndOfStream) 
         {
-            var evento = new EventoDeportivo(); //Asigno cada campo correspondiente
+            var evento = new EventoDeportivo(); 
             evento.Id=int.Parse(sr.ReadLine()?? "");
             evento.Nombre=sr.ReadLine()?? "";
             evento.Descripcion=sr.ReadLine() ?? "";
@@ -75,18 +75,18 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
             evento.DuracionHoras=double.Parse(sr.ReadLine()?? "");
             evento.CupoMaximo=int.Parse(sr.ReadLine()?? "");
             evento.ResponsableId=int.Parse(sr.ReadLine()?? "");
-            listaEventos.Add(evento); //Agrego el evento a la lista
+            listaEventos.Add(evento); 
         }
-        return listaEventos; //Devuelvo la lista
+        return listaEventos; 
     }
 
     public void EventoModificacion(EventoDeportivo actMod)
     {
-        List <EventoDeportivo> listaAct = ListarEventos(); // creo una lista
+        List <EventoDeportivo> listaAct = ListarEventos(); 
         foreach (EventoDeportivo act in listaAct)
-        { // recorro lista y voy sobreescribiendo
+        { 
             if (act.Id == actMod.Id)
-            { // solo en el caso de que encuentre el q quiero modificar, lo modifico
+            { 
                 act.Nombre = actMod.Nombre;
                 act.Descripcion = actMod.Descripcion;
                 act.FechaHoraInicio = actMod.FechaHoraInicio;
@@ -105,7 +105,7 @@ public class RepositorioEventoDeportivo: IRepositorioEventoDeportivo
         List<EventoDeportivo> listaEventos = ListarEventos();
         List<EventoDeportivo> listaEFuturos = new();
         foreach (EventoDeportivo e in listaEventos) {
-            if (e.FechaHoraInicio > DateTime.Now) { // si el evento q leo es futuro
+            if (e.FechaHoraInicio > DateTime.Now) { 
                 listaEFuturos.Add(e);
             }
         }

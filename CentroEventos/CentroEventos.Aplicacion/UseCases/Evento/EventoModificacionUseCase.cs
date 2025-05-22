@@ -5,7 +5,7 @@ IRepositorioEventoDeportivo repoEven, IRepositorioReserva repoR, IRepositorioPer
  EventoModificadorValidadorFecha vFec, EventoModificadorValidadorCupo vCupo,
  EventoModificadorValidadorIdResponsable vId) {
 
-    public void Ejecutar(EventoDeportivo unEvento, int userId) //
+    public void Ejecutar(EventoDeportivo unEvento, int userId) 
     {
         if (auth.PoseeElPermiso(userId, Permiso.EventoModificacion))
         {

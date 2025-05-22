@@ -6,7 +6,7 @@ public class RepositorioPersona : IRepositorioPersona
     private readonly string _nombreArch = "../../../../CentroEventos.Repositorios/Personas/RepositorioPersona.txt";
     public void AltaPersona(Persona persona)
     {
-        int id = RepositorioIdPersona.ObtenerId();     //consigue la id en el repo persona
+        int id = RepositorioIdPersona.ObtenerId();     
         persona.Id = id;
         using StreamWriter sw = new StreamWriter(_nombreArch, true);
         sw.WriteLine($"{persona.Id} | {persona.Dni} | {persona.Nombre} | {persona.Apellido} | {persona.Telefono} | {persona.Email}");
@@ -25,7 +25,7 @@ public class RepositorioPersona : IRepositorioPersona
 
     private void SobreEscribirPersonas(List<Persona> lista)
     {
-        using StreamWriter sw = new StreamWriter(_nombreArch, false);  //false para sobreescribir
+        using StreamWriter sw = new StreamWriter(_nombreArch, false);  
         foreach (Persona p in lista)
         {
             sw.WriteLine($"{p.Id} | {p.Dni} | {p.Nombre} | {p.Apellido} | {p.Telefono} | {p.Email}");
@@ -46,7 +46,7 @@ public class RepositorioPersona : IRepositorioPersona
             personaBuscada.Telefono = persona.Telefono;
             personaBuscada.Email = persona.Email;
             
-            SobreEscribirPersonas(listaPersona);  //escribo en el texto
+            SobreEscribirPersonas(listaPersona);  
         }
         else
         {
@@ -55,8 +55,7 @@ public class RepositorioPersona : IRepositorioPersona
         }
     }
     public Persona? ObtenerPersona(int id)
-    {   // la persona puede no estar
-        // devuelve COPIA
+    {   
         var lista = ListarPersonas();
         var p = lista.Find(persona => id == persona.Id);
         return p;
@@ -70,11 +69,10 @@ public class RepositorioPersona : IRepositorioPersona
     public  List<Persona> ListarPersonas()
     {
 
-        List<Persona> resultado = new List<Persona>();  //creo la lista de personas
-
+        List<Persona> resultado = new List<Persona>();  
         using StreamReader sr = new StreamReader(_nombreArch);
 
-        while (!sr.EndOfStream)  //mientras no termine el archivo
+        while (!sr.EndOfStream) 
         {
             var persona = new Persona();
             var st = sr.ReadLine() ?? "";

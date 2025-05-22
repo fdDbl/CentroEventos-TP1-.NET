@@ -7,7 +7,7 @@ public class EventoAltaUseCase(IServicioAutorizacion auth,
  EventoAltaValidadorFecha vFec, EventoAltaValidadorResponsable vRes, 
  EventoAltaValidadorDesc vDesc, EventoAltaValidadorDuracion vDur)
 {
-    public void Ejecutar(EventoDeportivo evento, int userId) //
+    public void Ejecutar(EventoDeportivo evento, int userId) 
     {
         if (!auth.PoseeElPermiso(userId, Permiso.EventoAlta))
         {
@@ -15,31 +15,31 @@ public class EventoAltaUseCase(IServicioAutorizacion auth,
         }
         else
         {
-            if (!vNom.ValidarEventoAltaNombre(evento, out string msg0)) //
-            { // valido
+            if (!vNom.ValidarEventoAltaNombre(evento, out string msg0)) 
+            { 
                 throw new ValidacionException(msg0);
             }
-            if (!vDesc.ValidarEventoAltaDesc(evento, out string msg5)) //
+            if (!vDesc.ValidarEventoAltaDesc(evento, out string msg5)) 
             {
                 throw new ValidacionException(msg5);
             }
-            if (!vCupo.ValidarEventoAltaCupoMaximo(evento, out string msg2)) //
-            { // valido
+            if (!vCupo.ValidarEventoAltaCupoMaximo(evento, out string msg2)) 
+            { 
                 throw new ValidacionException(msg2);
             }
-            if (!vFec.ValidarEventoAltaFecha(evento, out string msg3)) //
+            if (!vFec.ValidarEventoAltaFecha(evento, out string msg3)) 
             {
                 throw new ValidacionException(msg3);
             }
-            if (!vRes.ValidarEventoAltaResponsable(evento, repoPer, out string msg4)) //
+            if (!vRes.ValidarEventoAltaResponsable(evento, repoPer, out string msg4)) 
             {
                 throw new ValidacionException(msg4);
             }
-            if (!vDur.ValidarEventoAltaDuracion(evento, out string msg1)) //
-            { //valido
+            if (!vDur.ValidarEventoAltaDuracion(evento, out string msg1)) 
+            { 
                 throw new ValidacionException(msg1);
             }
-            repoAct.EventoAlta(evento); // si es valido doy de alta el evento
+            repoAct.EventoAlta(evento); 
         }
     }
 }

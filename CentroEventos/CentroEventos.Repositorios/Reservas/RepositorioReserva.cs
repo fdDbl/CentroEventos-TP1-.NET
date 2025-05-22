@@ -30,7 +30,7 @@ public class RepositorioReserva : IRepositorioReserva
 
     private void SobreEscribirReservas(List<Reserva> lista)
     {
-        using var sw = new StreamWriter(_nombreArch, false); //false para sobreescribir
+        using var sw = new StreamWriter(_nombreArch, false); 
         foreach (var r in lista)
             sw.WriteLine(
                 $"{r.Id} | {r.PersonaId} | {r.EventoDeportivoId} | {r.FechaAltaReserva:yyyy-MM-dd HH:mm:ss} | {r.EstadoAsistencia}");

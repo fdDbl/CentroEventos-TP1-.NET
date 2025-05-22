@@ -9,5 +9,4 @@ public class PersonaModificacionValidador
         if (p1 == null) msg += "No se encontro la persona";
         return msg == " ";
     }
-    //deberia la persona Poseer El Permiso y validar que este en el la lista Personas
 }

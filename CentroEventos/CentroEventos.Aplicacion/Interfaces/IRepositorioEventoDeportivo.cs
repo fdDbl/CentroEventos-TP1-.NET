@@ -6,7 +6,7 @@ public interface IRepositorioEventoDeportivo
     void EventoBaja(int id);
     void EventoModificacion(EventoDeportivo actividad);
     int ObtenerIdPorIndice(int index);
-    EventoDeportivo? ObtenerEvento(int id); //Busca un evento por id
+    EventoDeportivo? ObtenerEvento(int id);
     List<EventoDeportivo> ListarEventosFuturos();
     List<EventoDeportivo> ListarEventos();
     

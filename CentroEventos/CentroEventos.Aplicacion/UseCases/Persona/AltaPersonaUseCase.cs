@@ -3,7 +3,7 @@
 namespace CentroEventos.Aplicacion;
 
 public class AltaPersonaUseCase(IServicioAutorizacion auth, IRepositorioPersona repo,PersonaValidador validadorPersona,EmailValidador validarEmail,DniValidador validarDni ) 
- //agrege el repo actividad para verificar q no este en la actividad
+
 {  
     public void Ejecutar(Persona persona, int unId)
     {

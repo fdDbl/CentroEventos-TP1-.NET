@@ -3,7 +3,7 @@ public class EventoAltaValidadorCupoMaximo
 {
     public bool ValidarEventoAltaCupoMaximo(EventoDeportivo actividad, out string msg)
     {
-        msg = ""; // anotando a ver si me pushea bien
+        msg = ""; 
         bool aux = true;
         if (actividad.CupoMaximo <= 0)
         {
