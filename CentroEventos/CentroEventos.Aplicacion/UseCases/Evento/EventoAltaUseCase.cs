@@ -1,5 +1,11 @@
 ﻿
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Evento.Alta;
+
+namespace CentroEventos.Aplicacion.UseCases.Evento;
 
 public class EventoAltaUseCase(IServicioAutorizacion auth,
  IRepositorioEventoDeportivo repoAct, IRepositorioPersona repoPer,

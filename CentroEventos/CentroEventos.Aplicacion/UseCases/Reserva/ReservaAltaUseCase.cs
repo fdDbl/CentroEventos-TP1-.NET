@@ -1,10 +1,15 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Reserva.Alta;
+
+namespace CentroEventos.Aplicacion.UseCases.Reserva;
 public class ReservaAltaUseCase(IServicioAutorizacion auth, 
     IRepositorioReserva repoR, IRepositorioEventoDeportivo repoE, 
     IRepositorioPersona repoP, ReservaValidadorAltaExistencias vExistencias, 
     ReservaValidadorAltaDuplicado vDuplicados, ReservaAltaCupoDisponible vCupo)
 {
-    public void Ejecutar(Reserva reserva, int idUser)
+    public void Ejecutar(Entities.Reserva reserva, int idUser)
     {
         string msg;
         

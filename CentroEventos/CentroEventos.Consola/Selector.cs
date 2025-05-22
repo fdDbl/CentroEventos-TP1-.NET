@@ -1,4 +1,7 @@
-using CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.UseCases.Evento;
+using CentroEventos.Aplicacion.UseCases.Persona;
+using CentroEventos.Aplicacion.UseCases.Reserva;
 
 namespace CentroEventos.Consola;
 public static class Selector

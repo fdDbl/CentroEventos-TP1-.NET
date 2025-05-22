@@ -1,4 +1,4 @@
-namespace CentroEventos.Aplicacion;
+namespace CentroEventos.Aplicacion.Entities;
 public class Persona {
     public int Id { get; set;}
     public string? Dni {get;set;}

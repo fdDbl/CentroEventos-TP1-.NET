@@ -1,4 +1,4 @@
-namespace CentroEventos.Repositorios;
+namespace CentroEventos.Repositorios.Personas;
 public class RepositorioIdPersona
 {
     public static int ObtenerId ()

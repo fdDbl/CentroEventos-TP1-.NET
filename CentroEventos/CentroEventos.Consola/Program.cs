@@ -1,7 +1,24 @@
-using CentroEventos.Aplicacion;
-using CentroEventos.Aplicacion.Validators.Persona;
+using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Services;
+using CentroEventos.Aplicacion.UseCases.Especiales;
+using CentroEventos.Aplicacion.UseCases.Evento;
+using CentroEventos.Aplicacion.UseCases.Persona;
+using CentroEventos.Aplicacion.UseCases.Reserva;
+using CentroEventos.Aplicacion.Validators.Evento.Alta;
+using CentroEventos.Aplicacion.Validators.Evento.Baja;
+using CentroEventos.Aplicacion.Validators.Evento.Modificacion;
+using CentroEventos.Aplicacion.Validators.Persona.Alta;
+using CentroEventos.Aplicacion.Validators.Persona.Baja;
+using CentroEventos.Aplicacion.Validators.Persona.Modificacion;
+using CentroEventos.Aplicacion.Validators.Reserva.Alta;
+using CentroEventos.Aplicacion.Validators.Reserva.Baja;
+using CentroEventos.Aplicacion.Validators.Reserva.Modificar;
 using CentroEventos.Consola;
-using CentroEventos.Repositorios;
+using CentroEventos.Repositorios.EventosDeportivos;
+using CentroEventos.Repositorios.Personas;
+using CentroEventos.Repositorios.Reservas;
 
 // Servicio de autorización
 var servicioAutorizacion = new ServicioAutorizacionProvisorio();

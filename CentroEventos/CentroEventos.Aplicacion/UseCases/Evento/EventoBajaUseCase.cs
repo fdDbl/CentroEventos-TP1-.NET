@@ -1,4 +1,9 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Evento.Baja;
+
+namespace CentroEventos.Aplicacion.UseCases.Evento;
 
 public class EventoBajaUseCase(IServicioAutorizacion auth,IRepositorioEventoDeportivo repoEventos,
                                 IRepositorioReserva repoReservas, EventoBajaValidadorReservasAsociadas validadorReservasAsociadas)

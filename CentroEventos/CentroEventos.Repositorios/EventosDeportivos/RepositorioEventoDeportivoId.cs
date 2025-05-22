@@ -1,4 +1,4 @@
-namespace CentroEventos.Repositorios;
+namespace CentroEventos.Repositorios.EventosDeportivos;
 
 public class RepositorioEventoDeportivoId {
     public static int CalcularId ()

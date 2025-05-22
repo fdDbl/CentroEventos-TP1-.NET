@@ -1,4 +1,6 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Entities;
+
+namespace CentroEventos.Aplicacion.Validators.Evento.Alta;
 
 public class EventoAltaValidadorFecha
 {

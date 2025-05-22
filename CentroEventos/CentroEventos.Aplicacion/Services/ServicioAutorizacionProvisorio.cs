@@ -1,4 +1,7 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Services;
 
 public class ServicioAutorizacionProvisorio : IServicioAutorizacion
 {

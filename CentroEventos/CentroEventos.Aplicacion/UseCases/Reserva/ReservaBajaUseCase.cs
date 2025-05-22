@@ -1,4 +1,9 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Reserva.Baja;
+
+namespace CentroEventos.Aplicacion.UseCases.Reserva;
 
 public class ReservaBajaUseCase(IServicioAutorizacion auth, IRepositorioReserva repoR, ReservaValidadorBajaExistencia validador)
 {

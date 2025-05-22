@@ -1,4 +1,4 @@
-namespace CentroEventos.Aplicacion;
+namespace CentroEventos.Aplicacion.Exceptions;
 
 public class DuplicadoException : Exception
 {

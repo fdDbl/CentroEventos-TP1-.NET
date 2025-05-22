@@ -1,4 +1,6 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Reserva.Baja;
 
 public class ReservaValidadorBajaExistencia
 {

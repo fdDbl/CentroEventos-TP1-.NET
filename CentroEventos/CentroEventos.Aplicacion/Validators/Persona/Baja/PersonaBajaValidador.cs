@@ -1,4 +1,7 @@
-namespace CentroEventos.Aplicacion.Validators.Persona;
+using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Persona.Baja;
 public class PersonaBajaValidador
 {
     public bool Validar(int id, IRepositorioEventoDeportivo repoE, IRepositorioReserva repoR, out string msg)
@@ -12,7 +15,7 @@ public class PersonaBajaValidador
                 break;
             }
         }
-        foreach (Reserva r in repoR.ListarReservas())
+        foreach (Entities.Reserva r in repoR.ListarReservas())
         {
             if (r.PersonaId == id)
             {

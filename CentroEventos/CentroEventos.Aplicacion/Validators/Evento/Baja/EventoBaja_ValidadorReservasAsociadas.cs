@@ -1,4 +1,6 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Evento.Baja;
 public class EventoBajaValidadorReservasAsociadas
 {
     public bool Validar(int eventoId, IRepositorioReserva repoReservas, out string msg) 

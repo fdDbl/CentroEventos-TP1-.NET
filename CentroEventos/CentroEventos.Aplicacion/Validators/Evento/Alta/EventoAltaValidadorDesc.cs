@@ -1,4 +1,6 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Entities;
+
+namespace CentroEventos.Aplicacion.Validators.Evento.Alta;
 public class EventoAltaValidadorDesc {
     public bool ValidarEventoAltaDesc(EventoDeportivo actividad, out string msg) {
         msg = "";

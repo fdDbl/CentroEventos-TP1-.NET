@@ -1,4 +1,10 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Evento.Modificacion;
+
+namespace CentroEventos.Aplicacion.UseCases.Evento;
 
 public class EventoModificacionUseCase(IServicioAutorizacion auth,
 IRepositorioEventoDeportivo repoEven, IRepositorioReserva repoR, IRepositorioPersona repoPer,

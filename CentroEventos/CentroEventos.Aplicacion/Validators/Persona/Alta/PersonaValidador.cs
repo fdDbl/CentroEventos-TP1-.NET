@@ -1,8 +1,10 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Persona.Alta;
 
 public class PersonaValidador
 {
-    public bool ValidarPersona(Persona persona, IRepositorioPersona repo, out string msg)
+    public bool ValidarPersona(Entities.Persona persona, IRepositorioPersona repo, out string msg)
     {
         msg = "";
         if (string.IsNullOrWhiteSpace(persona.Nombre))

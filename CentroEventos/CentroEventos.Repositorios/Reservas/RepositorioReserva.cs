@@ -1,6 +1,9 @@
-﻿using CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
 
-namespace CentroEventos.Repositorios;
+namespace CentroEventos.Repositorios.Reservas;
 
 public class RepositorioReserva : IRepositorioReserva
 {

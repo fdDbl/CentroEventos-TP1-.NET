@@ -1,8 +1,10 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Reserva.Alta;
 
 public class ReservaValidadorAltaExistencias
 {
-    public bool Validar(Reserva reserva, IRepositorioPersona repoPersona, IRepositorioEventoDeportivo repoEvento, out string msg)
+    public bool Validar(Entities.Reserva reserva, IRepositorioPersona repoPersona, IRepositorioEventoDeportivo repoEvento, out string msg)
     {
         msg = "";
         

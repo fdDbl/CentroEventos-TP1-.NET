@@ -1,8 +1,13 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Enums;
+using CentroEventos.Aplicacion.Exceptions;
+using CentroEventos.Aplicacion.Interfaces;
+using CentroEventos.Aplicacion.Validators.Persona.Modificacion;
+
+namespace CentroEventos.Aplicacion.UseCases.Persona;
 
 public class ModificarPersonaUseCase(IServicioAutorizacion auth, IRepositorioPersona repo, PersonaModificacionValidador validador)
 {
-    public void Ejecutar(Persona persona, int unId)
+    public void Ejecutar(Entities.Persona persona, int unId)
     {
         if (!auth.PoseeElPermiso(unId, Permiso.UsuarioModificacion))
             throw new FalloAutorizacionException("No posee el permiso para modificar una Persona");

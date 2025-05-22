@@ -1,4 +1,7 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Evento.Modificacion;
 
 public class EventoModificadorValidadorCupo
 {

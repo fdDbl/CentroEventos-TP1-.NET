@@ -1,4 +1,6 @@
-namespace CentroEventos.Aplicacion;
+using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Persona.Alta;
 public class DniValidador
 {
     public bool Validar(string? st, IRepositorioPersona repo, out string msg)

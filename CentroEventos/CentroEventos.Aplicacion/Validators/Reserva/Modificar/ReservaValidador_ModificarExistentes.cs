@@ -1,8 +1,10 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Reserva.Modificar;
 
 public class ReservaValidadorModificarExistentes
 {
-    public bool Validar(Reserva reserva, IRepositorioReserva repoReserva, IRepositorioEventoDeportivo repoEvento, IRepositorioPersona repoPersona,out string msg)
+    public bool Validar(Entities.Reserva reserva, IRepositorioReserva repoReserva, IRepositorioEventoDeportivo repoEvento, IRepositorioPersona repoPersona,out string msg)
     {
         msg = "";
         

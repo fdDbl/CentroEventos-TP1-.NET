@@ -1,6 +1,7 @@
-using System.Runtime.InteropServices;
+using CentroEventos.Aplicacion.Entities;
+using CentroEventos.Aplicacion.Interfaces;
 
-namespace CentroEventos.Aplicacion;
+namespace CentroEventos.Aplicacion.Validators.Evento.Alta;
 
 public class EventoAltaValidadorResponsable
 {

@@ -1,13 +1,15 @@
-﻿namespace CentroEventos.Aplicacion;
+﻿using CentroEventos.Aplicacion.Interfaces;
+
+namespace CentroEventos.Aplicacion.Validators.Reserva.Alta;
 
 public class ReservaValidadorAltaDuplicado
 {
-    public bool Validar(Reserva reserva, IRepositorioReserva repoReserva, out string msg)
+    public bool Validar(Entities.Reserva reserva, IRepositorioReserva repoReserva, out string msg)
     {
         msg = "";
         
         var lista = repoReserva.ListarReservas();
-        Reserva? rCheck;
+        Entities.Reserva? rCheck;
         int pId = reserva.PersonaId;
         int eId = reserva.EventoDeportivoId;
         rCheck = lista.Find(r => r.PersonaId == pId && r.EventoDeportivoId == eId);

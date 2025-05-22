@@ -1,4 +1,4 @@
-namespace CentroEventos.Repositorios;
+namespace CentroEventos.Repositorios.Reservas;
 
 public class RepositorioIdReserva
 {
