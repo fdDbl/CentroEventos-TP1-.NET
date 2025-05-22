@@ -60,12 +60,9 @@ Esta primera entrega fue una experiencia enriquecedora en el desarrollo de softw
     cd CentroEventos-TP1-.NET
     ```
 3.  **Navegar al proyecto de Consola**:
-    Se asume que el proyecto ejecutable se encuentra en `CentroEventos.Consola`.
     ```bash
     cd CentroEventos\CentroEventos.Consola
     ```
-    (Si la estructura del proyecto es diferente, navega al directorio que contiene el archivo `.csproj` del proyecto de consola).
-
 4.  **Ejecutar la aplicación**:
     ```bash
     dotnet run
